@@ -5,9 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,9 +19,14 @@ public class PessoaController {
     private PessoaRepository pr;
 
     @PostMapping("/pessoa")
-    Pessoa novaPessoa(@RequestBody Pessoa novaPessoa){
-        return pr.save(novaPessoa);
+    public String novaPessoa(@RequestBody Pessoa novaPessoa) {
+    if (pr.existsById(novaPessoa.getCpf())) {
+        return "Já existe uma pessoa cadastrada com esse CPF!";
     }
+    pr.save(novaPessoa);
+    return "Pessoa cadastrada com sucesso!";
+}
+
 
     @GetMapping("/pessoas")
     List<Pessoa> getTodasPessoas() {
@@ -48,5 +51,24 @@ public class PessoaController {
 
     }
 
+    @PostMapping("/admin-login")
+    public String loginAdmin(@RequestBody Pessoa pessoa){
+    Optional<Pessoa> pessoaExiste = pr.findById(pessoa.getCpf());
 
+    if (!pessoaExiste.isPresent()) {
+        return "CPF não cadastrado!";
+    }
+
+    Pessoa usuario = pessoaExiste.get();
+
+    if (!usuario.isAdmin()) {
+        return "Usuário sem permissão";
+    }
+
+    if (!usuario.getSenha().equals(pessoa.getSenha())) {
+        return "Senha incorreta!";
+    }
+
+    return "Login bem-sucedido";
+}
 }

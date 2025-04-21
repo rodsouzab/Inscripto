@@ -1,2 +1,0 @@
---alter table pessoa add column isAdmin boolean;
---alter table pessoa add column senha varchar(50);

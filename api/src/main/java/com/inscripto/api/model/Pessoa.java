@@ -25,7 +25,7 @@ public class Pessoa {
     private String cep;
     private String instituicao_ensino;
     private String senha;
-    private boolean isAdmin;
+    private boolean admin;
 
     public String getCpf() {
         return cpf;
@@ -132,11 +132,11 @@ public class Pessoa {
     }
     
     public boolean isAdmin() {
-        return isAdmin;
+        return admin;
     }
     
-    public void setAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
     
 
