@@ -9,7 +9,12 @@ function LoginAdmin() {
   
     const handleLogin = async (e) => {
       e.preventDefault();
-  
+    
+      if (!cpf || !senha) {
+        setMessage('Por favor, preencha todos os campos!');
+        return;
+      }
+    
       const response = await fetch('http://localhost:8080/admin-login', {
         method: 'POST',
         headers: {
@@ -17,10 +22,11 @@ function LoginAdmin() {
         },
         body: JSON.stringify({ cpf, senha }),
       });
-  
+    
       const data = await response.text();
       setMessage(data);
     };
+    
   
     return (
       <div className="container">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './App.css';
+import '../styles/App.css';
 
 function Login() {
   const [cpf, setCpf] = useState('');
@@ -9,7 +9,13 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+  
+    // Validação no front-end
+    if (!cpf || !senha) {
+      setMessage('Por favor, preencha todos os campos!');
+      return;
+    }
+  
     const response = await fetch('http://localhost:8080/login', {
       method: 'POST',
       headers: {
@@ -17,10 +23,11 @@ function Login() {
       },
       body: JSON.stringify({ cpf, senha }),
     });
-
+  
     const data = await response.text();
     setMessage(data);
   };
+  
 
   return (
     <div className="container">
@@ -55,7 +62,7 @@ function Login() {
         {message && <p>{message}</p>}
 
         <p className="register-link">
-          Ainda não tem conta? <a href="/registrar">Registrar</a>
+          Ainda não tem conta? <a href="/cadastro">Registrar</a>
         </p>
       </div>
     </div>
