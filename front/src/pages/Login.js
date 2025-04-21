@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/App.css';
 
 function Login() {
@@ -7,10 +7,11 @@ function Login() {
   const [senha, setSenha] = useState('');
   const [message, setMessage] = useState('');
 
+  const navigate = useNavigate();
+
   const handleLogin = async (e) => {
     e.preventDefault();
   
-    // Validação no front-end
     if (!cpf || !senha) {
       setMessage('Por favor, preencha todos os campos!');
       return;
@@ -26,7 +27,13 @@ function Login() {
   
     const data = await response.text();
     setMessage(data);
-  };
+  
+    if (data === 'Login bem-sucedido!') {
+    setTimeout(() => {
+      navigate(`/pagina-inicial/${cpf}`);
+    }, 2000);
+  }
+};
   
 
   return (

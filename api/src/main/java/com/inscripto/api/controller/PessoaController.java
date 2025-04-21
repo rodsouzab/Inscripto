@@ -4,8 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -71,4 +75,33 @@ public class PessoaController {
 
     return "Login bem-sucedido";
 }
+
+    @GetMapping("/pessoa/{cpf}")
+    public ResponseEntity<Pessoa> getPessoaPorCpf(@PathVariable String cpf) {
+    Optional<Pessoa> pessoa = pr.findById(cpf);
+    return pessoa.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+}
+
+    @PutMapping("/pessoa/{cpf}")
+    public ResponseEntity<String> atualizarPessoa(@PathVariable String cpf, @RequestBody Pessoa pessoaAtualizada) {
+    Optional<Pessoa> pessoaExistente = pr.findById(cpf);
+
+    if (!pessoaExistente.isPresent()) {
+        return ResponseEntity.notFound().build();
+    }
+
+    pessoaAtualizada.setCpf(cpf); // garante que o CPF não mude
+    pr.save(pessoaAtualizada);
+
+    return ResponseEntity.ok("Pessoa atualizada com sucesso!");
+}
+
+    @DeleteMapping("/pessoa/{cpf}")
+    public ResponseEntity<String> deletarPessoa(@PathVariable String cpf) {
+        if (!pr.existsById(cpf)) {
+            return ResponseEntity.notFound().build();
+        }
+        pr.deleteById(cpf);
+        return ResponseEntity.ok("Pessoa deletada com sucesso!");
+    }
 }
