@@ -9,6 +9,18 @@
     padding: 40px 60px;
     box-sizing: border-box;
   }
+
+  .item-encontro {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+  }
+  
   
   .top-bar {
     display: flex;
@@ -86,5 +98,35 @@
   .botao-eac:hover {
     background-color: #849fb9;
     color: #ffffff;
+  }
+  
+  .formulario-encontro input {
+    display: block;
+    margin: 10px auto;
+    padding: 8px;
+    width: 80%;
+    font-size: 1rem;
+  }
+
+  .botao-encontro {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .botao-encontro:hover {
+    background-color: #0056b3;
+  }
+  
+  .lista-encontros {
+    margin-top: 20px;
   }
   
