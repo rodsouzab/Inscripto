@@ -68,5 +68,5 @@ Aqui estão algumas telas do sistema **Inscripto**:
 Este projeto foi desenvolvido por:
 
 - **Maria Fernanda Ordonho** — mfso@cesar.school 
-- **Rodrigo Cesar** — @cesar.school
-- **Tiago Gurgel** — @cesar.school
+- **Rodrigo Souza** — rsb2@cesar.school
+- **Tiago Gurgel** — tgafa@cesar.school
