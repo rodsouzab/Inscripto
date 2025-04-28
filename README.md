@@ -37,29 +37,16 @@
 ### 🔙 Backend (Java + Spring Boot)
 - Spring Web
 - Spring Data JPA
-- Spring Security *(opcional)*
 - **MySQL** 🐬
 
 ### 🌐 Frontend (React)
 - React.js + Hooks
 - Axios
 - React Router
-- TailwindCSS *(ou outro framework de UI)*
 
 ### 🧪 Ferramentas de Apoio
 - **Postman** 📬 — Testes de API REST
 - **DBeaver** 🐿️ — Visualização e manipulação do banco de dados MySQL
-
----
-
-## 📸 Telas
-
-Aqui estão algumas telas do sistema **Inscripto**:
-
-### 📝 Página de Cadastro de Pessoa
-![Cadastro](./screenshots/cadastro-pessoa.png)
-
-> 🔍 As imagens devem estar na pasta `screenshots/` dentro do repositório. Se preferir, use links externos de hospedagem como Imgur ou GitHub Issues.
 
 ---
 
