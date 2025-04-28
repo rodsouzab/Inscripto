@@ -31,7 +31,9 @@ function PaginaInicialAdmin() {
   const criarEncontro = async (e) => {
     e.preventDefault();
     const encontro = {
-      ...form,
+      ano: parseInt(form.ano), // Convertendo para número
+      colegio: form.colegio,
+      tema: form.tema,
       data: form.data + "T00:00:00",
     };
 
@@ -56,7 +58,6 @@ function PaginaInicialAdmin() {
   };
 
   const iniciarEdicao = (encontro) => {
-    // Extraindo apenas a data (sem o "T00:00:00")
     const dataFormatada = encontro.data ? encontro.data.split("T")[0] : "";
     setEditandoEncontroId(encontro.ano);
     setFormEdicao({
@@ -69,8 +70,9 @@ function PaginaInicialAdmin() {
   const salvarEdicao = async (ano) => {
     const dataComT = formEdicao.data.includes("T") ? formEdicao.data : formEdicao.data + "T00:00:00";
     const encontroAtualizado = {
-      ano: ano,
-      ...formEdicao,
+      ano: parseInt(ano), // Convertendo ano para número
+      colegio: formEdicao.colegio,
+      tema: formEdicao.tema,
       data: dataComT,
     };
 
@@ -84,7 +86,7 @@ function PaginaInicialAdmin() {
       if (response.ok) {
         alert("Encontro atualizado com sucesso!");
         setEditandoEncontroId(null);
-        setFormEdicao({});
+        setFormEdicao({ colegio: "", tema: "", data: "" });
         buscarEncontros();
       } else {
         alert("Erro ao atualizar encontro.");
@@ -118,11 +120,10 @@ function PaginaInicialAdmin() {
   return (
     <div className="pagina-inicial">
       <div className="conteudo-central">
-        {/* Formulário de criação */}
         <h2 className="titulo-encontro">Criar Novo Encontro</h2>
         <form onSubmit={criarEncontro} className="formulario-encontro">
           <input
-            type="text"
+            type="number" // tipo número agora
             placeholder="Ano"
             value={form.ano}
             onChange={(e) => setForm({ ...form, ano: e.target.value })}
@@ -148,7 +149,6 @@ function PaginaInicialAdmin() {
           <button type="submit" className="botao-encontro">Criar</button>
         </form>
 
-        {/* Lista de encontros registrados */}
         <h2 className="titulo-encontro">Encontros Registrados</h2>
         <div className="lista-encontros">
           {encontros.map((encontro) => (
@@ -160,7 +160,7 @@ function PaginaInicialAdmin() {
 
               <div style={{ marginTop: "10px" }}>
                 <button className="botao-encontro" onClick={() => iniciarEdicao(encontro)}>Editar</button>
-                <button className="botao-encontro" onClick={() => apagarEncontro(encontro.ano)}>Apagar</button>
+                <button className="botao-encontro" onClick={() => apagarEncontro(parseInt(encontro.ano))}>Apagar</button>
               </div>
 
               {editandoEncontroId === encontro.ano && (

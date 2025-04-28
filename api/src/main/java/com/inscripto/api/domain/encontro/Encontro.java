@@ -19,7 +19,7 @@ public class Encontro {
 
     @Id
     @Column(name = "ano", nullable = false)
-    private String ano;
+    private Integer ano;
 
     private String colegio;
 

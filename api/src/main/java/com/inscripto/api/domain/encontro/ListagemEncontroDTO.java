@@ -1,7 +1,7 @@
 package com.inscripto.api.domain.encontro;
 
 public record ListagemEncontroDTO(
-        String ano,
+        Integer ano,
         String colegio,
         String tema,
         java.sql.Date data
