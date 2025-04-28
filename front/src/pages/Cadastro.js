@@ -32,34 +32,44 @@ function Cadastro() {
 
   const handleCadastro = async (e) => {
     e.preventDefault();
-
+  
     const camposObrigatorios = [
       'cpf', 'nome', 'apelido', 'data_nascimento', 'telefone', 'foto_url',
       'bairro', 'complemento', 'numero', 'rua', 'cep', 'instituicao_ensino', 'senha'
     ];
-
+  
     for (let campo of camposObrigatorios) {
       if (!formData[campo]) {
         setMessage(`O campo ${campo} é obrigatório!`);
         return;
       }
     }
-
+  
+    // Adicionar um dia à data de nascimento
+    const dataOriginal = new Date(formData.data_nascimento);
+    const dataAjustada = new Date(dataOriginal);
+    dataAjustada.setDate(dataOriginal.getDate() + 1);
+  
+    const formDataAjustado = {
+      ...formData,
+      data_nascimento: dataAjustada.toISOString().split('T')[0] // Formato YYYY-MM-DD
+    };
+  
     const response = await fetch('http://localhost:8080/pessoa', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(formDataAjustado),
     });
-
+  
     const data = await response.text();
     setMessage(data);
-
+  
     if (data === "Pessoa cadastrada com sucesso!") {
       setTimeout(() => {
         navigate('/');
-      }, 1500); // Redireciona após 1,5s (tempo para o usuário ler a mensagem)
+      }, 1500); // Redireciona após 1,5s
     }
   };
 
