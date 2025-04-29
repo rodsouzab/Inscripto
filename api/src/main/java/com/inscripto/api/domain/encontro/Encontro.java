@@ -45,4 +45,20 @@ public class Encontro {
             this.data = dto.data();
         }
     }
+
+    public Integer getAno() {
+        return ano;
+    }
+
+    public String getColegio() {
+        return colegio;
+    }
+
+    public String getTema() {
+        return tema;
+    }
+
+    public Date getData() {
+        return data;
+    }
 }
