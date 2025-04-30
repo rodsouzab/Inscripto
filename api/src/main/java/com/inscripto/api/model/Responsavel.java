@@ -9,24 +9,24 @@ import jakarta.persistence.Table;
 public class Responsavel {
     
     @Id
-    private String telefone_responsavel;
+    private String telefone;
 
-    private String nome_responsavel;
+    private String nome;
 
 
-    public String getTelefone_responsavel() {
-        return telefone_responsavel;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setTelefone_responsavel(String telefone_responsavel) {
-        this.telefone_responsavel = telefone_responsavel;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
-    public String getNome_responsavel() {
-        return nome_responsavel;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNome_responsavel(String nome_responsavel) {
-        this.nome_responsavel = nome_responsavel;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }
