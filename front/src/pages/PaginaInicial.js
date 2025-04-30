@@ -7,6 +7,7 @@ function PaginaInicial() {
   const [apelido, setApelido] = useState('');
   const [fotoUrl, setFotoUrl] = useState('');
   const [ultimoEncontro, setUltimoEncontro] = useState(null);
+  const [encontroDisponivel, setEncontroDisponivel] = useState(true);
 
   useEffect(() => {
     const buscarPessoa = async () => {
@@ -25,17 +26,23 @@ function PaginaInicial() {
       }
     };
 
-    buscarPessoa();
-
-    // Buscar o último encontro
     const buscarUltimoEncontro = async () => {
       try {
         const response = await fetch('http://localhost:8080/encontros');
         if (response.ok) {
           const data = await response.json();
-          // Supondo que os encontros vêm em ordem cronológica, pegamos o primeiro (último criado)
           if (data && data.content && data.content.length > 0) {
-            setUltimoEncontro(data.content[0]);
+            const encontroMaisRecente = data.content[0];
+            const hoje = new Date();
+            const dataEncontro = new Date(encontroMaisRecente.data);
+
+            if (dataEncontro >= hoje) {
+              setUltimoEncontro(encontroMaisRecente);
+              setEncontroDisponivel(true);
+            } else {
+              setUltimoEncontro(null);
+              setEncontroDisponivel(false);
+            }
           }
         }
       } catch (error) {
@@ -43,6 +50,7 @@ function PaginaInicial() {
       }
     };
 
+    buscarPessoa();
     buscarUltimoEncontro();
   }, [cpf]);
 
@@ -52,31 +60,34 @@ function PaginaInicial() {
         <Link to="/">
           <button className="botao-sair">Sair da Conta</button>
         </Link>
-        <Link to={`/perfil/${cpf}`}>
-          <button className="botao-perfil">
-            {fotoUrl ? (
-              <img
-                src={fotoUrl}
-                alt="Foto de perfil"
-                style={{ width: '60px', height: '60px', borderRadius: '50%' }}
-              />
-            ) : (
-              'FOTO\nDE\nPERFIL'
-            )}
-          </button>
-        </Link>
+        <Link to={`/perfil/${cpf}`} className="profile-link">
+  {fotoUrl ? (
+    <img
+      src={fotoUrl}
+      alt="Foto de perfil"
+      className="profile-image"
+    />
+  ) : (
+    <div className="profile-placeholder">
+      FOTO<br />DE<br />PERFIL
+    </div>
+  )}
+</Link>
+
       </div>
 
       <div className="conteudo-central">
         <p className="mensagem-boas-vindas">Bem-vindo(a), {apelido}!</p>
-        <h1 className="titulo-encontro">Encontro</h1>
-        {ultimoEncontro ? (
-          <div>
+
+        <h1 className="titulo-encontro">
+          {encontroDisponivel ? 'Encontro Atual:' : 'O encontro desse ano já aconteceu. Ano que vem tem mais😊'}
+        </h1>
+
+        {encontroDisponivel && ultimoEncontro && (
+          <div className="info-encontro">
             <h2>Encontro {ultimoEncontro.ano}: {ultimoEncontro.tema}</h2>
             <p><strong>Data:</strong> {ultimoEncontro.data?.split("T")[0]}</p>
           </div>
-        ) : (
-          <p>Aguardando próximo encontro...</p>
         )}
       </div>
     </div>

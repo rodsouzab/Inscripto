@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import '../styles/PaginaInicial.css';
 
 function PaginaInicialAdmin() {
+
+  const { cpf } = useParams();
+  const [apelido, setApelido] = useState('');
+  const [fotoUrl, setFotoUrl] = useState('');
+
   const [form, setForm] = useState({
     ano: "",
     colegio: "",
@@ -19,8 +25,24 @@ function PaginaInicialAdmin() {
   const [editandoEncontroId, setEditandoEncontroId] = useState(null);
 
   useEffect(() => {
+    const buscarPessoa = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/pessoa/${cpf}`);
+        if (response.ok) {
+          const data = await response.json();
+          setApelido(data.apelido);
+          setFotoUrl(data.foto_url);
+        } else {
+          setApelido('usuário');
+        }
+      } catch (error) {
+        console.error('Erro ao buscar dados da pessoa:', error);
+        setApelido('usuário');
+      }
+    };
+    buscarPessoa();
     buscarEncontros();
-  }, []);
+  }, [cpf]);
 
   const buscarEncontros = async () => {
     const response = await fetch("http://localhost:8080/encontros");
@@ -31,7 +53,7 @@ function PaginaInicialAdmin() {
   const criarEncontro = async (e) => {
     e.preventDefault();
     const encontro = {
-      ano: parseInt(form.ano), // Convertendo para número
+      ano: parseInt(form.ano),
       colegio: form.colegio,
       tema: form.tema,
       data: form.data + "T00:00:00",
@@ -70,7 +92,7 @@ function PaginaInicialAdmin() {
   const salvarEdicao = async (ano) => {
     const dataComT = formEdicao.data.includes("T") ? formEdicao.data : formEdicao.data + "T00:00:00";
     const encontroAtualizado = {
-      ano: parseInt(ano), // Convertendo ano para número
+      ano: parseInt(ano),
       colegio: formEdicao.colegio,
       tema: formEdicao.tema,
       data: dataComT,
@@ -119,11 +141,31 @@ function PaginaInicialAdmin() {
 
   return (
     <div className="pagina-inicial">
+      <div className="top-bar">
+        <Link to="/admin-login">
+          <button className="botao-sair">Voltar</button>
+        </Link>
+            <Link to={`/perfil-admin/${cpf}`} className="profile-link">
+          {fotoUrl ? (
+            <img
+              src={fotoUrl}
+              alt="Foto de perfil"
+              className="profile-image"
+            />
+          ) : (
+            <div className="profile-placeholder">
+              FOTO<br />DE<br />PERFIL
+            </div>
+          )}
+        </Link>
+      </div>
+
       <div className="conteudo-central">
+      <p className="mensagem-boas-vindas">Bem-vindo(a), {apelido}!</p>
         <h2 className="titulo-encontro">Criar Novo Encontro</h2>
         <form onSubmit={criarEncontro} className="formulario-encontro">
           <input
-            type="number" // tipo número agora
+            type="number"
             placeholder="Ano"
             value={form.ano}
             onChange={(e) => setForm({ ...form, ano: e.target.value })}
