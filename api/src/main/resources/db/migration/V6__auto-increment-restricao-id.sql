@@ -1,0 +1,5 @@
+ALTER TABLE restricao_alimento
+MODIFY COLUMN id INT AUTO_INCREMENT;
+
+ALTER TABLE restricao_medicamento
+MODIFY COLUMN id INT AUTO_INCREMENT;
