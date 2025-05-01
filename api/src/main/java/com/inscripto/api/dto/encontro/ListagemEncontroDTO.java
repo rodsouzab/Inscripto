@@ -1,4 +1,6 @@
-package com.inscripto.api.domain.encontro;
+package com.inscripto.api.dto.encontro;
+
+import com.inscripto.api.model.Encontro;
 
 public record ListagemEncontroDTO(
         Integer ano,

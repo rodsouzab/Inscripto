@@ -13,7 +13,6 @@ public class Responsavel {
 
     private String nome;
 
-
     public String getTelefone() {
         return telefone;
     }

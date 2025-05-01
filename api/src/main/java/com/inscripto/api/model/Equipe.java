@@ -1,5 +1,7 @@
-package com.inscripto.api.domain.equipe;
+package com.inscripto.api.model;
 
+import com.inscripto.api.dto.equipe.CadastroBaseDTO;
+import com.inscripto.api.dto.equipe.CadastroEquipeDTO;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

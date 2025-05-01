@@ -1,7 +1,8 @@
-package com.inscripto.api.domain.encontro;
+package com.inscripto.api.repository;
 
+import com.inscripto.api.model.Encontro;
+import com.inscripto.api.dto.encontro.ListagemEncontroDTO;
 import jakarta.transaction.Transactional;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,7 +18,7 @@ public interface EncontroRepository extends JpaRepository<Encontro, Integer> {
     void inserirEncontro(@Param("ano") Integer ano, @Param("colegio") String colegio, @Param("tema") String tema, @Param("data") java.sql.Date data);
 
     @Query(value = """
-        SELECT new com.inscripto.api.domain.encontro.ListagemEncontroDTO(e.ano, e.colegio, e.tema, e.data)
+        SELECT new com.inscripto.api.dto.encontro.ListagemEncontroDTO(e.ano, e.colegio, e.tema, e.data)
         FROM Encontro e
     """, countQuery = "SELECT COUNT(e) FROM Encontro e")
     Page<ListagemEncontroDTO> listarEncontros(Pageable pageable);

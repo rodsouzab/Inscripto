@@ -1,4 +1,4 @@
-package com.inscripto.api.domain.encontro;
+package com.inscripto.api.dto.encontro;
 
 import java.sql.Date;
 

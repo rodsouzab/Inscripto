@@ -1,6 +1,7 @@
 package com.inscripto.api.controller;
 
-import com.inscripto.api.domain.encontro.*;
+import com.inscripto.api.dto.encontro.*;
+import com.inscripto.api.repository.EncontroRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

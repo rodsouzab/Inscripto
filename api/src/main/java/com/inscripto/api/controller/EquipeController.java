@@ -1,6 +1,7 @@
 package com.inscripto.api.controller;
 
-import com.inscripto.api.domain.equipe.*;
+import com.inscripto.api.dto.equipe.*;
+import com.inscripto.api.repository.EquipeRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -8,8 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/equipes")

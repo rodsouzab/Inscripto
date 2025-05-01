@@ -1,4 +1,4 @@
-package com.inscripto.api.domain.equipe;
+package com.inscripto.api.dto.equipe;
 
 public record ListagemBaseDTO(Integer id, String nome, Integer ano, String tema) {
     public ListagemBaseDTO(Integer id, String nome, Integer ano, String tema) {

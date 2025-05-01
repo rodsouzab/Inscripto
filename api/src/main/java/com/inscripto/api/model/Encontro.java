@@ -1,5 +1,6 @@
-package com.inscripto.api.domain.encontro;
+package com.inscripto.api.model;
 
+import com.inscripto.api.dto.encontro.CadastroEncontroDTO;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

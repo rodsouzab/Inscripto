@@ -1,7 +1,8 @@
-package com.inscripto.api.domain.equipe;
+package com.inscripto.api.repository;
 
-import jakarta.transaction.Transactional;
-import jakarta.validation.constraints.NotNull;
+import com.inscripto.api.dto.equipe.ListagemBaseDTO;
+import com.inscripto.api.dto.equipe.ListagemNucleoDTO;
+import com.inscripto.api.model.Equipe;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -25,13 +26,13 @@ public interface EquipeRepository extends JpaRepository<Equipe, Long> {
 
 
     @Query(value = """
-    SELECT new com.inscripto.api.domain.equipe.ListagemBaseDTO(b.id, b.nome, b.ano, b.tema)
+    SELECT new com.inscripto.api.dto.equipe.ListagemBaseDTO(b.id, b.nome, b.ano, b.tema)
     FROM Base b
 """, countQuery = "SELECT COUNT(b) FROM Base b")
     Page<ListagemBaseDTO> listarBases(Pageable pageable);
 
     @Query(value = """
-    SELECT new com.inscripto.api.domain.equipe.ListagemNucleoDTO(n.id, n.nome, n.ano)
+    SELECT new com.inscripto.api.dto.equipe.ListagemNucleoDTO(n.id, n.nome, n.ano)
     FROM Nucleo n
 """, countQuery = "SELECT COUNT(n) FROM Nucleo n")
     Page<ListagemNucleoDTO> listarNucleos(Pageable pageable);
