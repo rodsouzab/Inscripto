@@ -24,4 +24,3 @@ public class RestricaoMedicamento {
 
     private String medicamento;
 }
-

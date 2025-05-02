@@ -15,7 +15,7 @@ public interface RestricaoAlimentoRepository extends JpaRepository<RestricaoAlim
 
     @Modifying
     @Query(value = "INSERT INTO restricao_alimento (cpf, alimento) VALUES (:cpf, :alimento)", nativeQuery = true)
-    void criarRestricao(@Param("cpf") String cpf, @Param("alimento") String alimento);
+    void criarRestricaoAlimento(@Param("cpf") String cpf, @Param("alimento") String alimento);
 
     @Query(value = """
     SELECT new com.inscripto.api.dto.restricao.ListagemRestricaoAlimentoDTO(ra.id, ra.pessoa.cpf, ra.alimento)
