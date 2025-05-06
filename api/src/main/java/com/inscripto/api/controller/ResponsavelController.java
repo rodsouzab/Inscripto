@@ -1,50 +1,51 @@
 package com.inscripto.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import com.inscripto.api.repository.ResponsavelRepository;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.*;
 import com.inscripto.api.model.Responsavel;
 import java.util.List;
 
 @RestController
 public class ResponsavelController {
-    
+
     @Autowired
-    private ResponsavelRepository responsavelRepository;
+    private JdbcTemplate jdbcTemplate;
 
     @PostMapping("/responsavel")
-    Responsavel newResponsavel(@RequestBody Responsavel newResponsavel) {
-        return responsavelRepository.save(newResponsavel);
+    public Responsavel newResponsavel(@RequestBody Responsavel newResponsavel) {
+        String sql = "INSERT INTO responsavel (telefone, nome) VALUES (?, ?)";
+        jdbcTemplate.update(sql, newResponsavel.getTelefone(), newResponsavel.getNome());
+        return newResponsavel;
     }
 
     @GetMapping("/responsavel")
     public List<Responsavel> getAllResponsaveis() {
-        return responsavelRepository.findAll();
+        String sql = "SELECT * FROM responsavel";
+        return jdbcTemplate.query(sql, (rs, rowNum) -> {
+            Responsavel responsavel = new Responsavel();
+            responsavel.setTelefone(rs.getString("telefone"));
+            responsavel.setNome(rs.getString("nome"));
+            return responsavel;
+        });
     }
 
     @DeleteMapping("/responsavel/{telefone}")
-        public void deleteResponsavel(@PathVariable String telefone) {
-         if (responsavelRepository.existsById(telefone)) {
-            responsavelRepository.deleteById(telefone);
-         } else {
+    public void deleteResponsavel(@PathVariable String telefone) {
+        String sql = "DELETE FROM responsavel WHERE telefone = ?";
+        int rowsAffected = jdbcTemplate.update(sql, telefone);
+        if (rowsAffected == 0) {
             throw new RuntimeException("Responsável com telefone " + telefone + " não encontrado.");
         }
     }
 
     @PutMapping("/responsavel/{telefone}")
     public Responsavel updateNomeResponsavel(@PathVariable String telefone, @RequestBody Responsavel updatedResponsavel) {
-    return responsavelRepository.findById(telefone)
-        .map(responsavel -> {
-            responsavel.setNome(updatedResponsavel.getNome());
-            return responsavelRepository.save(responsavel);
-        })
-        .orElseThrow(() -> new RuntimeException("Responsável com telefone " + telefone + " não encontrado."));
+        String sql = "UPDATE responsavel SET nome = ? WHERE telefone = ?";
+        int rowsAffected = jdbcTemplate.update(sql, updatedResponsavel.getNome(), telefone);
+        if (rowsAffected == 0) {
+            throw new RuntimeException("Responsável com telefone " + telefone + " não encontrado.");
+        }
+        return updatedResponsavel;
     }
-
 }
