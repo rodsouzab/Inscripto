@@ -1,5 +1,3 @@
-ALTER TABLE Pessoa ADD COLUMN senha VARCHAR(255) NOT NULL;
-ALTER TABLE Pessoa ADD COLUMN admin BOOLEAN DEFAULT FALSE;
 
 use inscripto_api;
 -- Ordem: Responsável > Pessoa > Encontro > Equipe > Núcleo > Base > Encontrista > Encontreiro > Habilidade > Habilidades_Encontreiro > Restrições
