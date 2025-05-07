@@ -18,8 +18,8 @@ VALUES
 -- 3. Encontro
 INSERT INTO encontro (ano, colegio, tema, data)
 VALUES 
-(2023, 'CBV', 'Eu Seguirei Aonde Fores Senhor', '2024-05-25'),
-(2024, 'Carochinha', 'Dai-me Um Coração Semelhante ao Teu', '2025-05-24');
+(2024, 'CBV', 'Eu Seguirei Aonde Fores Senhor', '2024-05-25'),
+(2025, 'Carochinha', 'Dai-me Um Coração Semelhante ao Teu', '2025-05-24');
 
 -- 4. Equipe
 INSERT INTO equipe (id, nome, ano)
