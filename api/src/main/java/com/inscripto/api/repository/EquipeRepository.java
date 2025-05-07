@@ -2,52 +2,79 @@ package com.inscripto.api.repository;
 
 import com.inscripto.api.dto.equipe.ListagemBaseDTO;
 import com.inscripto.api.dto.equipe.ListagemNucleoDTO;
-import com.inscripto.api.model.Equipe;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
-public interface EquipeRepository extends JpaRepository<Equipe, Long> {
+import java.util.List;
 
-    @Modifying
-    @Query(value = "INSERT INTO equipe (id, nome, ano) VALUES (:id, :nome, :ano)", nativeQuery = true)
-    void inserirEquipe(@Param("id") Integer id, @Param("nome") String nome, @Param("ano") Integer ano);
+@Repository
+public class EquipeRepository {
 
-    @Modifying
-    @Query(value = "INSERT INTO base (id_equipe, tema) VALUES (:id, :tema)", nativeQuery = true)
-    void inserirBase(@Param("id") Integer id, @Param("tema") String tema);
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
-    @Modifying
-    @Query(value = "INSERT INTO nucleo (id_equipe) VALUES (:id)", nativeQuery = true)
-    void inserirNucleo(@Param("id") Integer id);
+    private final RowMapper<ListagemBaseDTO> baseRowMapper = (rs, rowNum) -> new ListagemBaseDTO(
+            rs.getInt("id"),
+            rs.getString("nome"),
+            rs.getInt("ano"),
+            rs.getString("tema")
+    );
+
+    private final RowMapper<ListagemNucleoDTO> nucleoRowMapper = (rs, rowNum) -> new ListagemNucleoDTO(
+            rs.getInt("id"),
+            rs.getString("nome"),
+            rs.getInt("ano")
+    );
+
+    public void inserirEquipe(Integer id, String nome, Integer ano) {
+        String sql = "INSERT INTO equipe (id, nome, ano) VALUES (?, ?, ?)";
+        jdbcTemplate.update(sql, id, nome, ano);
+    }
+
+    public void inserirBase(Integer id, String tema) {
+        String sql = "INSERT INTO base (id_equipe, tema) VALUES (?, ?)";
+        jdbcTemplate.update(sql, id, tema);
+    }
+
+    public void inserirNucleo(Integer id) {
+        String sql = "INSERT INTO nucleo (id_equipe) VALUES (?)";
+        jdbcTemplate.update(sql, id);
+    }
+
+    public List<ListagemBaseDTO> listarBases() {
+        String sql = "SELECT id, nome, ano, tema FROM base b" +
+                " JOIN equipe e ON b.id_equipe = e.id";
+        return jdbcTemplate.query(sql, baseRowMapper);
+    }
+
+    public List<ListagemNucleoDTO> listarNucleos() {
+        String sql = "SELECT id, nome, ano FROM nucleo n" +
+                " JOIN equipe e ON n.id_equipe = e.id";
+        return jdbcTemplate.query(sql, nucleoRowMapper);
+    }
+
+    public void atualizarBase(Integer id, String nome, Integer ano, String tema) {
+        String sqlEquipe = "UPDATE equipe e SET e.nome = COALESCE(?, e.nome), e.ano = COALESCE(?, e.ano) WHERE e.id = ?";
+        jdbcTemplate.update(sqlEquipe, nome, ano, id);
+
+        if (tema != null) {
+            String sqlBase = "UPDATE base b SET b.tema = COALESCE(?, b.tema) WHERE b.id_equipe = ?";
+            jdbcTemplate.update(sqlBase, tema, id);
+        }
+    }
 
 
-    @Query(value = """
-    SELECT new com.inscripto.api.dto.equipe.ListagemBaseDTO(b.id, b.nome, b.ano, b.tema)
-    FROM Base b
-""", countQuery = "SELECT COUNT(b) FROM Base b")
-    Page<ListagemBaseDTO> listarBases(Pageable pageable);
-
-    @Query(value = """
-    SELECT new com.inscripto.api.dto.equipe.ListagemNucleoDTO(n.id, n.nome, n.ano)
-    FROM Nucleo n
-""", countQuery = "SELECT COUNT(n) FROM Nucleo n")
-    Page<ListagemNucleoDTO> listarNucleos(Pageable pageable);
-
-    @Modifying
-    @Query("UPDATE Base b SET b.nome = COALESCE(:nome, b.nome), b.ano = COALESCE(:ano, b.ano), b.tema = COALESCE(:tema, b.tema) WHERE b.id = :id")
-    void atualizarBase(@Param("id") Integer id, @Param("nome") String nome, @Param("ano") Integer ano, @Param("tema") String tema);
-
-    @Modifying
-    @Query("UPDATE Nucleo n SET n.nome = COALESCE(:nome, n.nome), n.ano = COALESCE(:ano, n.ano) WHERE n.id = :id")
-    void atualizarNucleo(@Param("id") Integer id, @Param("nome") String nome, @Param("ano") Integer ano);
-
-    @Modifying
-    @Query(value = "DELETE FROM `equipe` WHERE id = :id", nativeQuery = true)
-    void deletarPorId(@Param("id") Integer id);
+    public void atualizarNucleo(Integer id, String nome, Integer ano) {
+        String sql = "UPDATE equipe SET nome = COALESCE(?, nome), ano = COALESCE(?, ano) WHERE id = ?";
+        jdbcTemplate.update(sql, nome, ano, id);
+    }
 
 
+
+    public void deletarPorId(Integer id) {
+        String sql = "DELETE FROM equipe WHERE id = ?";
+        jdbcTemplate.update(sql, id);
+    }
 }

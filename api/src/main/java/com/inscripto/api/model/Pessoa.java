@@ -2,17 +2,9 @@ package com.inscripto.api.model;
 
 import java.sql.Date;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name="pessoa")
-@Inheritance(strategy = InheritanceType.JOINED)
-
 public class Pessoa {
     
-    @Id
     private String cpf;
-
     private String nome;
     private String apelido;
     private Date data_nascimento;

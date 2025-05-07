@@ -2,18 +2,12 @@ package com.inscripto.api.controller;
 
 import com.inscripto.api.dto.encontro.*;
 import com.inscripto.api.repository.EncontroRepository;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/encontros")
@@ -27,43 +21,33 @@ public class EncontroController {
     }
 
     @PostMapping
-    @Transactional
-    public ResponseEntity<Void> criarEncontro(@RequestBody @Valid CadastroEncontroDTO dto) {
-        // Verificação: o ano da data deve ser igual ao atributo ano
-        if (dto.data().toLocalDate().getYear() != dto.ano()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                    "O ano da data deve ser igual ao atributo ano");
-        }
-
+    public ResponseEntity<Void> criarEncontro(@RequestBody CadastroEncontroDTO dto) {
         encontroRepository.inserirEncontro(
-            dto.ano(), 
-            dto.colegio(), 
-            dto.tema(), 
-            Date.valueOf(dto.data().toLocalDate())
+                dto.ano(),
+                dto.colegio(),
+                dto.tema(),
+                Date.valueOf(dto.data().toLocalDate())
         );
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(201).build();
     }
 
     @GetMapping
-    public Page<ListagemEncontroDTO> listarEncontros(@PageableDefault(sort = {"ano"}, size = 10) Pageable paginacao) {
-        return encontroRepository.listarEncontros(paginacao);
+    public ResponseEntity<List<ListagemEncontroDTO>> listarEncontros() {
+        return ResponseEntity.ok(encontroRepository.listarEncontros());
     }
 
     @PutMapping
-    @Transactional
-    public ResponseEntity<Void> atualizarEncontro(@RequestBody @Valid AtualizacaoEncontroDTO dto) {
-        // Não incluímos a verificação aqui, mas você pode optar por incluir caso também seja necessário na atualização.
+    public ResponseEntity<Void> atualizarEncontro(@RequestBody AtualizacaoEncontroDTO dto) {
         encontroRepository.atualizarEncontro(
-            dto.ano(),
-            dto.colegio(),
-            dto.tema(),
-            dto.data() != null ? Date.valueOf(dto.data()) : null
+                dto.ano(),
+                dto.colegio(),
+                dto.tema(),
+                dto.data() != null ? Date.valueOf(dto.data()) : null
         );
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{ano}")
-    @Transactional
     public ResponseEntity<Void> deletar(@PathVariable int ano) {
         encontroRepository.deletarPorAno(ano);
         return ResponseEntity.noContent().build();

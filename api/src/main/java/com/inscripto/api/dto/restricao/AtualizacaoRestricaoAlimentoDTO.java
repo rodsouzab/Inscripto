@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 public record AtualizacaoRestricaoAlimentoDTO(
 
         @NotNull
-        String id,
+        Integer id,
 
         String alimento
 ) {

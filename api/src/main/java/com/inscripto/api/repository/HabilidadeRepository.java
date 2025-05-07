@@ -1,31 +1,41 @@
 package com.inscripto.api.repository;
 
 import com.inscripto.api.dto.habilidade.ListagemHabilidadeDTO;
-import com.inscripto.api.model.Habilidade;
-import jakarta.validation.constraints.NotNull;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
-public interface HabilidadeRepository extends JpaRepository<Habilidade, Integer> {
-    @Modifying
-    @Query(value = "INSERT INTO habilidade (id, habilidade) VALUES (:id, :habilidade)", nativeQuery = true)
-    void criarHabilidade(@Param("id") Integer id, @Param("habilidade") String habilidade);
+import java.util.List;
 
-    @Query(value = """
-    SELECT new com.inscripto.api.dto.habilidade.ListagemHabilidadeDTO(h.id, h.habilidade)
-    FROM Habilidade h
-""", countQuery = "SELECT COUNT(h) FROM Habilidade h")
-    Page<ListagemHabilidadeDTO> listarHabilidade(Pageable paginacao);
+@Repository
+public class HabilidadeRepository {
 
-    @Modifying
-    @Query("UPDATE Habilidade h SET h.habilidade = COALESCE(:habilidade, h.habilidade) WHERE h.id = :id")
-    void editarHabilidade(@Param("id") Integer id,@Param("habilidade") String habilidade);
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
-    @Modifying
-    @Query(value = "DELETE FROM `habilidade` WHERE id = :id", nativeQuery = true)
-    void deletarPorID(Integer id);
+    private final RowMapper<ListagemHabilidadeDTO> habilidadeRowMapper = (rs, rowNum) -> new ListagemHabilidadeDTO(
+            rs.getInt("id"),
+            rs.getString("habilidade")
+    );
+
+    public void criarHabilidade(Integer id, String habilidade) {
+        String sql = "INSERT INTO habilidade (id, habilidade) VALUES (?, ?)";
+        jdbcTemplate.update(sql, id, habilidade);
+    }
+
+    public List<ListagemHabilidadeDTO> listarHabilidade() {
+        String sql = "SELECT id, habilidade FROM habilidade";
+        return jdbcTemplate.query(sql, habilidadeRowMapper);
+    }
+
+    public void editarHabilidade(Integer id, String habilidade) {
+        String sql = "UPDATE habilidade SET habilidade = ? WHERE id = ?";
+        jdbcTemplate.update(sql, habilidade, id);
+    }
+
+    public void deletarPorID(Integer id) {
+        String sql = "DELETE FROM habilidade WHERE id = ?";
+        jdbcTemplate.update(sql, id);
+    }
 }

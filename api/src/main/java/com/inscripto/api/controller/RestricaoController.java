@@ -1,90 +1,68 @@
 package com.inscripto.api.controller;
 
-import com.inscripto.api.dto.habilidade.AtualizacaoHabilidadeDTO;
-import com.inscripto.api.dto.habilidade.CadastroHabilidadeDTO;
-import com.inscripto.api.dto.habilidade.ListagemHabilidadeDTO;
 import com.inscripto.api.dto.restricao.*;
-import com.inscripto.api.repository.HabilidadeRepository;
-import com.inscripto.api.repository.RestricaoAlimentoRepository;
-import com.inscripto.api.repository.RestricaoMedicamentoRepository;
-import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
+import com.inscripto.api.repository.RestricaoRepository;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/restricoes")
 public class RestricaoController {
 
-    @Autowired
-    private final RestricaoAlimentoRepository alimentoRepository;
-    @Autowired
-    private final RestricaoMedicamentoRepository medicamentoRepository;
+    private final RestricaoRepository restricaoRepository;
 
-    public RestricaoController(RestricaoAlimentoRepository alimentoRepository, RestricaoMedicamentoRepository medicamentoRepository) {
-        this.alimentoRepository = alimentoRepository;
-        this.medicamentoRepository = medicamentoRepository;
+    public RestricaoController(RestricaoRepository restricaoRepository) {
+        this.restricaoRepository = restricaoRepository;
     }
 
     @PostMapping("/alimentos")
-    @Transactional
-    public void criarRestricaoAlimento(@RequestBody CadastroRestricaoAlimentoDTO dto){
-        alimentoRepository.criarRestricaoAlimento(dto.cpf(), dto.alimento());
+    public void criarRestricaoAlimento(@RequestBody CadastroRestricaoAlimentoDTO dto) {
+        restricaoRepository.criarRestricaoAlimento(dto.cpf(), dto.alimento());
     }
 
     @PostMapping("/medicamentos")
-    @Transactional
-    public void criarRestricaoMedicamentos(@RequestBody CadastroRestricaoMedicamentoDTO dto){
-        medicamentoRepository.criarRestricaoMedicamento(dto.cpf(), dto.medicamento());
+    public void criarRestricaoMedicamentos(@RequestBody CadastroRestricaoMedicamentoDTO dto) {
+        restricaoRepository.criarRestricaoMedicamento(dto.cpf(), dto.medicamento());
     }
 
-
     @GetMapping("/alimentos")
-    public Page<ListagemRestricaoAlimentoDTO> listarRestricaoAlimento(@PageableDefault(sort = {"pessoa.cpf"}, size = 10) Pageable paginacao){
-        return alimentoRepository.listarRestricaoAlimento(paginacao);
+    public List<ListagemRestricaoAlimentoDTO> listarRestricaoAlimento() {
+        return restricaoRepository.listarRestricaoAlimento();
     }
 
     @GetMapping("/medicamentos")
-    public Page<ListagemRestricaoMedicamentoDTO> listarRestricaoMedicamento(@PageableDefault(sort = {"pessoa.cpf"}, size = 10) Pageable paginacao){
-        return medicamentoRepository.listarRestricaoMedicamento(paginacao);
+    public List<ListagemRestricaoMedicamentoDTO> listarRestricaoMedicamento() {
+        return restricaoRepository.listarRestricaoMedicamento();
     }
 
-
     @PutMapping("/alimentos")
-    @Transactional
-    public void atualizarRestricaoAlimento(@RequestBody AtualizacaoRestricaoAlimentoDTO dto){
-        alimentoRepository.editarRestricaoAlimento(dto.id(), dto.alimento());
+    public void atualizarRestricaoAlimento(@RequestBody AtualizacaoRestricaoAlimentoDTO dto) {
+        restricaoRepository.atualizarRestricaoAlimento(dto.id(), dto.alimento());
     }
 
     @PutMapping("/medicamentos")
-    @Transactional
-    public void atualizarRestricaoMedicamento(@RequestBody AtualizacaoRestricaoMedicamentoDTO dto){
-        medicamentoRepository.editarRestricaoMedicamento(dto.id(), dto.medicamento());
+    public void atualizarRestricaoMedicamento(@RequestBody AtualizacaoRestricaoMedicamentoDTO dto) {
+        restricaoRepository.atualizarRestricaoMedicamento(dto.id(), dto.medicamento());
     }
 
     @DeleteMapping("/alimentos/id/{id}")
-    @Transactional
-    public void excluirRestricaoAlimentoPorId(@PathVariable Integer id){
-        alimentoRepository.deletarPorID(id);
+    public void excluirRestricaoAlimentoPorId(@PathVariable Integer id) {
+        restricaoRepository.excluirRestricaoAlimentoPorId(id);
     }
 
     @DeleteMapping("/alimentos/cpf/{cpf}")
-    @Transactional
-    public void excluirRestricaoAlimentoPorCpf(@PathVariable String cpf){
-        alimentoRepository.deletarPorCpf(cpf);
+    public void excluirRestricaoAlimentoPorCpf(@PathVariable String cpf) {
+        restricaoRepository.excluirRestricaoAlimentoPorCpf(cpf);
     }
 
     @DeleteMapping("/medicamentos/id/{id}")
-    @Transactional
-    public void excluirRestricaoMedicamentoPorId(@PathVariable Integer id){
-        medicamentoRepository.deletarPorID(id);
+    public void excluirRestricaoMedicamentoPorId(@PathVariable Integer id) {
+        restricaoRepository.excluirRestricaoMedicamentoPorId(id);
     }
 
     @DeleteMapping("/medicamentos/cpf/{cpf}")
-    @Transactional
-    public void excluirRestricaoMedicamentoPorCpf(@PathVariable String cpf){
-        medicamentoRepository.deletarPorCpf(cpf);
+    public void excluirRestricaoMedicamentoPorCpf(@PathVariable String cpf) {
+        restricaoRepository.excluirRestricaoMedicamentoPorCpf(cpf);
     }
 }

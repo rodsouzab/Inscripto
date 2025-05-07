@@ -2,13 +2,11 @@ package com.inscripto.api.controller;
 
 import com.inscripto.api.dto.equipe.*;
 import com.inscripto.api.repository.EquipeRepository;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/equipes")
@@ -22,43 +20,38 @@ public class EquipeController {
     }
 
     @PostMapping("/bases")
-    @Transactional
-    public void criarBase(@RequestBody @Valid CadastroBaseDTO dto) {
+    public void criarBase(@RequestBody CadastroBaseDTO dto) {
         equipeRepository.inserirEquipe(dto.id(), dto.nome(), dto.ano());
         equipeRepository.inserirBase(dto.id(), dto.tema());
     }
 
     @PostMapping("/nucleos")
-    @Transactional
-    public void criarNucleo(@RequestBody @Valid CadastroNucleoDTO dto) {
+    public void criarNucleo(@RequestBody CadastroNucleoDTO dto) {
         equipeRepository.inserirEquipe(dto.id(), dto.nome(), dto.ano());
         equipeRepository.inserirNucleo(dto.id());
     }
 
     @GetMapping("/bases")
-    public Page<ListagemBaseDTO> listarBases(@PageableDefault(sort = {"nome"}, size = 10) Pageable paginacao) {
-        return equipeRepository.listarBases(paginacao);
+    public ResponseEntity<List<ListagemBaseDTO>> listarBases() {
+        return ResponseEntity.ok(equipeRepository.listarBases());
     }
 
     @GetMapping("/nucleos")
-    public Page<ListagemNucleoDTO> listarNucleos(@PageableDefault(sort = {"nome"}, size = 10) Pageable paginacao) {
-        return equipeRepository.listarNucleos(paginacao);
+    public ResponseEntity<List<ListagemNucleoDTO>> listarNucleos() {
+        return ResponseEntity.ok(equipeRepository.listarNucleos());
     }
 
     @PutMapping("/bases")
-    @Transactional
-    public void atualizarBase(@RequestBody @Valid AtualizacaoBaseDTO dto) {
+    public void atualizarBase(@RequestBody AtualizacaoBaseDTO dto) {
         equipeRepository.atualizarBase(dto.id(), dto.nome(), dto.ano(), dto.tema());
     }
 
     @PutMapping("/nucleos")
-    @Transactional
-    public void atualizarNucleo(@RequestBody @Valid AtualizacaoNucleoDTO dto) {
+    public void atualizarNucleo(@RequestBody AtualizacaoNucleoDTO dto) {
         equipeRepository.atualizarNucleo(dto.id(), dto.nome(), dto.ano());
     }
 
     @DeleteMapping("/{id}")
-    @Transactional
     public void deletar(@PathVariable Integer id) {
         equipeRepository.deletarPorId(id);
     }

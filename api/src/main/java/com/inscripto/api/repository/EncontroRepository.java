@@ -1,34 +1,49 @@
 package com.inscripto.api.repository;
 
-import com.inscripto.api.model.Encontro;
 import com.inscripto.api.dto.encontro.ListagemEncontroDTO;
-import jakarta.transaction.Transactional;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
-@Transactional
-public interface EncontroRepository extends JpaRepository<Encontro, Integer> {
+import java.sql.Date;
+import java.util.List;
 
-    @Modifying
-    @Query(value = "INSERT INTO encontro (ano, colegio, tema, data) VALUES (:ano, :colegio, :tema, :data)", nativeQuery = true)
-    void inserirEncontro(@Param("ano") Integer ano, @Param("colegio") String colegio, @Param("tema") String tema, @Param("data") java.sql.Date data);
+@Repository
+public class EncontroRepository {
 
-    @Query(value = """
-        SELECT new com.inscripto.api.dto.encontro.ListagemEncontroDTO(e.ano, e.colegio, e.tema, e.data)
-        FROM Encontro e
-    """, countQuery = "SELECT COUNT(e) FROM Encontro e")
-    Page<ListagemEncontroDTO> listarEncontros(Pageable pageable);
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
-    @Modifying
-    @Query("UPDATE Encontro e SET e.colegio = COALESCE(:colegio, e.colegio), e.tema = COALESCE(:tema, e.tema), e.data = COALESCE(:data, e.data) WHERE e.ano = :ano")
-    void atualizarEncontro(@Param("ano") Integer ano, @Param("colegio") String colegio, @Param("tema") String tema, @Param("data") java.sql.Date data);
+    private final RowMapper<ListagemEncontroDTO> rowMapper = (rs, rowNum) -> new ListagemEncontroDTO(
+            rs.getInt("ano"),
+            rs.getString("colegio"),
+            rs.getString("tema"),
+            rs.getDate("data")
+    );
 
-    @Modifying
-    @Query(value = "DELETE FROM encontro WHERE ano = :ano", nativeQuery = true)
-    void deletarPorAno(@Param("ano") Integer ano);
+    public void inserirEncontro(Integer ano, String colegio, String tema, Date data) {
+        String sql = "INSERT INTO encontro (ano, colegio, tema, data) VALUES (?, ?, ?, ?)";
+        jdbcTemplate.update(sql, ano, colegio, tema, data);
+    }
 
+    public List<ListagemEncontroDTO> listarEncontros() {
+        String sql = "SELECT ano, colegio, tema, data FROM encontro";
+        return jdbcTemplate.query(sql, rowMapper);
+    }
+
+    public void atualizarEncontro(Integer ano, String colegio, String tema, Date data) {
+        String sql = "UPDATE encontro SET colegio = COALESCE(?, colegio), tema = COALESCE(?, tema), data = COALESCE(?, data) WHERE ano = ?";
+        jdbcTemplate.update(sql, colegio, tema, data, ano);
+    }
+
+
+    public void deletarPorAno(Integer ano) {
+        String updateSql = "UPDATE encontrista SET ano_encontro = NULL WHERE ano_encontro = ?";
+        jdbcTemplate.update(updateSql, ano);
+
+
+        String sql = "DELETE FROM encontro WHERE ano = ?";
+        jdbcTemplate.update(sql, ano);
+    }
 }

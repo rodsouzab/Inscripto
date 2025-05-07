@@ -27,7 +27,7 @@ public class PessoaController {
     if (pr.existsById(novaPessoa.getCpf())) {
         return "Já existe uma pessoa cadastrada com esse CPF!";
     }
-    pr.save(novaPessoa);
+    pr.salvar(novaPessoa);
     return "Pessoa cadastrada com sucesso!";
 }
 
@@ -91,7 +91,7 @@ public class PessoaController {
     }
 
     pessoaAtualizada.setCpf(cpf); // garante que o CPF não mude
-    pr.save(pessoaAtualizada);
+    pr.atualizarPessoa(pessoaAtualizada);
 
     return ResponseEntity.ok("Pessoa atualizada com sucesso!");
 }
