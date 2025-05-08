@@ -28,4 +28,8 @@ public class Equipe {
         this.ano = dto.ano();
     }
 
+    public Integer getId() {
+        return id;
+    }
+
 }

@@ -29,4 +29,8 @@ public class Encontro {
         this.tema = dto.tema();
         this.data = dto.data();
     }
+
+    public Integer getAno() {
+        return ano;
+    }
 }

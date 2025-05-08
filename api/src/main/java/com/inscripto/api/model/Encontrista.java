@@ -14,4 +14,15 @@ public class Encontrista extends Pessoa{
     private boolean paisSeparados;
     private Encontro encontro;
     private Nucleo nucleo;
+
+    public boolean isPaisSeparados() {
+        return paisSeparados;
+    }
+
+    public Encontro getEncontro() {
+        return encontro;
+    }
+    public Nucleo getNucleo() {
+        return nucleo;
+    }
 }

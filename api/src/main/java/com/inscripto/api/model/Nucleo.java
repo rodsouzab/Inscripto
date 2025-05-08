@@ -14,4 +14,6 @@ public class Nucleo extends Equipe {
     public Nucleo(CadastroNucleoDTO dto) {
         super(new CadastroEquipeDTO(dto.id(), dto.nome(), dto.ano()));
     }
+
+
 }
