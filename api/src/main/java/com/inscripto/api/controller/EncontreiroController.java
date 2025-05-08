@@ -38,13 +38,13 @@ public class EncontreiroController {
     }
 
     @PutMapping("/{cpf}")
-    public ResponseEntity<Encontreiro> updateEncontreiro(@PathVariable String cpf, @RequestBody Encontreiro updatedEncontreiro) {
+    public ResponseEntity<String> atualizarEncontreiro(@PathVariable String cpf, @RequestBody Encontreiro encontreiroAtualizado) {
         if (!encontreiroRepository.existsByCpf(cpf)) {
             return ResponseEntity.notFound().build();
         }
-        updatedEncontreiro.setCpf(cpf);
-        Encontreiro savedEncontreiro = encontreiroRepository.save(updatedEncontreiro);
-        return ResponseEntity.ok(savedEncontreiro);
+        encontreiroAtualizado.setCpf(cpf); // garante que o CPF não mude
+        encontreiroRepository.atualizarEncontreiro(encontreiroAtualizado);
+        return ResponseEntity.ok("Encontreiro atualizado com sucesso!");
     }
 
     @DeleteMapping("/{cpf}")
