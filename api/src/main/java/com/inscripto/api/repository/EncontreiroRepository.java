@@ -58,4 +58,14 @@ public class EncontreiroRepository {
         String sql = "SELECT COUNT(*) FROM encontreiro WHERE cpf_pessoa = ?";
         return jdbcTemplate.queryForObject(sql, Integer.class, cpf) > 0;
     }
+
+    public void atualizarEncontreiro(Encontreiro encontreiro) {
+        String sql = "UPDATE encontreiro SET fez_ejc = ?, nome_responsavel = ?, telefone_responsavel = ? WHERE cpf_pessoa = ?";
+        jdbcTemplate.update(sql,
+            encontreiro.isFezEjc(),
+            encontreiro.getResponsavelNome(),
+            encontreiro.getResponsavelTelefone(),
+            encontreiro.getCpf()
+        );
+    }
 }
