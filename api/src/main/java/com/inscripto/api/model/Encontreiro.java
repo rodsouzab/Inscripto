@@ -13,7 +13,8 @@ public class Encontreiro extends Pessoa {
 
     private boolean fezEjc;
     private Responsavel responsavel;
-    private Responsavel responsavelTelefone;
+    private String responsavelTelefone;
+    private String responsavelNome;
 
     public boolean isFezEjc() {
         return fezEjc;
@@ -23,7 +24,26 @@ public class Encontreiro extends Pessoa {
         return responsavel;
     }
 
-    public Responsavel getResponsavelTelefone() {
+    public String getResponsavelTelefone() {
         return responsavelTelefone;
+    }
+
+    public String getResponsavelNome() {
+        return responsavelNome;
+    }
+
+    public void setFezEjc(boolean fezEjc) {
+        this.fezEjc = fezEjc;
+    }
+
+    public void setResponsavel(Responsavel responsavel) {
+        this.responsavel = responsavel;
+    }
+
+    public void setResponsavelTelefone(String responsavelTelefone) {
+        this.responsavelTelefone = responsavelTelefone;
+    }
+    public void setResponsavelNome(String responsavelNome) {
+        this.responsavelNome = responsavelNome;
     }
 }

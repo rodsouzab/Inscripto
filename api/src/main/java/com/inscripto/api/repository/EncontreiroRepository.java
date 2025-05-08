@@ -18,8 +18,8 @@ public class EncontreiroRepository {
     public Encontreiro save(Encontreiro encontreiro) {
         String sql = "INSERT INTO encontreiro (cpf_pessoa, fez_ejc, nome_responsavel, telefone_responsavel) VALUES (?, ?, ?, ?)";
         jdbcTemplate.update(sql, encontreiro.getCpf(), encontreiro.isFezEjc(),
-                encontreiro.getResponsavel().getNome(),
-                encontreiro.getResponsavelTelefone().getTelefone());
+                encontreiro.getResponsavelNome(),
+                encontreiro.getResponsavelTelefone());
         return encontreiro;
     }
 
@@ -27,7 +27,11 @@ public class EncontreiroRepository {
         String sql = "SELECT * FROM encontreiro";
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
             Encontreiro e = new Encontreiro();
-            // Preencher os dados a partir do ResultSet
+            e.setCpf(rs.getString("cpf_pessoa"));
+            e.setFezEjc(rs.getBoolean("fez_ejc"));
+            e.setResponsavelNome(rs.getString("nome_responsavel"));
+            e.setResponsavelTelefone(rs.getString("telefone_responsavel"));
+            // ...preencher outros campos herdados de Pessoa, se necessário...
             return e;
         });
     }
@@ -36,7 +40,11 @@ public class EncontreiroRepository {
         String sql = "SELECT * FROM encontreiro WHERE cpf_pessoa = ?";
         return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> {
             Encontreiro e = new Encontreiro();
-            // Preencher os dados a partir do ResultSet
+            e.setCpf(rs.getString("cpf_pessoa"));
+            e.setFezEjc(rs.getBoolean("fez_ejc"));
+            e.setResponsavelNome(rs.getString("nome_responsavel"));
+            e.setResponsavelTelefone(rs.getString("telefone_responsavel"));
+            // ...preencher outros campos herdados de Pessoa, se necessário...
             return e;
         }, cpf);
     }
