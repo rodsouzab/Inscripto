@@ -6,9 +6,7 @@
 package com.inscripto.api.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  *
@@ -16,8 +14,7 @@ import lombok.Setter;
  */
 
  
-@Getter
-@Setter
+
 @AllArgsConstructor
 @NoArgsConstructor
 public class EhFamiliar extends Encontreiro{
@@ -38,6 +35,38 @@ public class EhFamiliar extends Encontreiro{
 
     public String getEncontreiro2Cpf(){
         return this.encontreiro2.getCpf();
+    }
+
+    public Encontreiro getEncontreiro1() {
+        return encontreiro1;
+    }
+
+    public void setEncontreiro1(Encontreiro encontreiro1) {
+        this.encontreiro1 = encontreiro1;
+    }
+
+    public Encontreiro getEncontreiro2() {
+        return encontreiro2;
+    }
+
+    public void setEncontreiro2(Encontreiro encontreiro2) {
+        this.encontreiro2 = encontreiro2;
+    }
+
+    public boolean isTrabalhar_junto() {
+        return trabalhar_junto;
+    }
+
+    public void setTrabalhar_junto(boolean trabalhar_junto) {
+        this.trabalhar_junto = trabalhar_junto;
+    }
+
+    public String getRelacao() {
+        return relacao;
+    }
+
+    public void setRelacao(String relacao) {
+        this.relacao = relacao;
     }
 
 }
