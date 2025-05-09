@@ -1,0 +1,53 @@
+package com.inscripto.api.controller;
+
+import com.inscripto.api.model.EhFamiliar;
+import com.inscripto.api.repository.EhFamiliarRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/encontreiros/familiares")
+public class EhFamiliarController {
+
+    private final EhFamiliarRepository ehFamiliarRepository;
+
+    @Autowired
+    public EhFamiliarController(EhFamiliarRepository ehFamiliarRepository) {
+        this.ehFamiliarRepository = ehFamiliarRepository;
+    }
+
+    @PostMapping
+    public ResponseEntity<EhFamiliar> createEhFamiliar(@RequestBody EhFamiliar ehFamiliar) {
+        EhFamiliar savedEhFamiliar = ehFamiliarRepository.save(ehFamiliar);
+        return ResponseEntity.ok(savedEhFamiliar);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<EhFamiliar>> getAllEhFamiliares() {
+        List<EhFamiliar> ehFamiliares = ehFamiliarRepository.findAll();
+        return ResponseEntity.ok(ehFamiliares);
+    }
+
+    @PutMapping("/{cpfEncontreiro1}/{cpfEncontreiro2}")
+    public ResponseEntity<String> atualizarEhFamiliar(
+            @PathVariable String cpfEncontreiro1,
+            @PathVariable String cpfEncontreiro2,
+            @RequestBody EhFamiliar ehFamiliarAtualizado) {
+        ehFamiliarAtualizado.getEncontreiro1().setCpf(cpfEncontreiro1);
+        ehFamiliarAtualizado.getEncontreiro2().setCpf(cpfEncontreiro2);
+        ehFamiliarRepository.atualizarEhFamiliar(ehFamiliarAtualizado);
+        return ResponseEntity.ok("EhFamiliar atualizado com sucesso!");
+    }
+
+    @DeleteMapping("/{cpfEncontreiro1}/{cpfEncontreiro2}")
+    public ResponseEntity<Void> deleteEhFamiliar(
+            @PathVariable String cpfEncontreiro1,
+            @PathVariable String cpfEncontreiro2) {
+        ehFamiliarRepository.deleteByCpf(cpfEncontreiro1, cpfEncontreiro2);
+        return ResponseEntity.noContent().build();
+    }
+
+}
