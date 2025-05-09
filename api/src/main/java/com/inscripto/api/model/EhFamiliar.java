@@ -32,4 +32,12 @@ public class EhFamiliar extends Encontreiro{
         return true;
     }
 
+    public String getEncontreiro1Cpf(){
+        return this.encontreiro1.getCpf();
+    }
+
+    public String getEncontreiro2Cpf(){
+        return this.encontreiro2.getCpf();
+    }
+
 }

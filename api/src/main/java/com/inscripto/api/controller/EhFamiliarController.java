@@ -36,6 +36,12 @@ public class EhFamiliarController {
             @PathVariable String cpfEncontreiro1,
             @PathVariable String cpfEncontreiro2,
             @RequestBody EhFamiliar ehFamiliarAtualizado) {
+        if (ehFamiliarAtualizado.getEncontreiro1() == null) {
+            ehFamiliarAtualizado.setEncontreiro1(new com.inscripto.api.model.Encontreiro());
+        }
+        if (ehFamiliarAtualizado.getEncontreiro2() == null) {
+            ehFamiliarAtualizado.setEncontreiro2(new com.inscripto.api.model.Encontreiro());
+        }
         ehFamiliarAtualizado.getEncontreiro1().setCpf(cpfEncontreiro1);
         ehFamiliarAtualizado.getEncontreiro2().setCpf(cpfEncontreiro2);
         ehFamiliarRepository.atualizarEhFamiliar(ehFamiliarAtualizado);

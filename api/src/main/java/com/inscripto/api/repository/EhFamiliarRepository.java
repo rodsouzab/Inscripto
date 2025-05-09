@@ -59,8 +59,8 @@ public class EhFamiliarRepository {
         jdbcTemplate.update(sql,
                 ef.isTrabalhar_junto(),
                 ef.getRelacao(),
-                ef.getEncontreiro1().getCpf(),
-                ef.getEncontreiro2().getCpf());
+                ef.getEncontreiro1Cpf(),
+                ef.getEncontreiro2Cpf());
     }
 
     public void deleteByCpf(String cpf1, String cpf2) {
