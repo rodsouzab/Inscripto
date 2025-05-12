@@ -28,7 +28,6 @@ public class CoordenadorRepository {
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
             Coordenador c = new Coordenador();
             c.setCpf(rs.getString("cpf_pessoa"));
-            // ...preencher outros campos herdados de Pessoa, se necessário...
             return c;
         });
     }
