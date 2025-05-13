@@ -4,16 +4,13 @@ import com.inscripto.api.dto.equipe.CadastroBaseDTO;
 import com.inscripto.api.dto.equipe.CadastroEquipeDTO;
 
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Setter
 public class Equipe {
 
     private Integer id;
@@ -26,6 +23,10 @@ public class Equipe {
         this.id = dto.id();
         this.nome = dto.nome();
         this.ano = dto.ano();
+    }
+
+    public Equipe(int id) {
+        this.id = id;
     }
 
     public Integer getId() {

@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class EhFamiliar extends Encontreiro{
+public class EhFamiliar{
 
     private Encontreiro encontreiro1;
     private Encontreiro encontreiro2;

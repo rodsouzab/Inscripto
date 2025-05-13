@@ -39,19 +39,26 @@ public class EhFamiliarRepository {
         return ehFamiliar;
     }
 
-    public List<EhFamiliar> findAll(){
-        String sql = "SELECT * FROM eh_familiar";
+    public List<EhFamiliar> findAll() {
+        String sql = "SELECT cpf_encontreiro1, cpf_encontreiro2, trabalhar_junto, relacao FROM eh_familiar";
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
             EhFamiliar ef = new EhFamiliar();
-            ef.setEncontreiro1(new Encontreiro());
-            ef.getEncontreiro1().setCpf(rs.getString("cpf_encontreiro1"));
-            ef.setEncontreiro2(new Encontreiro());
-            ef.getEncontreiro2().setCpf(rs.getString("cpf_encontreiro2"));
+
+            Encontreiro e1 = new Encontreiro();
+            e1.setCpf(rs.getString("cpf_encontreiro1"));
+            ef.setEncontreiro1(e1);
+
+            Encontreiro e2 = new Encontreiro();
+            e2.setCpf(rs.getString("cpf_encontreiro2"));
+            ef.setEncontreiro2(e2);
+
             ef.setTrabalhar_junto(rs.getBoolean("trabalhar_junto"));
             ef.setRelacao(rs.getString("relacao"));
+
             return ef;
         });
     }
+
 
     public void atualizarEhFamiliar(EhFamiliar ef) {
         // Atualizar os dados do EhFamiliar

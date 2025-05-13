@@ -8,13 +8,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Encontreiro extends Pessoa {
 
     private boolean fezEjc;
     private Responsavel responsavel;
     private String responsavelTelefone;
     private String responsavelNome;
+
+    public Encontreiro(String cpf) {
+        super(cpf);
+    }
 
     public boolean isFezEjc() {
         return fezEjc;

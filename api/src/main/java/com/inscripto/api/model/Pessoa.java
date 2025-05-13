@@ -19,6 +19,14 @@ public class Pessoa {
     private String senha;
     private boolean admin;
 
+    public Pessoa(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public Pessoa(){
+
+    }
+
     public String getCpf() {
         return cpf;
     }
