@@ -55,42 +55,49 @@ function PaginaInicial() {
   }, [cpf]);
 
   return (
-    <div className="pagina-inicial">
+    <>
       <div className="top-bar">
         <Link to="/">
           <button className="botao-sair">Sair da Conta</button>
         </Link>
         <Link to={`/perfil/${cpf}`} className="profile-link">
-  {fotoUrl ? (
-    <img
-      src={fotoUrl}
-      alt="Foto de perfil"
-      className="profile-image"
-    />
-  ) : (
-    <div className="profile-placeholder">
-      FOTO<br />DE<br />PERFIL
-    </div>
-  )}
-</Link>
-
+          {fotoUrl ? (
+            <img
+              src={fotoUrl}
+              alt="Foto de perfil"
+              className="profile-image"
+            />
+          ) : (
+            <div className="profile-placeholder">
+              FOTO<br />DE<br />PERFIL
+            </div>
+          )}
+        </Link>
       </div>
 
-      <div className="conteudo-central">
-        <p className="mensagem-boas-vindas">Bem-vindo(a), {apelido}!</p>
+      <div className="pagina-inicial">
+        <div className="conteudo-central">
+          <p className="mensagem-boas-vindas">Bem-vindo(a), {apelido}!</p>
 
-        <h1 className="titulo-encontro">
-          {encontroDisponivel ? 'Encontro Atual:' : 'O encontro desse ano já aconteceu. Ano que vem tem mais😊'}
-        </h1>
+          <h1 className="titulo-encontro">
+            {encontroDisponivel
+              ? 'Encontro Atual:'
+              : 'O encontro desse ano já aconteceu. Ano que vem tem mais😊'}
+          </h1>
 
-        {encontroDisponivel && ultimoEncontro && (
-          <div className="info-encontro">
-            <h2>Encontro {ultimoEncontro.ano}: {ultimoEncontro.tema}</h2>
-            <p><strong>Data:</strong> {ultimoEncontro.data?.split("T")[0]}</p>
-          </div>
-        )}
+          {encontroDisponivel && ultimoEncontro && (
+            <Link
+              to={`/encontro/${cpf}/${ultimoEncontro.ano}`}
+              className="info-encontro"
+              style={{ textDecoration: 'none' }}
+            >
+              <h2>Encontro {ultimoEncontro.ano}: {ultimoEncontro.tema}</h2>
+              <p><strong>Data:</strong> {ultimoEncontro.data?.split("T")[0]}</p>
+            </Link>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
