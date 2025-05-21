@@ -10,6 +10,7 @@ import PerfilAdmin from './pages/PerfilAdmin';
 import Encontro from './pages/Encontro';
 import VerificacaoDadosEncontreiro from './pages/VerificacaoDadosEncontreiro';
 import VerificacaoDadosEncontrista from './pages/VerificacaoDadosEncontrista';
+import InscricaoEncontreiro from './pages/InscricaoEncontreiro';
 
 const AppRoutes = () => {
   return (
@@ -24,6 +25,7 @@ const AppRoutes = () => {
       <Route path="/encontro/:cpf/:ano" element={<Encontro />} />
       <Route path="/verificacao-dados-encontreiro/:cpf/:ano" element={<VerificacaoDadosEncontreiro />} />
       <Route path="/verificacao-dados-encontrista/:cpf/:ano" element={<VerificacaoDadosEncontrista />} />
+      <Route path="/inscricao-encontreiro/:cpf/:ano" element={<InscricaoEncontreiro />} />
     </Routes>
   );
 };

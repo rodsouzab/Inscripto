@@ -171,3 +171,14 @@
     color: #000;
   }
   
+  .continuar-inscricao {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.botoes-inscricao {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 15px;
+}

@@ -1,0 +1,106 @@
+/* Reset e base */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: white;
+}
+
+.inscricao-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* Logo centralizada */
+.logo-circular {
+  width: 100px;
+  height: 100px;
+  background-color: #b0a8a8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Bloco principal */
+.conteudo-inscricao {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* Habilidades */
+.habilidades-box {
+  background-color: #e6e6e6;
+  padding: 30px;
+  border-radius: 15px;
+  width: 250px;
+}
+
+.habilidades-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.habilidades-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+/* Formulário */
+.formulario {
+  flex: 1;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.formulario input,
+.formulario textarea {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  resize: none;
+}
+
+.idade-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nota {
+  font-size: 12px;
+  color: #666;
+  margin-top: -5px;
+  margin-left: 20px;
+}
+
+/* Botão */
+.botao-inscricao {
+  margin-top: 30px;
+}
+
+.botao-inscricao button {
+  padding: 12px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  background-color: #dcdcdc;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botao-inscricao button:hover {
+  background-color: #c2c2c2;
+}
