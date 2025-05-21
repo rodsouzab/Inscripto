@@ -10,6 +10,13 @@
   box-sizing: border-box;
 }
 
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 60px;
+}
+ 
 .info-encontro {
   background-color: #b7cde3; 
   border: 1px solid #4a4a4a; 
@@ -20,7 +27,6 @@
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Hover: muda a cor de fundo e o texto de todos os elementos internos */
 .info-encontro:hover {
   background-color: #849fb9;
 }
@@ -43,14 +49,25 @@
   text-align: center;
 }
 
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+.botao-sair {
+  margin-left: 50px;
+  margin-top: 50px;
+  padding: 12px 20px;
+  background-color: #b7cde3;
+  color: #4a4a4a;
+  border: 1px solid #4a4a4a;
+  font-size: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.botao-sair,
 .botao-perfil {
+  margin-right: 60px;
+  margin-top: 60px;
   padding: 12px 20px;
   background-color: #b7cde3;
   color: #4a4a4a;
@@ -67,20 +84,6 @@
 .botao-perfil:hover {
   background-color: #849fb9;
   color: #ffffff;
-}
-
-.botao-perfil {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  font-size: 13px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  line-height: 1.1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 14px;
 }
 
 .conteudo-central {
@@ -136,8 +139,8 @@
   width: 100%;
   padding: 10px;
   margin: 6px 0;
-  background-color: #007bff;
-  color: white;
+  background-color: #849fb9;
+  color: #ffffff;
   border: none;
   border-radius: 6px;
   font-size: 16px;
@@ -146,7 +149,7 @@
 }
 
 .botao-encontro:hover {
-  background-color: #0056b3;
+  background-color: #849fb9;
 }
 
 .lista-encontros {
