@@ -1,178 +1,97 @@
 .perfil-container {
-    background-color: #e3dacb;
-    font-family: 'Segoe UI', sans-serif;
-    color: #333333;
-    min-height: 100vh;
-    padding: 40px 60px;
-    box-sizing: border-box;
-  }
-  
-  .titulo {
-    font-size: 32px;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    text-align: center;
-  }
-  
-  .perfil-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #dcdcdc;
-    padding: 30px;
-    border-radius: 16px;
-    max-width: 400px;
-    margin: 0 auto 40px auto;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-  }
-  
-  .foto-perfil {
-    background-color: #b7cde3;
-    color: #4a4a4a;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    font-size: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 15px;
-  }
-  
-  .dados-pessoais {
-    text-align: center;
-  }
-  
-  .dados-pessoais p {
-    margin: 4px 0;
-    font-size: 14px;
-  }
-  
-  .apelido {
-    font-style: italic;
-    font-size: 13px;
-    margin-bottom: 10px;
-  }
-  
-  .botao-editar, .botao-cancelar {
-    margin-top: 12px;
-    padding: 8px 16px;
-    background-color: #b7cde3;
-    border: 1px solid #4a4a4a;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.3s;
-    margin-right: 10px;
-  }
-  
-  .botao-editar:hover, .botao-cancelar:hover {
-    background-color: #849fb9;
-    color: white;
-  }
-  
-  .botao-sair {
-    padding: 12px 20px;
-    background-color: #b7cde3;
-    color: #4a4a4a;
-    border: 1px solid #4a4a4a;
-    font-size: 16px;
-    border-radius: 8px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .botao-sair:hover {
-    background-color: #849fb9;
-    color: #ffffff;
-  }
-  
-  .ultimos-encontros {
-    text-align: center;
-    margin-top: 30px;
-  }
-  
-  .ultimos-encontros h2 {
-    margin-bottom: 10px;
-    font-size: 18px;
-  }
-  
-  .registrar-encontro {
-    margin-bottom: 20px;
-    padding: 8px 20px;
-    background-color: #b7cde3;
-    color: #4a4a4a;
-    border: 1px solid #4a4a4a;
-    border-radius: 8px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .registrar-encontro:hover {
-    background-color: #849fb9;
-    color: white;
-  }
-  
-  .encontro {
-    background-color: #8c8585;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    margin: 8px auto;
-    display: flex;
-    justify-content: start;
-    gap: 10px;
-    max-width: 500px;
-  }
-  
-  .ano {
-    background-color: #dedede;
-    color: #333;
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-weight: bold;
-  }
- 
-  .dados-pessoais input {
-    font-family: 'Segoe UI', sans-serif; /* Altere para a fonte que você preferir */
-    border-radius: 12px; /* Deixa a caixa de texto com os cantos arredondados */
-    padding: 5px; /* Ajuste o padding conforme necessário para manter o tamanho */
-    width: 100%; /* Garante que o input ocupe todo o espaço disponível */
-    margin: 5px 0; /* Um pequeno espaçamento entre os inputs */
-    font-size: 14px; /* Tamanho de fonte confortável */
-    border: 1px solid #4a4a4a; /* Cor da borda */
-    background-color: #f1f1f1; /* Cor de fundo leve para o input */
-    box-sizing: border-box; /* Garante que padding e borda não afetem o tamanho do input */
+  background-color: #e3dacb;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333333;
+  min-height: 100vh;
+  padding: 40px 60px;
+  box-sizing: border-box;
 }
 
-.foto-perfil input {
-    font-family: 'Segoe UI', sans-serif; /* Altere para a fonte que você preferir */
-    border-radius: 12px; /* Deixa a caixa de texto com os cantos arredondados */
-    padding: 5px; /* Ajuste o padding conforme necessário para manter o tamanho */
-    width: 75%; /* Garante que o input ocupe todo o espaço disponível */
-    margin: 5px 0; /* Um pequeno espaçamento entre os inputs */
-    font-size: 11px; /* Tamanho de fonte confortável */
-    border: 1px solid #4a4a4a; /* Cor da borda */
-    background-color: #f1f1f1; /* Cor de fundo leve para o input */
-    box-sizing: border-box; /* Garante que padding e borda não afetem o tamanho do input */
+.titulo {
+  font-size: 32px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-align: center;
 }
-  
-  .botao-apagar {
-    margin-top: 12px;
-    padding: 8px 16px;
-    background-color: #c0392b;
-    border: 1px solid #4a4a4a;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.3s;
-    margin-right: 10px;
-  }
-  
-  .botao-apagar:hover {
-    background-color: #a84343;
-    color: white;
-  }
+
+.perfil-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #dcdcdc;
+  padding: 30px;
+  border-radius: 16px;
+  max-width: 400px;
+  margin: 0 auto 40px auto;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.foto-perfil {
+  color: #4a4a4a;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-placeholder {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.dados-perfil {
+  width: 100%;
+}
+
+.dados-perfil label {
+  font-weight: bold;
+}
+
+.dados-perfil input {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0 20px 0;
+  border: 1px solid #b7cde3;
+  border-radius: 8px;
+}
+
+.acoes-perfil {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+}
+
+.botao-perfil {
+  padding: 4px 12px; /* Ajustando o padding horizontal */
+  background-color: #b7cde3;
+  border: 1px solid #4a4a4a;
+  border-radius: 8px; /* Menos arredondado */
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+  display: inline-block;
+  font-size: 14px;
+  height: 30px; /* Altura fixa */
+  line-height: 30px; /* Alinha o texto verticalmente */
+  text-align: center; /* Centraliza o texto horizontalmente */
+}
+
+.botao-perfil:hover {
+  background-color: #849fb9;
+  color: white;
+}
+
+.botao-perfil.cancelar {
+  background-color: #849fb9;
+}
+
+.botao-perfil.deletar {
+  background-color: #ff7b7b;
+}

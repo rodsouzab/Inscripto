@@ -3,6 +3,19 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Cadastro.css';
 
 function Cadastro() {
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imageURL = URL.createObjectURL(file);
+      setFormData((prev) => ({
+        ...prev,
+        foto_url: imageURL
+      }));
+    }
+  };
+  
+
   const [formData, setFormData] = useState({
     cpf: '',
     nome: '',
@@ -97,8 +110,25 @@ function Cadastro() {
           <label htmlFor="telefone">Telefone</label>
           <input type="text" id="telefone" name="telefone" value={formData.telefone} onChange={handleChange} placeholder="(xx) xxxxx-xxxx" />
 
-          <label htmlFor="foto_url">URL da Foto</label>
-          <input type="text" id="foto_url" name="foto_url" value={formData.foto_url} onChange={handleChange} placeholder="Link da foto" />
+          <label htmlFor="foto_url">Foto de Perfil</label>
+          <input
+            type="file"
+            id="foto_url"
+            name="foto_url"
+            accept="image/*"
+            onChange={handleImageChange}
+          />
+
+          {formData.foto_url && (
+            <div style={{ marginTop: '10px' }}>
+              <img
+                src={formData.foto_url}
+                alt="Pré-visualização"
+                style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover' }}
+              />
+            </div>
+          )}
+
 
           <label htmlFor="bairro">Bairro</label>
           <input type="text" id="bairro" name="bairro" value={formData.bairro} onChange={handleChange} placeholder="Seu bairro" />

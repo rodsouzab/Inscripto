@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import '../styles/Perfil.css';
 
-function Perfil() {
+function PerfilAdmin() {
   const { cpf } = useParams();
   const [nome, setNome] = useState('');
   const [apelido, setApelido] = useState('');
@@ -109,7 +109,7 @@ function Perfil() {
 
   return (
     <div className="perfil-container">
-      <Link to={`/pagina-inicial/${cpf}`}>
+      <Link to={`/pagina-inicial-admin/${cpf}`}>
         <button className="botao-sair">Voltar para Página Inicial</button>
       </Link>
 
@@ -255,4 +255,4 @@ function Perfil() {
   );
 }
 
-export default Perfil;
+export default PerfilAdmin;

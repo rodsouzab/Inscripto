@@ -1,132 +1,187 @@
 .pagina-inicial {
-    background-color: #e3dacb;
-    font-family: 'Segoe UI', sans-serif;
-    color: #333333;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 40px 60px;
-    box-sizing: border-box;
-  }
+  background-color: #e3dacb;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333333;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 60px;
+  box-sizing: border-box;
+}
 
-  .item-encontro {
-    background-color: #f9f9f9;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-    width: 100%;
-    max-width: 500px;
-    text-align: center;
-  }
-  
-  
-  .top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .botao-sair,
-  .botao-perfil {
-    padding: 12px 20px;
-    background-color: #b7cde3;
-    color: #4a4a4a;
-    border: 1px solid #4a4a4a;
-    font-size: 16px;
-    border-radius: 8px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .botao-sair:hover,
-  .botao-perfil:hover {
-    background-color: #849fb9;
-    color: #ffffff;
-  }
-  
-  .botao-perfil {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    font-size: 13px;
-    line-height: 1.1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 14px;
-  }
-  
-  .conteudo-central {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-  
-  .mensagem-boas-vindas {
-    font-size: 22px;
-    color: #444444;
-    margin-bottom: 15px;
-    font-weight: 500;
-  }
-  
-  .titulo-encontro {
-    font-family: 'Poppins', sans-serif;
-    font-size: 40px;
-    color: #444444;
-    margin-bottom: 40px;
-  }
-  
-  .botao-eac {
-    padding: 20px 60px;
-    background-color: #b7cde3;
-    color: #4a4a4a;
-    border: 1px solid #4a4a4a;
-    font-size: 20px;
-    border-radius: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .botao-eac:hover {
-    background-color: #849fb9;
-    color: #ffffff;
-  }
-  
-  .formulario-encontro input {
-    display: block;
-    margin: 10px auto;
-    padding: 8px;
-    width: 80%;
-    font-size: 1rem;
-  }
+.info-encontro {
+  background-color: #b7cde3; 
+  border: 1px solid #4a4a4a; 
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  transition: background-color 0.3s, color 0.3s;
+}
 
-  .botao-encontro {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin: 6px 0;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .botao-encontro:hover {
-    background-color: #0056b3;
-  }
-  
-  .lista-encontros {
-    margin-top: 20px;
-  }
-  
+/* Hover: muda a cor de fundo e o texto de todos os elementos internos */
+.info-encontro:hover {
+  background-color: #849fb9;
+}
+
+.info-encontro:hover,
+.info-encontro:hover h2,
+.info-encontro:hover p,
+.info-encontro:hover strong {
+  color: #ffffff;
+}
+
+.item-encontro {
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.botao-sair,
+.botao-perfil {
+  padding: 12px 20px;
+  background-color: #b7cde3;
+  color: #4a4a4a;
+  border: 1px solid #4a4a4a;
+  font-size: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botao-sair:hover,
+.botao-perfil:hover {
+  background-color: #849fb9;
+  color: #ffffff;
+}
+
+.botao-perfil {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  font-size: 13px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  line-height: 1.1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 14px;
+}
+
+.conteudo-central {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.mensagem-boas-vindas {
+  font-size: 22px;
+  color: #444444;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.titulo-encontro {
+  font-family: 'Poppins', sans-serif;
+  font-size: 40px;
+  color: #444444;
+  margin-bottom: 40px;
+}
+
+.botao-eac {
+  padding: 20px 60px;
+  background-color: #b7cde3;
+  color: #4a4a4a;
+  border: 1px solid #4a4a4a;
+  font-size: 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botao-eac:hover {
+  background-color: #849fb9;
+  color: #ffffff;
+}
+
+.formulario-encontro input {
+  display: block;
+  margin: 10px auto;
+  padding: 8px;
+  width: 80%;
+  font-size: 1rem;
+}
+
+.botao-encontro {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.botao-encontro:hover {
+  background-color: #0056b3;
+}
+
+.lista-encontros {
+  margin-top: 20px;
+}
+
+.profile-link {
+  text-decoration: none; /* Se desejar remover sublinhado do link */
+}
+
+.profile-image {
+  width: 100px; /* Aumenta a imagem */
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+.profile-image:hover {
+  transform: scale(1.05);
+}
+
+.profile-placeholder {
+  width: 100px; /* Ajuste para o novo tamanho */
+  height: 100px;
+  border-radius: 50%;
+  background-color: #d0d0d0;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px; /* Ajuste o tamanho da fonte */
+  text-align: center;
+  cursor: pointer;
+}
