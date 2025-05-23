@@ -1,173 +1,99 @@
-.verificacao-container {
-    font-family: Arial, sans-serif;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
-    position: relative;
-  }
+.titulo {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 30px 0;
+}
+
+.perfil-container {
+  flex: 1;
+  background-color: #e6e6e6;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.foto-perfil {
+  width: 80px;
+  height: 80px;
+  background-color: #999;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.foto-texto {
+  font-size: 10px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.nome-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.nome {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.sobrenome {
+  font-size: 14px;
+}
+
+.dados-pessoais {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.editar-btn {
+  position: center;
+  bottom: 15px;
+  right: 15px;
+  background-color: #999;
+  color: #000;
+  border: none;
+  padding: 5px 15px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.continuar-inscricao {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.continuar-titulo {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.botoes-inscricao {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Botões de perfil e cancelar com texto centralizado */
+.botao-perfil,
+.botao-perfil-cancelar {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
   
-  .logo {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 50px;
-    height: 50px;
-    background-color: #ccc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
-  .titulo {
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    margin: 30px 0;
-  }
-  
-  .conteudo {
-    display: flex;
-    gap: 50px;
-    margin-bottom: 30px;
-  }
-  
-  .perfil-container {
-    flex: 1;
-    background-color: #e6e6e6;
-    padding: 20px;
-    border-radius: 10px;
-    position: relative;
-  }
-  
-  .foto-perfil {
-    width: 80px;
-    height: 80px;
-    background-color: #999;
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .foto-texto {
-    font-size: 10px;
-    text-align: center;
-    line-height: 1.2;
-  }
-  
-  .nome-container {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .nome {
-    font-weight: bold;
-    font-size: 18px;
-  }
-  
-  .sobrenome {
-    font-size: 14px;
-  }
-  
-  .dados-pessoais {
-    font-size: 14px;
-    line-height: 1.6;
-  }
-  
-  .editar-btn {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    background-color: #999;
-    color: #000;
-    border: none;
-    padding: 5px 15px;
-    font-size: 12px;
-    cursor: pointer;
-  }
-  
-  .encontros-container {
-    flex: 1;
-  }
-  
-  .encontros-titulo {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .registrar-btn {
-    background-color: #e6e6e6;
-    border: none;
-    border-radius: 15px;
-    padding: 5px 10px;
-    font-size: 12px;
-    margin-bottom: 15px;
-    cursor: pointer;
-  }
-  
-  .encontros-lista {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .encontro-item {
-    display: flex;
-    background-color: #999;
-    border-radius: 5px;
-    overflow: hidden;
-  }
-  
-  .encontro-ano {
-    background-color: #e6e6e6;
-    padding: 10px;
-    width: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-  }
-  
-  .encontro-tipo {
-    padding: 10px 15px;
-    flex: 1;
-    color: #000;
-  }
-  
-  .continuar-container {
-    text-align: center;
-    margin-top: 40px;
-  }
-  
-  .continuar-titulo {
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .botoes-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .voltar-btn,
-  .continuar-btn {
-    padding: 8px 25px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .voltar-btn {
-    background-color: #999;
-    color: #000;
-  }
-  
-  .continuar-btn {
-    background-color: #e6e6e6;
-    color: #000;
-  }
-  
+  white-space: nowrap;
+  text-align: center;
+}
+
+.botao-perfil-cancelar {
+  background-color: #999;
+  color: #000;
+}

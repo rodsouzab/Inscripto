@@ -31,10 +31,19 @@ function PaginaInicial() {
         const response = await fetch('http://localhost:8080/encontros');
         if (response.ok) {
           const data = await response.json();
-          if (data && data.content && data.content.length > 0) {
-            const encontroMaisRecente = data.content[0];
+
+          if (data && data.length > 0) {
+            const encontrosOrdenados = data.sort(
+              (a, b) => new Date(b.data) - new Date(a.data)
+            );
+
+            const encontroMaisRecente = encontrosOrdenados[0];
+
             const hoje = new Date();
+            hoje.setHours(0, 0, 0, 0);
+
             const dataEncontro = new Date(encontroMaisRecente.data);
+            dataEncontro.setHours(0, 0, 0, 0);
 
             if (dataEncontro >= hoje) {
               setUltimoEncontro(encontroMaisRecente);
@@ -43,10 +52,15 @@ function PaginaInicial() {
               setUltimoEncontro(null);
               setEncontroDisponivel(false);
             }
+          } else {
+            setUltimoEncontro(null);
+            setEncontroDisponivel(false);
           }
         }
       } catch (error) {
         console.error('Erro ao buscar últimos encontros:', error);
+        setUltimoEncontro(null);
+        setEncontroDisponivel(false);
       }
     };
 
@@ -62,11 +76,7 @@ function PaginaInicial() {
         </Link>
         <Link to={`/perfil/${cpf}`} className="profile-link">
           {fotoUrl ? (
-            <img
-              src={fotoUrl}
-              alt="Foto de perfil"
-              className="profile-image"
-            />
+            <img src={fotoUrl} alt="Foto de perfil" className="profile-image" />
           ) : (
             <div className="profile-placeholder">
               FOTO<br />DE<br />PERFIL
@@ -86,14 +96,19 @@ function PaginaInicial() {
           </h1>
 
           {encontroDisponivel && ultimoEncontro && (
-            <Link
-              to={`/encontro/${cpf}/${ultimoEncontro.ano}`}
-              className="info-encontro"
-              style={{ textDecoration: 'none' }}
-            >
-              <h2>Encontro {ultimoEncontro.ano}: {ultimoEncontro.tema}</h2>
-              <p><strong>Data:</strong> {ultimoEncontro.data?.split("T")[0]}</p>
-            </Link>
+            <div className="info-encontro">
+              <h2>
+                Encontro {ultimoEncontro.ano}: {ultimoEncontro.tema}
+              </h2>
+              <p>
+                <strong>Data:</strong> {ultimoEncontro.data?.split('T')[0]}
+              </p>
+
+              <Link to={`/encontro/${cpf}/${ultimoEncontro.ano}`}>
+                <button className="botao-encontro">Quero me Inscrever</button>
+              </Link>
+
+            </div>
           )}
         </div>
       </div>

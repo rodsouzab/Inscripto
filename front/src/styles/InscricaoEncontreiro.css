@@ -1,0 +1,171 @@
+/* Reset e base */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: white;
+}
+
+.inscricao-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* Logo centralizada */
+.logo-circular {
+  width: 100px;
+  height: 100px;
+  background-color: #b0a8a8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Bloco principal */
+.conteudo-inscricao {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* Habilidades */
+.habilidades-box {
+  background-color: #e6e6e6;
+  padding: 30px;
+  border-radius: 15px;
+  width: 250px;
+}
+
+.habilidades-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.habilidades-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+/* Formulário */
+.formulario {
+  flex: 1;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.formulario input,
+.formulario textarea,
+.formulario select {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  resize: none;
+}
+
+.idade-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nota {
+  font-size: 12px;
+  color: #666;
+  margin-top: -5px;
+  margin-left: 20px;
+}
+
+/* Sessão de pessoas conhecidas */
+.pessoa-conhecida {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pessoa-conhecida h3 {
+  margin: 0;
+  text-align: center;
+}
+
+/* Botão */
+.botao-inscricao {
+  margin-top: 30px;
+}
+
+.botao-inscricao button {
+  padding: 12px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  background-color: #dcdcdc;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botao-inscricao button:hover {
+  background-color: #c2c2c2;
+}
+
+.familiar-item {
+  display: flex;
+  gap: 3px; /* Espaçamento entre os elementos */
+  align-items: center; /* Alinha verticalmente ao centro */
+  margin-bottom: 10px; /* Espaçamento entre linhas, se tiver mais de um familiar */
+}
+
+.familiar-item input[type="text"] {
+  flex: 1; /* Faz os inputs crescerem igualmente */
+  min-width: 0; /* Para evitar overflow */
+  font-size: 13px;
+}
+
+.familiar-item select {
+  width: 161px; /* Tamanho fixo para o select */
+  font-size: 13px;
+}
+
+.remover-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #900;
+  padding: 0 5px;
+  transition: color 0.3s;
+}
+
+.remover-btn:hover {
+  color: #f00;
+}
+
+.adicionar-btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+  align-self: flex-start;
+}
+
+.adicionar-btn:hover {
+  background-color: #45a049;
+}

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import '../styles/Perfil.css';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import '../styles/VerificacaoDadosEncontreiro.css';
 
 function VerificacaoDadosEncontreiro() {
   const { cpf, ano } = useParams();
+  const navigate = useNavigate();
+
   const [nome, setNome] = useState('');
   const [apelido, setApelido] = useState('');
   const [data_nascimento, setData_nascimento] = useState('');
@@ -16,28 +18,7 @@ function VerificacaoDadosEncontreiro() {
   const [cep, setCep] = useState('');
   const [instituicao_ensino, setInstituicao_ensino] = useState('');
   const [senha, setSenha] = useState('');
-
   const [modoEdicao, setModoEdicao] = useState(false);
-
-  const deletarPessoa = async () => {
-    const confirmacao = window.confirm("Tem certeza que deseja apagar este perfil? Essa ação não poderá ser desfeita.");
-    if (confirmacao) {
-      try {
-        const response = await fetch(`http://localhost:8080/pessoa/${cpf}/${ano}`, {
-          method: 'DELETE',
-        });
-        if (response.ok) {
-          alert("Pessoa apagada com sucesso.");
-          window.location.href = '/'; // redireciona para a página de login
-        } else {
-          alert("Erro ao apagar a pessoa.");
-        }
-      } catch (err) {
-        console.error(err);
-        alert("Erro ao apagar a pessoa.");
-      }
-    }
-  };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -109,11 +90,7 @@ function VerificacaoDadosEncontreiro() {
 
   return (
     <div className="perfil-container">
-      <Link to={`/pagina-inicial/${cpf}`}>
-        <button className="botao-sair">Voltar para Página Inicial</button>
-      </Link>
-
-      <h1 className="titulo">Perfil</h1>
+      <h1 className="titulo">Verificar Dados do Perfil</h1>
 
       <div className="perfil-card">
         <div className="foto-perfil">
@@ -154,71 +131,27 @@ function VerificacaoDadosEncontreiro() {
           {modoEdicao ? (
             <>
               <label>Nome</label>
-              <input
-                type="text"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
-              />
+              <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} />
               <label>Apelido</label>
-              <input
-                type="text"
-                value={apelido}
-                onChange={(e) => setApelido(e.target.value)}
-              />
+              <input type="text" value={apelido} onChange={(e) => setApelido(e.target.value)} />
               <label>Data de Nascimento</label>
-              <input
-                type="date"
-                value={data_nascimento}
-                onChange={(e) => setData_nascimento(e.target.value)}
-              />
+              <input type="date" value={data_nascimento} onChange={(e) => setData_nascimento(e.target.value)} />
               <label>Telefone</label>
-              <input
-                type="text"
-                value={telefone}
-                onChange={(e) => setTelefone(e.target.value)}
-              />
+              <input type="text" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
               <label>Bairro</label>
-              <input
-                type="text"
-                value={bairro}
-                onChange={(e) => setBairro(e.target.value)}
-              />
+              <input type="text" value={bairro} onChange={(e) => setBairro(e.target.value)} />
               <label>Complemento</label>
-              <input
-                type="text"
-                value={complemento}
-                onChange={(e) => setComplemento(e.target.value)}
-              />
+              <input type="text" value={complemento} onChange={(e) => setComplemento(e.target.value)} />
               <label>Número</label>
-              <input
-                type="number"
-                value={numero}
-                onChange={(e) => setNumero(e.target.value)}
-              />
+              <input type="number" value={numero} onChange={(e) => setNumero(e.target.value)} />
               <label>Rua</label>
-              <input
-                type="text"
-                value={rua}
-                onChange={(e) => setRua(e.target.value)}
-              />
+              <input type="text" value={rua} onChange={(e) => setRua(e.target.value)} />
               <label>CEP</label>
-              <input
-                type="text"
-                value={cep}
-                onChange={(e) => setCep(e.target.value)}
-              />
+              <input type="text" value={cep} onChange={(e) => setCep(e.target.value)} />
               <label>Instituição de Ensino</label>
-              <input
-                type="text"
-                value={instituicao_ensino}
-                onChange={(e) => setInstituicao_ensino(e.target.value)}
-              />
+              <input type="text" value={instituicao_ensino} onChange={(e) => setInstituicao_ensino(e.target.value)} />
               <label>Senha</label>
-              <input
-                type="password"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-              />
+              <input type="password" value={senha} onChange={(e) => setSenha(e.target.value)} />
             </>
           ) : (
             <>
@@ -236,20 +169,24 @@ function VerificacaoDadosEncontreiro() {
           )}
         </div>
 
-<div className="acoes-perfil">
-  {modoEdicao ? (
-    <>
-      <button className="botao-perfil" onClick={salvarEdicao}>Salvar</button>
-      <button className="botao-perfil cancelar" onClick={() => setModoEdicao(false)}>Cancelar</button>
-    </>
-  ) : (
-    <>
-      <button className="botao-perfil" onClick={() => setModoEdicao(true)}>Editar</button>
-      <button className="botao-perfil deletar" onClick={deletarPessoa}>Deletar Perfil</button>
-    </>
-  )}
-</div>
+        <div className="acoes-perfil">
+          {modoEdicao ? (
+            <>
+              <button className="botao-perfil" onClick={salvarEdicao}>Salvar</button>
+              <button className="botao-perfil cancelar" onClick={() => setModoEdicao(false)}>Cancelar</button>
+            </>
+          ) : (
+            <button className="botao-perfil" onClick={() => setModoEdicao(true)}>Editar</button>
+          )}
+        </div>
+      </div>
 
+      <div className="continuar-inscricao">
+        <h2 style={{ marginTop: '30px' }}>Continuar Inscrição?</h2>
+        <div className="botoes-inscricao">
+          <button className="botao-perfil cancelar" onClick={() => navigate(`/encontro/${cpf}/${ano}`)}>Voltar</button>
+          <button className="botao-perfil" onClick={() => navigate(`/inscricao-encontreiro/${cpf}/${ano}`)}>Continuar</button>
+        </div>
       </div>
     </div>
   );

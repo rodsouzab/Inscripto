@@ -16,7 +16,7 @@
   align-items: center;
   padding: 0 60px;
 }
- 
+
 .info-encontro {
   background-color: #b7cde3; 
   border: 1px solid #4a4a4a; 
@@ -25,6 +25,7 @@
   margin-top: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   transition: background-color 0.3s, color 0.3s;
+  text-align: center; /* Para centralizar texto e botão */
 }
 
 .info-encontro:hover {
@@ -49,7 +50,7 @@
   text-align: center;
 }
 
-
+/* Botões Sair e Perfil */
 .botao-sair {
   margin-left: 50px;
   margin-top: 50px;
@@ -134,11 +135,11 @@
   font-size: 1rem;
 }
 
+/* Botão "Quero me Inscrever" */
 .botao-encontro {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin: 6px 0;
+  display: inline-block; /* Para ajustar o tamanho ao conteúdo */
+  padding: 10px 24px;
+  margin-top: 20px; /* Espaço entre data e o botão */
   background-color: #849fb9;
   color: #ffffff;
   border: none;
@@ -146,22 +147,24 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  font-weight: 600;
 }
 
 .botao-encontro:hover {
-  background-color: #849fb9;
+  background-color: #6b7f9d;
 }
 
+/* Lista de encontros (se usar) */
 .lista-encontros {
   margin-top: 20px;
 }
 
 .profile-link {
-  text-decoration: none; /* Se desejar remover sublinhado do link */
+  text-decoration: none; /* Remove sublinhado do link */
 }
 
 .profile-image {
-  width: 100px; /* Aumenta a imagem */
+  width: 100px; /* Tamanho maior da imagem */
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
@@ -176,7 +179,7 @@
 }
 
 .profile-placeholder {
-  width: 100px; /* Ajuste para o novo tamanho */
+  width: 100px;
   height: 100px;
   border-radius: 50%;
   background-color: #d0d0d0;
@@ -184,7 +187,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px; /* Ajuste o tamanho da fonte */
+  font-size: 12px;
   text-align: center;
   cursor: pointer;
 }

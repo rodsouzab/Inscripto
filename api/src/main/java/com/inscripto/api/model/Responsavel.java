@@ -1,7 +1,5 @@
 package com.inscripto.api.model;
 
-
-
 public class Responsavel {
     
 
