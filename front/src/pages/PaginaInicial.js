@@ -33,19 +33,23 @@ function PaginaInicial() {
           const data = await response.json();
 
           if (data && data.length > 0) {
-            const encontrosOrdenados = data.sort(
-              (a, b) => new Date(b.data) - new Date(a.data)
-            );
-
-            const encontroMaisRecente = encontrosOrdenados[0];
-
             const hoje = new Date();
-            hoje.setHours(0, 0, 0, 0);
+            const anoAtual = hoje.getFullYear();
 
-            const dataEncontro = new Date(encontroMaisRecente.data);
-            dataEncontro.setHours(0, 0, 0, 0);
+            // Filtra os encontros do ano atual ou futuros
+            const encontrosValidos = data.filter((encontro) => {
+              const dataEncontro = new Date(encontro.data);
+              return dataEncontro.getFullYear() >= anoAtual;
+            });
 
-            if (dataEncontro >= hoje) {
+            if (encontrosValidos.length > 0) {
+              // Ordena por data decrescente (mais recente primeiro)
+              const encontrosOrdenados = encontrosValidos.sort(
+                (a, b) => new Date(b.data) - new Date(a.data)
+              );
+
+              const encontroMaisRecente = encontrosOrdenados[0];
+
               setUltimoEncontro(encontroMaisRecente);
               setEncontroDisponivel(true);
             } else {
@@ -92,7 +96,7 @@ function PaginaInicial() {
           <h1 className="titulo-encontro">
             {encontroDisponivel
               ? 'Encontro Atual:'
-              : 'O encontro desse ano já aconteceu. Ano que vem tem mais😊'}
+              : 'O encontro desse ano já aconteceu. Ano que vem tem mais 😊'}
           </h1>
 
           {encontroDisponivel && ultimoEncontro && (
@@ -107,7 +111,6 @@ function PaginaInicial() {
               <Link to={`/encontro/${cpf}/${ultimoEncontro.ano}`}>
                 <button className="botao-encontro">Quero me Inscrever</button>
               </Link>
-
             </div>
           )}
         </div>

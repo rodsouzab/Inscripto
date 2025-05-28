@@ -38,4 +38,26 @@ public class HabilidadeRepository {
         String sql = "DELETE FROM habilidade WHERE id = ?";
         jdbcTemplate.update(sql, id);
     }
+
+    public void vincularHabilidadeAoEncontreiro(String cpfEncontreiro, Integer idHabilidade) {
+    String sql = "INSERT INTO habilidades_encontreiro (cpf_encontreiro, id_habilidade) VALUES (?, ?)";
+    jdbcTemplate.update(sql, cpfEncontreiro, idHabilidade);
+}
+
+    public List<ListagemHabilidadeDTO> listarHabilidadesPorEncontreiro(String cpfEncontreiro) {
+        String sql = """
+                SELECT h.id, h.habilidade
+                FROM habilidades_encontreiro he
+                JOIN habilidade h ON he.id_habilidade = h.id
+                WHERE he.cpf_encontreiro = ?
+                """;
+        return jdbcTemplate.query(sql, habilidadeRowMapper, cpfEncontreiro);
+    }
+
+    public void removerHabilidadeDeEncontreiro(String cpfEncontreiro, Integer idHabilidade) {
+        String sql = "DELETE FROM habilidades_encontreiro WHERE cpf_encontreiro = ? AND id_habilidade = ?";
+        jdbcTemplate.update(sql, cpfEncontreiro, idHabilidade);
+    }
+
+
 }

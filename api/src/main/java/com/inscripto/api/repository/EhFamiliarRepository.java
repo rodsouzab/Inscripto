@@ -66,13 +66,27 @@ public class EhFamiliarRepository {
         jdbcTemplate.update(sql,
                 ef.isTrabalhar_junto(),
                 ef.getRelacao(),
-                ef.getEncontreiro1Cpf(),
-                ef.getEncontreiro2Cpf());
+                ef.getEncontreiro1().getCpf(),
+                ef.getEncontreiro2().getCpf());
     }
 
     public void deleteByCpf(String cpf1, String cpf2) {
         String sql = "DELETE FROM eh_familiar WHERE cpf_encontreiro1 = ? AND cpf_encontreiro2 = ?";
         jdbcTemplate.update(sql, cpf1, cpf2);
     }
+    public List<EhFamiliar> saveAll(List<EhFamiliar> lista) {
+    String sql = "INSERT INTO eh_familiar (cpf_encontreiro1, cpf_encontreiro2, trabalhar_junto, relacao) VALUES (?, ?, ?, ?)";
+    for (EhFamiliar ef : lista) {
+        jdbcTemplate.update(
+            sql,
+            ef.getEncontreiro1().getCpf(),
+            ef.getEncontreiro2().getCpf(),
+            ef.isTrabalhar_junto(),
+            ef.getRelacao()
+        );
+    }
+    return lista;
+}
+
 }
 

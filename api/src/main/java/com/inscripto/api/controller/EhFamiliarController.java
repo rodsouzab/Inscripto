@@ -20,10 +20,11 @@ public class EhFamiliarController {
     }
 
     @PostMapping
-    public ResponseEntity<EhFamiliar> createEhFamiliar(@RequestBody EhFamiliar ehFamiliar) {
-        EhFamiliar savedEhFamiliar = ehFamiliarRepository.save(ehFamiliar);
-        return ResponseEntity.ok(savedEhFamiliar);
-    }
+public ResponseEntity<List<EhFamiliar>> createEhFamiliar(@RequestBody List<EhFamiliar> ehFamiliar) {
+    List<EhFamiliar> savedList = ehFamiliarRepository.saveAll(ehFamiliar);
+    return ResponseEntity.ok(savedList);
+}
+
 
     @GetMapping
     public ResponseEntity<List<EhFamiliar>> getAllEhFamiliares() {

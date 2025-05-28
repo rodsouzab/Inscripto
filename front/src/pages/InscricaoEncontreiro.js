@@ -47,81 +47,126 @@ const InscricaoEncontreiro = () => {
     setFamiliares(novosFamiliares);
   };
 
-    const validarCampos = () => {
-        if (!nomeResponsavel.trim()) return false;
-        if (!telefoneResponsavel.trim()) return false;
-        if (habilidadesSelecionadas.length === 0) return false;
+  const validarCampos = () => {
+    if (!nomeResponsavel.trim()) return false;
+    if (!telefoneResponsavel.trim()) return false;
+    if (habilidadesSelecionadas.length === 0) return false;
 
-        if (temFamiliar) {
-            for (const familiar of familiares) {
-            if (!familiar.cpf.trim() || !familiar.parentesco.trim()) {
-                return false;
-            }
-            }
+    if (temFamiliar) {
+      for (const familiar of familiares) {
+        if (!familiar.cpf.trim() || !familiar.parentesco.trim()) {
+          return false;
         }
-
-        return true;
-    };
-
-
-  const handleSubmit = () => {
-    if (!validarCampos()) {
-      alert("Por favor, preencha todos os campos obrigatórios.");
-      return;
+      }
     }
 
-    const encontreiro = {
-      cpf: cpf,
-      fezEjc: fezEjc,
-      responsavelNome: nomeResponsavel || null,
-      responsavelTelefone: telefoneResponsavel || null,
-      habilidades: habilidadesSelecionadas,
-      familiares: temFamiliar ? familiares : [],
-      observacao: observacao || null,
-      ano: ano
-    };
+    return true;
+  };
 
-    const responsavel = {
-      telefone: telefoneResponsavel,
-      nome: nomeResponsavel
-    };
+  const handleSubmit = async () => {
+  if (!validarCampos()) {
+    alert("Por favor, preencha todos os campos obrigatórios.");
+    return;
+  }
 
-    fetch("http://localhost:8080/responsavel", {
+  const encontreiro = {
+    cpf: cpf,
+    fezEjc: fezEjc,
+    responsavelNome: nomeResponsavel || null,
+    responsavelTelefone: telefoneResponsavel || null,
+    habilidades: habilidadesSelecionadas,
+    observacao: observacao || null,
+    ano: ano
+  };
+
+  const responsavel = {
+    telefone: telefoneResponsavel,
+    nome: nomeResponsavel
+  };
+
+  try {
+    // Salvar responsável
+    let response = await fetch("http://localhost:8080/responsavel", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(responsavel)
-    })
-      .then(response => {
-        if (!response.ok) throw new Error("Erro ao salvar responsável");
-        return response.json();
-      })
-      .then(() => {
-        return fetch("http://localhost:8080/encontreiros", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(encontreiro)
-        });
-      })
-      .then(response => {
-        if (!response.ok) throw new Error("Erro ao salvar inscrição");
-        return response.json();
-      })
-      .then(() => {
-        alert("✅ Inscrição realizada com sucesso!");
-        // Limpa formulário
-        setNomeResponsavel("");
-        setTelefoneResponsavel("");
-        setFezEjc(false);
-        setAdolescente(false);
-        setHabilidadesSelecionadas([]);
-        setTemFamiliar(false);
-        setFamiliares([]);
-        setObservacao("");
-      })
-      .catch(error => {
-        console.error("Erro:", error);
-        alert("❌ Erro ao realizar inscrição.");
+    });
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Erro ao salvar responsável: ${errorText}`);
+    }
+
+    // Salvar encontreiro
+    response = await fetch("http://localhost:8080/encontreiros", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(encontreiro)
+    });
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Erro ao salvar inscrição do encontreiro: ${errorText}`);
+    }
+
+    // Vincular habilidades
+    const vincularHabilidades = habilidadesSelecionadas.map(id => ({
+      cpfEncontreiro: cpf,
+      idHabilidade: id
+    }));
+
+    response = await fetch("http://localhost:8080/habilidades/vincular", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(vincularHabilidades)
+    });
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Erro ao vincular habilidades: ${errorText}`);
+    }
+
+    // Cadastrar familiares, se houver
+    if (temFamiliar) {
+      const relacionamentos = familiares.map(familiar => ({
+        encontreiro1: { cpf: cpf },
+        encontreiro2: { cpf: familiar.cpf },
+        relacao: familiar.parentesco,
+        trabalhar_junto: familiar.trabalharJunto === "sim"
+      }));
+
+      response = await fetch("http://localhost:8080/encontreiros/familiares", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(relacionamentos)
       });
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Erro ao cadastrar familiares: ${errorText}`);
+      }
+    }
+
+    alert("✅ Inscrição realizada com sucesso!");
+    setNomeResponsavel("");
+    setTelefoneResponsavel("");
+    setFezEjc(false);
+    setAdolescente(false);
+    setHabilidadesSelecionadas([]);
+    setTemFamiliar(false);
+    setFamiliares([]);
+    setObservacao("");
+
+  } catch (error) {
+    console.error("Erro detalhado:", error);
+    alert(`❌ Erro ao realizar inscrição: ${error.message}`);
+  }
+};
+
+
+  const handleTemFamiliarChange = (value) => {
+    setTemFamiliar(value);
+    if (value && familiares.length === 0) {
+      setFamiliares([{ cpf: "", parentesco: "", trabalharJunto: "sim" }]);
+    } else if (!value) {
+      setFamiliares([]);
+    }
   };
 
   return (
@@ -192,14 +237,13 @@ const InscricaoEncontreiro = () => {
             <p className="nota">*Marque Jovem se você tem +18 anos e já fez o EJC.</p>
         </div>
 
-
           <div className="familia-box">
             <p>Você tem algum familiar/namorado(a) que vai trabalhar?</p>
             <label>
               <input 
                 type="radio"
                 checked={temFamiliar === true}
-                onChange={() => setTemFamiliar(true)}
+                onChange={() => handleTemFamiliarChange(true)}
               />
               Sim
             </label>
@@ -207,7 +251,7 @@ const InscricaoEncontreiro = () => {
               <input 
                 type="radio"
                 checked={temFamiliar === false}
-                onChange={() => setTemFamiliar(false)}
+                onChange={() => handleTemFamiliarChange(false)}
               />
               Não
             </label>
@@ -217,16 +261,16 @@ const InscricaoEncontreiro = () => {
                 {familiares.map((familiar, index) => (
                   <div key={index} className="familiar-item">
                     <input 
-                    type="text" 
-                    placeholder="CPF da pessoa" 
-                    value={familiar.cpf} 
-                    onChange={e => {
-                        const valorNumerico = e.target.value.replace(/\D/g, ''); // só números
+                      type="text" 
+                      placeholder="CPF da pessoa" 
+                      value={familiar.cpf} 
+                      onChange={e => {
+                        const valorNumerico = e.target.value.replace(/\D/g, '');
                         handleFamiliarChange(index, "cpf", valorNumerico);
-                    }}
-                    inputMode="numeric"   // para celular mostrar teclado numérico
-                    pattern="\d*"         // só dígitos
-                    maxLength={11}        // máximo 11 números do CPF
+                      }}
+                      inputMode="numeric"
+                      pattern="\d*"
+                      maxLength={11}
                     />
 
                     <input 
