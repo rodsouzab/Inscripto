@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import '../styles/PaginaInicial.css';
 
 function PaginaInicialAdmin() {
-
   const { cpf } = useParams();
   const [apelido, setApelido] = useState('');
   const [fotoUrl, setFotoUrl] = useState('');
@@ -45,9 +44,13 @@ function PaginaInicialAdmin() {
   }, [cpf]);
 
   const buscarEncontros = async () => {
-    const response = await fetch("http://localhost:8080/encontros");
-    const data = await response.json();
-    setEncontros(data.content || []);
+    try {
+      const response = await fetch("http://localhost:8080/encontros");
+      const data = await response.json();
+      setEncontros(data || []);
+    } catch (error) {
+      console.error("Erro ao buscar encontros:", error);
+    }
   };
 
   const criarEncontro = async (e) => {
@@ -56,7 +59,7 @@ function PaginaInicialAdmin() {
       ano: parseInt(form.ano),
       colegio: form.colegio,
       tema: form.tema,
-      data: form.data + "T00:00:00",
+      data: form.data,
     };
 
     try {
@@ -66,7 +69,7 @@ function PaginaInicialAdmin() {
         body: JSON.stringify(encontro),
       });
 
-      if (response.ok) {
+      if (response.ok || response.status === 201) {
         alert("Encontro criado com sucesso!");
         setForm({ ano: "", colegio: "", tema: "", data: "" });
         buscarEncontros();
@@ -80,22 +83,20 @@ function PaginaInicialAdmin() {
   };
 
   const iniciarEdicao = (encontro) => {
-    const dataFormatada = encontro.data ? encontro.data.split("T")[0] : "";
     setEditandoEncontroId(encontro.ano);
     setFormEdicao({
       colegio: encontro.colegio || "",
       tema: encontro.tema || "",
-      data: dataFormatada,
+      data: encontro.data || "",
     });
   };
 
   const salvarEdicao = async (ano) => {
-    const dataComT = formEdicao.data.includes("T") ? formEdicao.data : formEdicao.data + "T00:00:00";
     const encontroAtualizado = {
       ano: parseInt(ano),
       colegio: formEdicao.colegio,
       tema: formEdicao.tema,
-      data: dataComT,
+      data: formEdicao.data,
     };
 
     try {
@@ -126,7 +127,7 @@ function PaginaInicialAdmin() {
           method: "DELETE",
         });
 
-        if (response.ok) {
+        if (response.ok || response.status === 204) {
           alert("Encontro apagado com sucesso!");
           buscarEncontros();
         } else {
@@ -145,7 +146,7 @@ function PaginaInicialAdmin() {
         <Link to="/admin-login">
           <button className="botao-sair">Voltar</button>
         </Link>
-            <Link to={`/perfil-admin/${cpf}`} className="profile-link">
+        <Link to={`/perfil-admin/${cpf}`} className="profile-link">
           {fotoUrl ? (
             <img
               src={fotoUrl}
@@ -161,7 +162,7 @@ function PaginaInicialAdmin() {
       </div>
 
       <div className="conteudo-central">
-      <p className="mensagem-boas-vindas">Bem-vindo(a), {apelido}!</p>
+        <p className="mensagem-boas-vindas">Bem-vindo(a), {apelido}!</p>
         <h2 className="titulo-encontro">Criar Novo Encontro</h2>
         <form onSubmit={criarEncontro} className="formulario-encontro">
           <input
@@ -198,11 +199,11 @@ function PaginaInicialAdmin() {
               <strong>{encontro.ano}</strong>
               <p><strong>Colégio:</strong> {encontro.colegio}</p>
               <p><strong>Tema:</strong> {encontro.tema}</p>
-              <p><strong>Data:</strong> {encontro.data?.split("T")[0]}</p>
+              <p><strong>Data:</strong> {encontro.data}</p>
 
               <div style={{ marginTop: "10px" }}>
                 <button className="botao-encontro" onClick={() => iniciarEdicao(encontro)}>Editar</button>
-                <button className="botao-encontro" onClick={() => apagarEncontro(parseInt(encontro.ano))}>Apagar</button>
+                <button className="botao-encontro" onClick={() => apagarEncontro(encontro.ano)}>Apagar</button>
               </div>
 
               {editandoEncontroId === encontro.ano && (
