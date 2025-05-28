@@ -14,6 +14,7 @@ import InscricaoEncontreiro from './pages/InscricaoEncontreiro';
 import InscricaoEncontrista from './pages/InscricaoEnconstrista';
 import EncontroAntigo from './pages/EncontroAntigo';
 import EncontroAtual from './pages/EncontroAtual'
+import Dashboard from './pages/Dashboard';
 
 const AppRoutes = () => {
   return (
@@ -32,7 +33,7 @@ const AppRoutes = () => {
       <Route path="/inscricao-encontrista/:cpf/:ano" element={<InscricaoEncontrista />} />
       <Route path="/encontro-antigo/:cpf/:ano" element={<EncontroAntigo />} />
       <Route path="/encontro-atual/:cpf/:ano" element={<EncontroAtual />} />
-
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
 };
