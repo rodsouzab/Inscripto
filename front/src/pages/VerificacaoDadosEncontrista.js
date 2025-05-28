@@ -1,90 +1,195 @@
-import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import '../styles/VerificacaoDadosEncontreiro.css';
 
-const VerificacaoDadosEncontreiro = ({
-  userData = {
-    nome: "NOME",
-    sobrenome: "sobrenome",
-    cpf: "XXX.XXX.XXX-XX",
-    endereco: "XXXXXXXXX",
-    dataNascimento: "XX/XX/XXXX",
-    telefone: "(XX) XXXXX-XXXX",
-    instituicao: "XXXXXXXX",
-    restricoes: "XXXXXXX",
-  },
-  encontros = [
-    { ano: "2024", tipo: "REGULAR - JOVEM - EVANGELISTAS" },
-    { ano: "2023", tipo: "COORD - ADOLESCENTE - OLIVEIRAS" },
-  ],
-  onEdit = () => {},
-  onRegisterEncontro = () => {},
-  onContinuar = () => {},
-  onVoltar = () => {},
-}) => {
+function VerificacaoDadosEncontrista() {
+  const { cpf, ano } = useParams();
+  const navigate = useNavigate();
+
+  const [nome, setNome] = useState('');
+  const [apelido, setApelido] = useState('');
+  const [data_nascimento, setData_nascimento] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [foto_url, setFoto_url] = useState('');
+  const [bairro, setBairro] = useState('');
+  const [complemento, setComplemento] = useState('');
+  const [numero, setNumero] = useState('');
+  const [rua, setRua] = useState('');
+  const [cep, setCep] = useState('');
+  const [instituicao_ensino, setInstituicao_ensino] = useState('');
+  const [senha, setSenha] = useState('');
+  const [modoEdicao, setModoEdicao] = useState(false);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imageURL = URL.createObjectURL(file);
+      setFoto_url(imageURL);
+    }
+  };
+
+  useEffect(() => {
+    const buscarPessoa = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/pessoa/${cpf}`);
+        if (response.ok) {
+          const data = await response.json();
+          setNome(data.nome);
+          setApelido(data.apelido);
+          setData_nascimento(data.data_nascimento);
+          setTelefone(data.telefone);
+          setFoto_url(data.foto_url);
+          setBairro(data.bairro);
+          setComplemento(data.complemento);
+          setNumero(data.numero);
+          setRua(data.rua);
+          setCep(data.cep);
+          setInstituicao_ensino(data.instituicao_ensino);
+          setSenha(data.senha);
+        }
+      } catch (error) {
+        console.error('Erro ao buscar os dados da pessoa:', error);
+      }
+    };
+    buscarPessoa();
+  }, [cpf]);
+
+  const salvarEdicao = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/pessoa/${cpf}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          cpf,
+          nome,
+          apelido,
+          data_nascimento,
+          telefone,
+          foto_url,
+          bairro,
+          complemento,
+          numero,
+          rua,
+          cep,
+          instituicao_ensino,
+          senha,
+        }),
+      });
+
+      if (response.ok) {
+        alert('Dados atualizados com sucesso!');
+        setModoEdicao(false);
+      } else {
+        alert('Erro ao atualizar os dados.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Erro ao atualizar os dados.');
+    }
+  };
+
   return (
-    <div className="verificacao-container">
-      <div className="logo">LOGO</div>
+    <div className="perfil-container">
+      <h1 className="titulo">Verificar Dados do Perfil</h1>
 
-      <h1 className="titulo">VERIFICAR DADOS DO PERFIL</h1>
-
-      <div className="conteudo">
-        <div className="perfil-container">
-          <div className="foto-perfil">
-            <div className="foto-texto">FOTO DE PERFIL</div>
-          </div>
-
-          <div className="nome-container">
-            <div className="nome">{userData.nome}</div>
-            <div className="sobrenome">{userData.sobrenome}</div>
-          </div>
-
-          <div className="dados-pessoais">
-            <div>CPF: {userData.cpf}</div>
-            <div>ENDEREÇO: {userData.endereco}</div>
-            <div>DATA DE NASCIMENTO: {userData.dataNascimento}</div>
-            <div>TELEFONE: {userData.telefone}</div>
-            <div>INSTITUIÇÃO DE ENSINO: {userData.instituicao}</div>
-            <div>RESTRIÇÕES: {userData.restricoes}</div>
-          </div>
-
-          <button className="editar-btn" onClick={onEdit}>
-            EDITAR
-          </button>
+      <div className="perfil-card">
+        <div className="foto-perfil">
+          {modoEdicao ? (
+            <>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                style={{ marginBottom: '10px' }}
+              />
+              {foto_url && (
+                <div style={{ marginTop: '10px' }}>
+                  <img
+                    src={foto_url}
+                    alt="Pré-visualização"
+                    style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover' }}
+                  />
+                </div>
+              )}
+            </>
+          ) : (
+            foto_url ? (
+              <img
+                src={foto_url}
+                alt="Foto de Perfil"
+                style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover' }}
+              />
+            ) : (
+              <div className="profile-placeholder">
+                FOTO<br />DE<br />PERFIL
+              </div>
+            )
+          )}
         </div>
 
-        <div className="encontros-container">
-          <h2 className="encontros-titulo">ÚLTIMOS ENCONTROS</h2>
+        <div className="dados-perfil">
+          {modoEdicao ? (
+            <>
+              <label>Nome</label>
+              <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} />
+              <label>Apelido</label>
+              <input type="text" value={apelido} onChange={(e) => setApelido(e.target.value)} />
+              <label>Data de Nascimento</label>
+              <input type="date" value={data_nascimento} onChange={(e) => setData_nascimento(e.target.value)} />
+              <label>Telefone</label>
+              <input type="text" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
+              <label>Bairro</label>
+              <input type="text" value={bairro} onChange={(e) => setBairro(e.target.value)} />
+              <label>Complemento</label>
+              <input type="text" value={complemento} onChange={(e) => setComplemento(e.target.value)} />
+              <label>Número</label>
+              <input type="number" value={numero} onChange={(e) => setNumero(e.target.value)} />
+              <label>Rua</label>
+              <input type="text" value={rua} onChange={(e) => setRua(e.target.value)} />
+              <label>CEP</label>
+              <input type="text" value={cep} onChange={(e) => setCep(e.target.value)} />
+              <label>Instituição de Ensino</label>
+              <input type="text" value={instituicao_ensino} onChange={(e) => setInstituicao_ensino(e.target.value)} />
+              <label>Senha</label>
+              <input type="password" value={senha} onChange={(e) => setSenha(e.target.value)} />
+            </>
+          ) : (
+            <>
+              <p><strong>Nome:</strong> {nome}</p>
+              <p><strong>Apelido:</strong> {apelido}</p>
+              <p><strong>Data de Nascimento:</strong> {data_nascimento}</p>
+              <p><strong>Telefone:</strong> {telefone}</p>
+              <p><strong>Bairro:</strong> {bairro}</p>
+              <p><strong>Complemento:</strong> {complemento}</p>
+              <p><strong>Número:</strong> {numero}</p>
+              <p><strong>Rua:</strong> {rua}</p>
+              <p><strong>CEP:</strong> {cep}</p>
+              <p><strong>Instituição de Ensino:</strong> {instituicao_ensino}</p>
+            </>
+          )}
+        </div>
 
-          <button className="registrar-btn" onClick={onRegisterEncontro}>
-            Registrar Encontro
-          </button>
-
-          <div className="encontros-lista">
-            {encontros.map((encontro, index) => (
-              <div className="encontro-item" key={index}>
-                <div className="encontro-ano">{encontro.ano}</div>
-                <div className="encontro-tipo">{encontro.tipo}</div>
-              </div>
-            ))}
-          </div>
+        <div className="acoes-perfil">
+          {modoEdicao ? (
+            <>
+              <button className="botao-perfil" onClick={salvarEdicao}>Salvar</button>
+              <button className="botao-perfil cancelar" onClick={() => setModoEdicao(false)}>Cancelar</button>
+            </>
+          ) : (
+            <button className="botao-perfil" onClick={() => setModoEdicao(true)}>Editar</button>
+          )}
         </div>
       </div>
 
-      <div className="continuar-container">
-        <h2 className="continuar-titulo">Continuar Inscrição?</h2>
-
-        <div className="botoes-container">
-          <button className="voltar-btn" onClick={onVoltar}>
-            Voltar
-          </button>
-          <button className="continuar-btn" onClick={onContinuar}>
-            Continuar
-          </button>
+      <div className="continuar-inscricao">
+        <h2 style={{ marginTop: '30px' }}>Continuar Inscrição?</h2>
+        <div className="botoes-inscricao">
+          <button className="botao-perfil cancelar" onClick={() => navigate(`/encontro/${cpf}/${ano}`)}>Voltar</button>
+          <button className="botao-perfil" onClick={() => navigate(`/inscricao-encontrista/${cpf}/${ano}`)}>Continuar</button>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default VerificacaoDadosEncontreiro
+export default VerificacaoDadosEncontrista;

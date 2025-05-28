@@ -36,20 +36,17 @@ function PaginaInicial() {
             const hoje = new Date();
             const anoAtual = hoje.getFullYear();
 
-            // Filtra os encontros do ano atual ou futuros
             const encontrosValidos = data.filter((encontro) => {
               const dataEncontro = new Date(encontro.data);
               return dataEncontro.getFullYear() >= anoAtual;
             });
 
             if (encontrosValidos.length > 0) {
-              // Ordena por data decrescente (mais recente primeiro)
               const encontrosOrdenados = encontrosValidos.sort(
                 (a, b) => new Date(b.data) - new Date(a.data)
               );
 
               const encontroMaisRecente = encontrosOrdenados[0];
-
               setUltimoEncontro(encontroMaisRecente);
               setEncontroDisponivel(true);
             } else {
@@ -73,7 +70,7 @@ function PaginaInicial() {
   }, [cpf]);
 
   return (
-    <>
+    <div className="pagina-inicial">
       <div className="top-bar">
         <Link to="/">
           <button className="botao-sair">Sair da Conta</button>
@@ -89,33 +86,31 @@ function PaginaInicial() {
         </Link>
       </div>
 
-      <div className="pagina-inicial">
-        <div className="conteudo-central">
-          <p className="mensagem-boas-vindas">Bem-vindo(a), {apelido}!</p>
+      <div className="conteudo-central">
+        <p className="mensagem-boas-vindas">Bem-vindo(a), {apelido}!</p>
 
-          <h1 className="titulo-encontro">
-            {encontroDisponivel
-              ? 'Encontro Atual:'
-              : 'O encontro desse ano já aconteceu. Ano que vem tem mais 😊'}
-          </h1>
+        <h1 className="titulo-encontro">
+          {encontroDisponivel
+            ? 'Encontro Atual:'
+            : 'O encontro desse ano já aconteceu. Ano que vem tem mais 😊'}
+        </h1>
 
-          {encontroDisponivel && ultimoEncontro && (
-            <div className="info-encontro">
-              <h2>
-                Encontro {ultimoEncontro.ano}: {ultimoEncontro.tema}
-              </h2>
-              <p>
-                <strong>Data:</strong> {ultimoEncontro.data?.split('T')[0]}
-              </p>
+        {encontroDisponivel && ultimoEncontro && (
+          <div className="info-encontro">
+            <h2>
+              Encontro {ultimoEncontro.ano}: {ultimoEncontro.tema}
+            </h2>
+            <p>
+              <strong>Data:</strong> {ultimoEncontro.data?.split('T')[0]}
+            </p>
 
-              <Link to={`/encontro/${cpf}/${ultimoEncontro.ano}`}>
-                <button className="botao-encontro">Quero me Inscrever</button>
-              </Link>
-            </div>
-          )}
-        </div>
+            <Link to={`/encontro/${cpf}/${ultimoEncontro.ano}`}>
+              <button className="botao-encontro">Quero me Inscrever</button>
+            </Link>
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
 }
 

@@ -1,0 +1,119 @@
+/* Reset básico */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #e3dacb;
+}
+
+.inscricao-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #e3dacb;
+}
+
+.foto-perfil {
+  margin-bottom: 30px;
+}
+
+.imagem-perfil {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #dcdcdc;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.formulario-simples {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.formulario-simples input[type="text"] {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline-offset: 2px;
+  transition: border-color 0.3s;
+}
+
+.formulario-simples input[type="text"]:focus {
+  border-color: #4caf50;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.formulario-simples button {
+  margin-top: 20px;
+  padding: 12px 0;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  background-color: #dcdcdc;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: 600;
+}
+
+.formulario-simples button:hover {
+  background-color: #c2c2c2;
+}
+
+.botao-voltar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 12px 20px;
+  background-color: #b7cde3;
+  color: #4a4a4a;
+  border: 1px solid #4a4a4a;
+  font-size: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none; 
+}
+
+.botao-voltar:hover {
+  background-color: #849fb9;
+  color: #ffffff;
+}
+
+.botao-inscricao {
+     margin-top: 20px;
+  text-align: center;
+  padding: 10px 20px;
+  background-color: #b7cde3;
+  color: #4a4a4a;
+  border: 1px solid #4a4a4a;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;  
+}

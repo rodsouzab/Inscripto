@@ -1,69 +1,97 @@
 .container-encontro {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    position: relative;
-    padding-top: 80px; 
-  }
-  
-  .botao-voltar {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 12px 20px;
-    background-color: #b7cde3;
-    color: #4a4a4a;
-    border: 1px solid #4a4a4a;
-    font-size: 16px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-decoration: none; 
-  }
-  
-  .botao-voltar:hover {
-    background-color: #849fb9;
-    color: #ffffff;
-  }
-  
-  .botoes-encontro {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 200px; 
-    margin-top: 240px;
-  }
-  
-  .botao-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .botao-encontro {
-    padding: 20px 60px;
-    background-color: #b7cde3;
-    color: #4a4a4a;
-    border: 1px solid #4a4a4a;
-    font-size: 20px;
-    border-radius: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-decoration: none; /* Remover sublinhado */
-  }
-  
-  .botao-encontro:hover {
-    background-color: #849fb9;
-    color: #ffffff;
-  }
-  
-  .descricao {
-    font-size: 13px;
-    color: #666;
-    margin-top: 10px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  padding-top: 80px; 
+  background-color: #e3dacb;
+}
+
+.botao-voltar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 12px 20px;
+  background-color: #b7cde3;
+  color: #4a4a4a;
+  border: 1px solid #4a4a4a;
+  font-size: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none; 
+}
+
+.botao-voltar:hover {
+  background-color: #849fb9;
+  color: #ffffff;
+}
+
+.botoes-encontro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 200px; 
+  margin-top: 240px;
+}
+
+.botao-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.botao-encontro {
+  padding: 20px 60px;
+  background-color: #b7cde3;
+  color: #4a4a4a;
+  border: 1px solid #4a4a4a;
+  font-size: 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none; /* Remover sublinhado */
+}
+
+.botao-encontro:hover {
+  background-color: #849fb9;
+  color: #ffffff;
+}
+
+.descricao {
+  font-size: 13px;
+  color: #666;
+  margin-top: 10px;
+}
+
+/* Estilo da mensagem quando o cpf já está inscrito */
+.mensagem-inscricao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 40px;
+  color: #2c3e50;
+}
+
+.mensagem-inscricao .emoji {
+  font-size: 2.5rem;
+}
+
+.mensagem-inscricao p {
+  margin: 0;
+}
+
+.mensagem-inscricao .subtexto {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-top: 4px;
+  color: #555;
+}

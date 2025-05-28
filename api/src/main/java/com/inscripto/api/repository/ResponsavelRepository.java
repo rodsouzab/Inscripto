@@ -39,4 +39,9 @@ public class ResponsavelRepository {
         String sql = "UPDATE responsavel SET nome = ? WHERE telefone = ?";
         return jdbcTemplate.update(sql, nome, telefone);
     }
+    public void criarRelacionamentoResponsavelEncontrista(String telefoneResponsavel, String cpfEncontrista) {
+    String sql = "INSERT INTO responsavel_encontrista (telefone_responsavel, cpf_encontrista) VALUES (?, ?)";
+    jdbcTemplate.update(sql, telefoneResponsavel, cpfEncontrista);
+}
+    
 }

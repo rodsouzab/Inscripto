@@ -97,3 +97,25 @@
   background-color: #999;
   color: #000;
 }
+
+.botao-voltar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 12px 20px;
+  background-color: #b7cde3;
+  color: #4a4a4a;
+  border: 1px solid #4a4a4a;
+  font-size: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none; 
+}
+
+.botao-voltar:hover {
+  background-color: #849fb9;
+  color: #ffffff;
+}

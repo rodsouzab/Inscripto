@@ -49,4 +49,9 @@ public class EncontristaRepository {
         String sql = "SELECT COUNT(*) FROM encontrista WHERE cpf_pessoa = ?";
         return jdbcTemplate.queryForObject(sql, Integer.class, cpf) > 0;
     }
+    public void criarRelacionamentoResponsavelEncontrista(String telefoneResponsavel, String cpfEncontrista) {
+    String sql = "INSERT INTO responsavel_encontrista (telefone_responsavel, cpf_encontrista) VALUES (?, ?)";
+    jdbcTemplate.update(sql, telefoneResponsavel, cpfEncontrista);
+}
+
 }
