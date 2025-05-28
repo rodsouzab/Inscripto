@@ -76,15 +76,15 @@ VALUES
 (2, 'Emaús', 2024),
 (3, 'Jordão', 2022),
 (4, 'Maná', 2019),
-(5, 'Betânia', 2020),
-(6, 'Galiléia', 2021),
-(7, 'Jericó', 2018),
-(8, 'Betel', 2017),
-(9, 'Hebrom', 2016),
-(10, 'Canaã', 2015),
-(11, 'Tabor', 2014),
-(12, 'Gibeá', 2013),
-(13, 'Samaria', 2012);
+(5, 'Jordão', 2020),
+(6, 'Naim', 2021),
+(7, 'Cafarnaum', 2018),
+(8, 'Storge', 2017),
+(9, 'Sião', 2016),
+(10, 'Profetas', 2015),
+(11, 'Emaús', 2014),
+(12, 'Profetas', 2013),
+(13, 'Evangelistas', 2012);
 
 -- 5. Núcleo
 INSERT INTO nucleo (id_equipe)
@@ -94,25 +94,17 @@ VALUES
 (5),
 (6),
 (7),
-(8),
-(9),
-(10),
-(11),
-(12),
-(13);
+(11)
+;
 
 -- 6. Base
 INSERT INTO base (id_equipe, tema)
 VALUES 
 (1, 'Jurassic Park'),
 (4, 'Masterchef'),
-(5, 'Harry Potter'),
-(6, 'Star Wars'),
-(7, 'Indiana Jones'),
 (8, 'Piratas do Caribe'),
 (9, 'Senhor dos Anéis'),
 (10, 'Matrix'),
-(11, 'Toy Story'),
 (12, 'Marvel'),
 (13, 'DC Comics');
 
@@ -124,12 +116,13 @@ VALUES
 ('77788899900', false, 2020, 5),
 ('88899900011', true, 2021, 6),
 ('11133355577', false, 2018, 7),
-('22244466688', true, 2017, 8),
-('66688899900', false, 2016, 9),
-('77799911122', true, 2015, 10),
+('22244466688', true, 2017, 2),
+('66688899900', false, 2016, 3),
+('77799911122', true, 2015, 5),
 ('88811133344', false, 2014, 11),
-('99922244455', true, 2013, 12),
-('11144477788', false, 2012, 13);
+('99922244455', true, 2013, 6),
+('11144477788', false, 2012, 7);
+
 
 -- 8. Responsável_Encontrista
 INSERT INTO responsavel_encontrista (telefone_responsavel, cpf_encontrista)
