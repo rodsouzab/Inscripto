@@ -1,0 +1,72 @@
+.foto-perfil {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.botao-ver-mais {
+  background-color: #b7cde3;
+  color: #4a4a4a;
+  padding: 8px 12px;
+  margin-top: 10px;
+  border: 1px solid #4a4a4a;
+  font-size: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botao-ver-mais:hover {
+  background-color: #849fb9;
+  color: #ffffff;
+}
+
+.botao-eac {
+  margin-left: 50px;
+  margin-top: 50px;
+  padding: 12px 20px;
+  background-color: #b7cde3;
+  color: #4a4a4a;
+  border: 1px solid #4a4a4a;
+  font-size: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botao-eac:hover {
+  background-color: #849fb9;
+  color: #ffffff;
+}
+
+.botao-eac.ativo {
+  background-color: #829db9;
+  color: white;
+  font-weight: 700;
+}
+
+.infos-adicionais {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f4f4ff;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(108, 99, 255, 0.2);
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.infos-adicionais p {
+  margin: 4px 0;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 80px; /* Opcional: para dar um espaço em cima */
+}
+

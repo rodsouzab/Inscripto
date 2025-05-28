@@ -6,20 +6,8 @@ function PaginaInicialAdmin() {
   const { cpf } = useParams();
   const [apelido, setApelido] = useState('');
   const [fotoUrl, setFotoUrl] = useState('');
-
-  const [form, setForm] = useState({
-    ano: "",
-    colegio: "",
-    tema: "",
-    data: "",
-  });
-
-  const [formEdicao, setFormEdicao] = useState({
-    colegio: "",
-    tema: "",
-    data: "",
-  });
-
+  const [form, setForm] = useState({ ano: "", colegio: "", tema: "", data: "" });
+  const [formEdicao, setFormEdicao] = useState({ colegio: "", tema: "", data: "" });
   const [encontros, setEncontros] = useState([]);
   const [editandoEncontroId, setEditandoEncontroId] = useState(null);
 
@@ -39,6 +27,7 @@ function PaginaInicialAdmin() {
         setApelido('usuário');
       }
     };
+
     buscarPessoa();
     buscarEncontros();
   }, [cpf]);
@@ -47,7 +36,8 @@ function PaginaInicialAdmin() {
     try {
       const response = await fetch("http://localhost:8080/encontros");
       const data = await response.json();
-      setEncontros(data || []);
+      const encontrosOrdenados = (data || []).sort((a, b) => b.ano - a.ano);
+      setEncontros(encontrosOrdenados);
     } catch (error) {
       console.error("Erro ao buscar encontros:", error);
     }
@@ -140,6 +130,8 @@ function PaginaInicialAdmin() {
     }
   };
 
+  const anoAtual = new Date().getFullYear();
+
   return (
     <div className="pagina-inicial">
       <div className="top-bar">
@@ -148,15 +140,9 @@ function PaginaInicialAdmin() {
         </Link>
         <Link to={`/perfil-admin/${cpf}`} className="profile-link">
           {fotoUrl ? (
-            <img
-              src={fotoUrl}
-              alt="Foto de perfil"
-              className="profile-image"
-            />
+            <img src={fotoUrl} alt="Foto de perfil" className="profile-image" />
           ) : (
-            <div className="profile-placeholder">
-              FOTO<br />DE<br />PERFIL
-            </div>
+            <div className="profile-placeholder">FOTO<br />DE<br />PERFIL</div>
           )}
         </Link>
       </div>
@@ -204,6 +190,15 @@ function PaginaInicialAdmin() {
               <div style={{ marginTop: "10px" }}>
                 <button className="botao-encontro" onClick={() => iniciarEdicao(encontro)}>Editar</button>
                 <button className="botao-encontro" onClick={() => apagarEncontro(encontro.ano)}>Apagar</button>
+                {encontro.ano === anoAtual ? (
+                  <Link to={`/encontro-atual/${cpf}/${encontro.ano}`}>
+                    <button className="botao-encontro">Visualizar Encontro Atual</button>
+                  </Link>
+                ) : (
+                  <Link to={`/encontro-antigo/${cpf}/${encontro.ano}`}>
+                    <button className="botao-encontro">Visualizar</button>
+                  </Link>
+                )}
               </div>
 
               {editandoEncontroId === encontro.ano && (

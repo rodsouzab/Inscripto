@@ -11,7 +11,9 @@ import Encontro from './pages/Encontro';
 import VerificacaoDadosEncontreiro from './pages/VerificacaoDadosEncontreiro';
 import VerificacaoDadosEncontrista from './pages/VerificacaoDadosEncontrista';
 import InscricaoEncontreiro from './pages/InscricaoEncontreiro';
-import InscricaoEncontrista from './pages/InscricaoEnconstrista'
+import InscricaoEncontrista from './pages/InscricaoEnconstrista';
+import EncontroAntigo from './pages/EncontroAntigo';
+import EncontroAtual from './pages/EncontroAtual'
 
 const AppRoutes = () => {
   return (
@@ -28,6 +30,9 @@ const AppRoutes = () => {
       <Route path="/verificacao-dados-encontrista/:cpf/:ano" element={<VerificacaoDadosEncontrista />} />
       <Route path="/inscricao-encontreiro/:cpf/:ano" element={<InscricaoEncontreiro />} />
       <Route path="/inscricao-encontrista/:cpf/:ano" element={<InscricaoEncontrista />} />
+      <Route path="/encontro-antigo/:cpf/:ano" element={<EncontroAntigo />} />
+      <Route path="/encontro-atual/:cpf/:ano" element={<EncontroAtual />} />
+
     </Routes>
   );
 };
