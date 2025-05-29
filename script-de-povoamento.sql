@@ -82,9 +82,9 @@ VALUES
 (8, 'Storge', 2017),
 (9, 'Sião', 2016),
 (10, 'Profetas', 2015),
-(11, 'Emaús', 2014),
-(12, 'Profetas', 2013),
-(13, 'Evangelistas', 2012);
+(11, 'Emaús', 2023),
+(12, 'Profetas', 2023),
+(13, 'Evangelistas', 2016);
 
 -- 5. Núcleo
 INSERT INTO nucleo (id_equipe)
@@ -111,18 +111,17 @@ VALUES
 -- 7. Encontrista (referência a núcleo)
 INSERT INTO encontrista (cpf_pessoa, pais_separados, ano_encontro, id_nucleo)
 VALUES 
-('12345678901', true, 2023, 3),
-('11122233344', false, 2023, 2),
+('12345678901', true, 2022, 3),
+('11122233344', false, 2024, 2),
 ('77788899900', false, 2020, 5),
-('88899900011', true, 2020, 6),
+('88899900011', true, 2021, 6),
 ('11133355577', false, 2018, 7),
-('22244466688', true, 2018, 2),
-('66688899900', false, 2016, 3),
-('77799911122', true, 2015, 5),
-('88811133344', false, 2014, 11),
-('99922244455', true, 2013, 6),
-('11144477788', false, 2012, 7);
-
+('22244466688', true, 2024, 2),
+('66688899900', false, 2022, 3),
+('77799911122', true, 2020, 5),
+('88811133344', false, 2023, 11),
+('99922244455', true, 2021, 6),
+('11144477788', false, 2018, 7);
 
 
 -- 8. Responsável_Encontrista
