@@ -1,34 +1,55 @@
 .dashboard-container {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 32px 16px;
+  padding: 40px 16px 32px 16px;
+  background: linear-gradient(120deg, #f5f7fa 0%, #e9efff 100%);
+  min-height: 100vh;
 }
 
 .dashboard-cards {
   display: flex;
   gap: 32px;
   margin-bottom: 32px;
+  flex-wrap: wrap;
 }
 
 .dashboard-card {
   flex: 1;
-  background: #f5f7fa;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px #0001;
-  padding: 24px;
+  background: linear-gradient(135deg, #e3f0ff 0%, #f9f9f9 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px #0002;
+  padding: 32px 24px;
   text-align: center;
+  min-width: 220px;
+  transition: transform 0.15s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.dashboard-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 24px #0003;
 }
 
 .dashboard-card h2 {
   margin-bottom: 12px;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   color: #4a90e2;
+  letter-spacing: 0.5px;
 }
 
 .dashboard-card p {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: bold;
   margin: 0;
+  color: #222;
+}
+
+.dashboard-card span {
+  display: block;
+  margin-top: 10px;
+  color: #666;
+  font-size: 1.05rem;
 }
 
 .dashboard-graphs {
@@ -40,17 +61,58 @@
 
 .dashboard-graph {
   flex: 1;
-  min-width: 320px;
+  min-width: 340px;
   background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px #0001;
-  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px #0001;
+  padding: 32px 24px 24px 24px;
   margin-bottom: 24px;
+  transition: box-shadow 0.15s;
+}
+.dashboard-graph:hover {
+  box-shadow: 0 6px 24px #0002;
 }
 
 .dashboard-graph h3 {
   text-align: center;
-  margin-bottom: 16px;
-  font-size: 1.1rem;
-  color: #333;
+  margin-bottom: 18px;
+  font-size: 1.13rem;
+  color: #2a2a2a;
+  letter-spacing: 0.2px;
+}
+
+@media (max-width: 900px) {
+  .dashboard-cards,
+  .dashboard-graphs {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .dashboard-graph,
+  .dashboard-card {
+    min-width: 0;
+  }
+}
+
+.dashboard-container h1 {
+  text-align: center;
+  margin-bottom: 36px;
+  font-size: 2.2rem;
+  color: #2a2a2a;
+  letter-spacing: 1px;
+  font-weight: 700;
+  text-shadow: 0 2px 8px #4a90e220;
+}
+
+.dashboard-graph canvas {
+  margin: 0 auto;
+  display: block;
+  max-width: 100% !important;
+  height: 320px !important;
+}
+
+.dashboard-graph p {
+  text-align: center;
+  color: #888;
+  font-size: 1.05rem;
+  margin-top: 40px;
 }
