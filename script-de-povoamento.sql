@@ -112,16 +112,17 @@ VALUES
 INSERT INTO encontrista (cpf_pessoa, pais_separados, ano_encontro, id_nucleo)
 VALUES 
 ('12345678901', true, 2023, 3),
-('11122233344', false, 2024, 2),
+('11122233344', false, 2023, 2),
 ('77788899900', false, 2020, 5),
-('88899900011', true, 2021, 6),
+('88899900011', true, 2020, 6),
 ('11133355577', false, 2018, 7),
-('22244466688', true, 2017, 2),
+('22244466688', true, 2018, 2),
 ('66688899900', false, 2016, 3),
 ('77799911122', true, 2015, 5),
 ('88811133344', false, 2014, 11),
 ('99922244455', true, 2013, 6),
 ('11144477788', false, 2012, 7);
+
 
 
 -- 8. Responsável_Encontrista
@@ -260,6 +261,11 @@ VALUES
 (7, '55577799911', 2018),
 (9, '66688899900', 2016),
 (10, '77799911122', 2015),
-(11, '88811133344', 2014),
-(12, '99922244455', 2013),
-(13, '11144477788', 2012);
+(11, '88811133344', 2023),
+(12, '99922244455', 2023),
+(13, '11144477788', 2016);
+
+-- 18. Insere Admin
+INSERT INTO pessoa (nome, apelido, cpf, data_nascimento, telefone, foto_url, bairro, complemento, numero, rua, cep, instituicao_ensino, senha, admin)
+VALUES 
+('Rodrigo Souza', 'Rod', '10718041461', '2004-05-27', '81996576508', 'foto.com', 'Várzea', 'Casa', '298', 'Rua Francisco Lacerda', '50741150', 'CESAR School', 'admin', true);	
