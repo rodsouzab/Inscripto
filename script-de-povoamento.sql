@@ -28,28 +28,28 @@ VALUES
 -- 2. Pessoa
 INSERT INTO pessoa (nome, apelido, cpf, data_nascimento, telefone, foto_url, bairro, complemento, numero, rua, cep, instituicao_ensino, senha, admin)
 VALUES 
-('João Silva', 'João', '12345678901', '2000-01-01', '11999999999', 'http://example.com/joao.jpg', 'Centro', 'Apto 101', 123, 'Rua A', '12345678', 'Escola A', 'senha1', false),
+('João Silva', 'João', '12345678901', '2008-01-01', '11999999999', 'http://example.com/joao.jpg', 'Centro', 'Apto 101', 123, 'Rua A', '12345678', 'Escola A', 'senha1', false),
 ('Maria Oliveira', 'Maria', '98765432100', '1995-05-15', '21988888888', 'http://example.com/maria.jpg', 'Bairro B', null, 456, 'Rua B', '87654321', 'Universidade B', 'senha2', false),
-('Lucas Pereira', 'Luquinhas', '11122233344', '2002-09-09', '31988887777', 'http://example.com/lucas.jpg', 'Centro', '', 321, 'Rua C', '11223344', 'Instituto C', 'senha3', false),
+('Lucas Pereira', 'Luquinhas', '11122233344', '2010-01-01', '31988887777', 'http://example.com/lucas.jpg', 'Centro', '', 321, 'Rua C', '11223344', 'Instituto C', 'senha3', false),
 ('Ana Costa', 'Aninha', '22233344455', '1998-03-22', '21977776666', 'http://example.com/ana.jpg', 'Bairro D', 'Casa 2', 789, 'Rua D', '33445566', 'Faculdade D', 'senha4', false),
 ('Pedro Santos', 'Pedrinho', '33344455566', '1997-07-07', '31966665555', 'http://example.com/pedro.jpg', 'Bairro E', null, 101, 'Rua E', '44556677', 'Escola E', 'senha5', false),
-('Carla Mendes', 'Carlinha', '44455566677', '2001-12-12', '11955554444', 'http://example.com/carla.jpg', 'Bairro F', 'Bloco B', 202, 'Rua F', '55667788', 'Instituto F', 'senha6', false),
+('Carla Mendes', 'Carlinha', '44455566677', '2004-01-01', '11955554444', 'http://example.com/carla.jpg', 'Bairro F', 'Bloco B', 202, 'Rua F', '55667788', 'Instituto F', 'senha6', false),
 ('Rafael Lima', 'Rafa', '55566677788', '1999-11-11', '21944443333', 'http://example.com/rafael.jpg', 'Bairro G', '', 303, 'Rua G', '66778899', 'Universidade G', 'senha7', false),
-('Beatriz Souza', 'Bia', '66677788899', '2003-06-06', '31933332222', 'http://example.com/beatriz.jpg', 'Bairro H', 'Casa 3', 404, 'Rua H', '77889900', 'Escola H', 'senha8', false),
-('Gabriel Torres', 'Gabi', '77788899900', '2000-10-10', '11922223333', 'http://example.com/gabriel.jpg', 'Bairro I', 'Apto 202', 505, 'Rua I', '88990011', 'Colégio I', 'senha9', false),
-('Larissa Pinto', 'Lari', '88899900011', '1996-04-04', '21933334444', 'http://example.com/larissa.jpg', 'Bairro J', '', 606, 'Rua J', '99001122', 'Universidade J', 'senha10', false),
+('Beatriz Souza', 'Bia', '66677788899', '2008-01-01', '31933332222', 'http://example.com/beatriz.jpg', 'Bairro H', 'Casa 3', 404, 'Rua H', '77889900', 'Escola H', 'senha8', false),
+('Gabriel Torres', 'Gabi', '77788899900', '2006-01-01', '11922223333', 'http://example.com/gabriel.jpg', 'Bairro I', 'Apto 202', 505, 'Rua I', '88990011', 'Colégio I', 'senha9', false),
+('Larissa Pinto', 'Lari', '88899900011', '2007-01-01', '21933334444', 'http://example.com/larissa.jpg', 'Bairro J', '', 606, 'Rua J', '99001122', 'Universidade J', 'senha10', false),
 ('Thiago Ramos', 'Thi', '99900011122', '1998-08-08', '31944445555', 'http://example.com/thiago.jpg', 'Bairro K', 'Casa 5', 707, 'Rua K', '00112233', 'Instituto K', 'senha11', false),
-('Juliana Alves', 'Ju', '00011122233', '2001-02-02', '11955556666', 'http://example.com/juliana.jpg', 'Bairro L', 'Bloco C', 808, 'Rua L', '11223344', 'Faculdade L', 'senha12', false),
-('Paula Fernandes', 'Paulinha', '11133355577', '1997-09-09', '11965439876', 'http://example.com/paula.jpg', 'Bairro M', 'Apto 303', 909, 'Rua M', '22334455', 'Escola M', 'senha13', false),
-('Eduardo Silva', 'Dudu', '22244466688', '1996-12-12', '21976543210', 'http://example.com/eduardo.jpg', 'Bairro N', '', 1010, 'Rua N', '33445566', 'Universidade N', 'senha14', false),
+('Juliana Alves', 'Ju', '00011122233', '2004-01-01', '11955556666', 'http://example.com/juliana.jpg', 'Bairro L', 'Bloco C', 808, 'Rua L', '11223344', 'Faculdade L', 'senha12', false),
+('Paula Fernandes', 'Paulinha', '11133355577', '2004-01-01', '11965439876', 'http://example.com/paula.jpg', 'Bairro M', 'Apto 303', 909, 'Rua M', '22334455', 'Escola M', 'senha13', false),
+('Eduardo Silva', 'Dudu', '22244466688', '2010-01-01', '21976543210', 'http://example.com/eduardo.jpg', 'Bairro N', '', 1010, 'Rua N', '33445566', 'Universidade N', 'senha14', false),
 ('Helena Duarte', 'Lena', '33355577799', '1995-11-11', '31912344321', 'http://example.com/helena.jpg', 'Bairro O', 'Casa 7', 1111, 'Rua O', '44556677', 'Instituto O', 'senha15', false),
-('Marcelo Nunes', 'Marcelo', '44466688800', '1998-05-05', '21987654321', 'http://example.com/marcelo.jpg', 'Bairro P', null, 1212, 'Rua P', '55667788', 'Faculdade P', 'senha16', false),
-('Tatiane Silva', 'Tati', '55577799911', '2002-03-03', '11987654321', 'http://example.com/tatiane.jpg', 'Bairro Q', 'Bloco D', 1313, 'Rua Q', '66778899', 'Escola Q', 'senha17', false),
-('Sônia Martins', 'Sônia', '66688899900', '1994-07-07', '11911223344', 'http://example.com/sonia.jpg', 'Bairro R', 'Apto 404', 1414, 'Rua R', '77889911', 'Escola R', 'senha18', false),
-('Gustavo Ribeiro', 'Gus', '77799911122', '1993-08-08', '21922334455', 'http://example.com/gustavo.jpg', 'Bairro S', '', 1515, 'Rua S', '88991122', 'Universidade S', 'senha19', false),
-('Patrícia Souza', 'Pat', '88811133344', '1992-09-09', '31933445566', 'http://example.com/patricia.jpg', 'Bairro T', 'Casa 10', 1616, 'Rua T', '99112233', 'Instituto T', 'senha20', false),
-('Felipe Andrade', 'Lipe', '99922244455', '1991-10-10', '21944556677', 'http://example.com/felipe.jpg', 'Bairro U', null, 1717, 'Rua U', '11223344', 'Faculdade U', 'senha21', false),
-('Luciana Barros', 'Lu', '11144477788', '1990-11-11', '11955667788', 'http://example.com/luciana.jpg', 'Bairro V', 'Bloco E', 1818, 'Rua V', '22334455', 'Escola V', 'senha22', false);
+('Marcelo Nunes', 'Marcelo', '44466688800', '2004-01-01', '21987654321', 'http://example.com/marcelo.jpg', 'Bairro P', null, 1212, 'Rua P', '55667788', 'Faculdade P', 'senha16', false),
+('Tatiane Silva', 'Tati', '55577799911', '2004-01-01', '11987654321', 'http://example.com/tatiane.jpg', 'Bairro Q', 'Bloco D', 1313, 'Rua Q', '66778899', 'Escola Q', 'senha17', false),
+('Sônia Martins', 'Sônia', '66688899900', '2008-01-01', '11911223344', 'http://example.com/sonia.jpg', 'Bairro R', 'Apto 404', 1414, 'Rua R', '77889911', 'Escola R', 'senha18', false),
+('Gustavo Ribeiro', 'Gus', '77799911122', '2006-01-01', '21922334455', 'http://example.com/gustavo.jpg', 'Bairro S', '', 1515, 'Rua S', '88991122', 'Universidade S', 'senha19', false),
+('Patrícia Souza', 'Pat', '88811133344', '2009-01-01', '31933445566', 'http://example.com/patricia.jpg', 'Bairro T', 'Casa 10', 1616, 'Rua T', '99112233', 'Instituto T', 'senha20', false),
+('Felipe Andrade', 'Lipe', '99922244455', '2007-01-01', '21944556677', 'http://example.com/felipe.jpg', 'Bairro U', null, 1717, 'Rua U', '11223344', 'Faculdade U', 'senha21', false),
+('Luciana Barros', 'Lu', '11144477788', '2004-01-01', '11955667788', 'http://example.com/luciana.jpg', 'Bairro V', 'Bloco E', 1818, 'Rua V', '22334455', 'Escola V', 'senha22', false);
 
 -- 3. Encontro
 INSERT INTO encontro (ano, colegio, tema, data)
