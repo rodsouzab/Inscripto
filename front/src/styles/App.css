@@ -18,20 +18,20 @@ body {
   top: 20px;
   left: 20px;
   padding: 10px 16px;
-  background-color: #b7cde3; /* azul claro suave */
+  background-color: #b7cde3;
   color: #4a4a4a;
-  border: 1px solid #4a4a4a; /* borda combinando com a cor do texto */
+  border: 1px solid #4a4a4a;
   font-size: 16px;
   border-radius: 6px;
   font-weight: 500;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .admin-button:hover {
   background-color: #849fb9;
-  color: #ffffff; /* texto branco no hover pra contraste */
+  color: #fff;
 }
 
 .login-button {
@@ -46,12 +46,12 @@ body {
   font-weight: 500;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .login-button:hover {
   background-color: #849fb9;
-  color: #ffffff;
+  color: #fff;
 }
 
 .login-box {
@@ -67,6 +67,8 @@ body {
 .login-box h2 {
   margin-bottom: 20px;
   color: #444444;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
 }
 
 .login-box label {
@@ -83,7 +85,7 @@ body {
   padding: 10px;
   margin-bottom: 5px;
   background-color: #f1f1f1;
-  border: 1px solid #ccc;
+  border: 1px solid #b7cde3;
   border-radius: 6px;
   color: #333333;
 }
@@ -112,5 +114,5 @@ h2 {
   margin-bottom: 20px;
   color: #444444;
   font-family: 'Poppins', sans-serif;
-
+  font-weight: 700;
 }

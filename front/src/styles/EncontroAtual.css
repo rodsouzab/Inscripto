@@ -4,50 +4,51 @@
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 10px;
+  background: #d0d0d0;
+  border: 2px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
 }
 
 .botao-ver-mais {
   background-color: #b7cde3;
   color: #4a4a4a;
-  padding: 8px 12px;
+  padding: 8px 18px;
   margin-top: 10px;
   border: 1px solid #4a4a4a;
   font-size: 16px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .botao-ver-mais:hover {
   background-color: #849fb9;
-  color: #ffffff;
+  color: #fff;
 }
 
 .botao-eac {
-  margin-left: 50px;
-  margin-top: 50px;
-  padding: 12px 20px;
+  padding: 16px 48px;
   background-color: #b7cde3;
   color: #4a4a4a;
   border: 1px solid #4a4a4a;
-  font-size: 16px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-weight: 500;
+  font-size: 18px;
+  border-radius: 10px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
+  margin: 0 10px;
 }
 
 .botao-eac:hover {
   background-color: #849fb9;
-  color: #ffffff;
+  color: #fff;
 }
 
 .botao-eac.ativo {
   background-color: #829db9;
-  color: white;
+  color: #fff;
   font-weight: 700;
 }
 
@@ -56,8 +57,8 @@
   padding: 10px;
   background-color: #f4f4ff;
   border-radius: 8px;
-  box-shadow: 0 0 8px rgba(108, 99, 255, 0.2);
-  font-size: 0.9rem;
+  box-shadow: 0 0 8px rgba(108, 99, 255, 0.12);
+  font-size: 0.98rem;
   color: #333;
 }
 
@@ -67,9 +68,12 @@
 
 h2 {
   text-align: center;
-  margin-top: 80px; /* Opcional: para dar um espaço em cima */
+  margin-top: 60px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #444444;
 }
 
 .pagina-inicial {
-  padding-top: 20px; /* Evita que a parte de cima fique clicável indevidamente */
+  padding-top: 20px;
 }

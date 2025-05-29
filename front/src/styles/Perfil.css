@@ -3,7 +3,7 @@
   font-family: 'Segoe UI', sans-serif;
   color: #333333;
   min-height: 100vh;
-  padding: 40px 60px;
+  padding: 40px 0;
   box-sizing: border-box;
 }
 
@@ -12,6 +12,9 @@
   margin-top: 20px;
   margin-bottom: 30px;
   text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #444444;
 }
 
 .perfil-card {
@@ -23,20 +26,23 @@
   border-radius: 16px;
   max-width: 400px;
   margin: 0 auto 40px auto;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.foto-perfil {
+.foto-perfil, .profile-placeholder {
   color: #4a4a4a;
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  font-size: 12px;
+  font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   margin-bottom: 20px;
+  background: #d0d0d0;
+  border: 2px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
 }
 
 .profile-placeholder {
@@ -59,6 +65,7 @@
   margin: 5px 0 20px 0;
   border: 1px solid #b7cde3;
   border-radius: 8px;
+  background: #f1f1f1;
 }
 
 .acoes-perfil {
@@ -69,29 +76,31 @@
 }
 
 .botao-perfil {
-  padding: 4px 12px; /* Ajustando o padding horizontal */
+  padding: 8px 20px;
   background-color: #b7cde3;
   border: 1px solid #4a4a4a;
-  border-radius: 8px; /* Menos arredondado */
+  border-radius: 8px;
   cursor: pointer;
   font-weight: 500;
-  transition: background-color 0.3s;
-  display: inline-block;
-  font-size: 14px;
-  height: 30px; /* Altura fixa */
-  line-height: 30px; /* Alinha o texto verticalmente */
-  text-align: center; /* Centraliza o texto horizontalmente */
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 15px;
+  height: 36px;
+  line-height: 20px;
+  text-align: center;
+  color: #4a4a4a;
 }
 
 .botao-perfil:hover {
   background-color: #849fb9;
-  color: white;
+  color: #fff;
 }
 
 .botao-perfil.cancelar {
   background-color: #849fb9;
+  color: #fff;
 }
 
 .botao-perfil.deletar {
   background-color: #ff7b7b;
+  color: #fff;
 }

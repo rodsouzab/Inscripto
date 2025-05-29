@@ -2,11 +2,11 @@
   background-color: #e3dacb;
   font-family: 'Segoe UI', sans-serif;
   color: #333333;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 40px 60px;
+  justify-content: flex-start;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -14,29 +14,31 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 60px;
+  padding: 40px 60px 0 60px;
+  min-height: 120px;
 }
 
 .info-encontro {
-  background-color: #b7cde3; 
-  border: 1px solid #4a4a4a; 
+  background-color: #b7cde3;
+  border: 1px solid #4a4a4a;
   border-radius: 12px;
-  padding: 16px;
+  padding: 24px 32px;
   margin-top: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
   transition: background-color 0.3s, color 0.3s;
-  text-align: center; /* Para centralizar texto e botão */
+  text-align: center;
+  max-width: 500px;
 }
 
 .info-encontro:hover {
   background-color: #849fb9;
+  color: #fff;
 }
 
-.info-encontro:hover,
 .info-encontro:hover h2,
 .info-encontro:hover p,
 .info-encontro:hover strong {
-  color: #ffffff;
+  color: #fff;
 }
 
 .item-encontro {
@@ -50,41 +52,23 @@
   text-align: center;
 }
 
-/* Botões Sair e Perfil */
-.botao-sair {
-  margin-left: 50px;
-  margin-top: 50px;
-  padding: 12px 20px;
+.botao-sair, .botao-perfil {
+  padding: 12px 24px;
   background-color: #b7cde3;
   color: #4a4a4a;
   border: 1px solid #4a4a4a;
   font-size: 16px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
+  margin: 0 10px;
 }
 
-.botao-perfil {
-  margin-right: 60px;
-  margin-top: 60px;
-  padding: 12px 20px;
-  background-color: #b7cde3;
-  color: #4a4a4a;
-  border: 1px solid #4a4a4a;
-  font-size: 16px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.botao-sair:hover,
-.botao-perfil:hover {
+.botao-sair:hover, .botao-perfil:hover {
   background-color: #849fb9;
-  color: #ffffff;
+  color: #fff;
 }
 
 .conteudo-central {
@@ -92,8 +76,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
+  margin-top: 30px;
 }
 
 .mensagem-boas-vindas {
@@ -105,26 +90,28 @@
 
 .titulo-encontro {
   font-family: 'Poppins', sans-serif;
-  font-size: 40px;
+  font-size: 36px;
   color: #444444;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
+  font-weight: 700;
 }
 
 .botao-eac {
-  padding: 20px 60px;
+  padding: 16px 48px;
   background-color: #b7cde3;
   color: #4a4a4a;
   border: 1px solid #4a4a4a;
-  font-size: 20px;
+  font-size: 18px;
   border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
+  margin: 0 10px;
 }
 
 .botao-eac:hover {
   background-color: #849fb9;
-  color: #ffffff;
+  color: #fff;
 }
 
 .formulario-encontro input {
@@ -133,20 +120,22 @@
   padding: 8px;
   width: 80%;
   font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #b7cde3;
+  background: #f1f1f1;
 }
 
-/* Botão "Quero me Inscrever" */
 .botao-encontro {
-  display: inline-block; /* Para ajustar o tamanho ao conteúdo */
+  display: inline-block;
   padding: 10px 24px;
-  margin-top: 20px; /* Espaço entre data e o botão */
+  margin-top: 20px;
   background-color: #849fb9;
-  color: #ffffff;
+  color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s;
   font-weight: 600;
 }
 
@@ -154,40 +143,51 @@
   background-color: #6b7f9d;
 }
 
-/* Lista de encontros (se usar) */
 .lista-encontros {
   margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile-link {
-  text-decoration: none; /* Remove sublinhado do link */
+  text-decoration: none;
 }
 
-.profile-image {
-  width: 100px; /* Tamanho maior da imagem */
+.profile-image, .profile-placeholder {
+  width: 100px;
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
   cursor: pointer;
   border: 2px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease-in-out;
-}
-
-.profile-image:hover {
-  transform: scale(1.05);
-}
-
-.profile-placeholder {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: #d0d0d0;
-  color: #333;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 14px;
+  background: #d0d0d0;
+  color: #333;
   text-align: center;
-  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.profile-image:hover, .profile-placeholder:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 900px) {
+  .top-bar {
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px 10px 0 10px;
+    min-height: 80px;
+  }
+  .conteudo-central {
+    margin-top: 10px;
+  }
+  .info-encontro {
+    padding: 16px 8px;
+  }
 }
