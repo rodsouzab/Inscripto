@@ -41,28 +41,37 @@ function Dashboard() {
 
     Promise.all([
       fetch("http://localhost:8080/encontreiros").then(res => res.json()),
-      fetch("http://localhost:8080/encontristas").then(res => res.json())
+      fetch("http://localhost:8080/encontristas").then(res => res.json()),
+      fetch("http://localhost:8080/registroEncontreiro").then(res => res.json())
     ])
-      .then(async ([encontreiros, encontristas]) => {
+      .then(async ([encontreiros, encontristas, registrosEncontreiros]) => {
         setTotalEncontreiros(encontreiros.length);
         setTotalEncontristas(encontristas.length);
 
-        // --- Encontreiros ---
+        // --- Encontreiros por Ano (usando registroEncontreiro) ---
         const porAnoE = {};
-        const cpfsEncontreiros = [];
-        encontreiros.forEach(e => {
-          const ano = e.ano || e.ano_encontro;
+        registrosEncontreiros.forEach(reg => {
+          const ano = reg.anoEncontro || reg.ano_encontro;
           if (ano !== undefined && ano !== null) {
             porAnoE[ano] = (porAnoE[ano] || 0) + 1;
           }
-          cpfsEncontreiros.push(e.cpf || e.cpf_pessoa);
         });
         setEncontreirosPorAno(porAnoE);
 
-        // Diagnóstico encontreiro
-        console.log("Encontreiros:", encontreiros);
-        console.log("CPFs Encontreiros:", cpfsEncontreiros);
+        // --- Encontristas por Ano (usando encontro.ano) ---
+        const porAnoI = {};
+        const cpfsEncontristas = [];
+        encontristas.forEach(e => {
+          const ano = e.encontro?.ano;
+          if (ano !== undefined && ano !== null) {
+            porAnoI[ano] = (porAnoI[ano] || 0) + 1;
+          }
+          cpfsEncontristas.push(e.cpf || e.cpf_pessoa);
+        });
+        setEncontristasPorAno(porAnoI);
 
+        // --- Idades Encontreiros ---
+        const cpfsEncontreiros = encontreiros.map(e => e.cpf || e.cpf_pessoa);
         const cpfToNascimentoEncontreiros = await fetchDataNascimentoPorCpf(cpfsEncontreiros);
         const idadesEncontreiros = cpfsEncontreiros.map(cpf => {
           const nascStr = cpfToNascimentoEncontreiros[cpf];
@@ -76,22 +85,7 @@ function Dashboard() {
         }).filter(i => i !== null);
         setIdadeEncontreiros(idadesEncontreiros);
 
-        // --- Encontristas ---
-        const porAnoI = {};
-        const cpfsEncontristas = [];
-        encontristas.forEach(e => {
-          // Usa ano_encontro como referência ao ano do encontro
-          if (e.ano_encontro !== undefined && e.ano_encontro !== null) {
-            porAnoI[e.ano_encontro] = (porAnoI[e.ano_encontro] || 0) + 1;
-          }
-          cpfsEncontristas.push(e.cpf || e.cpf_pessoa);
-        });
-        setEncontristasPorAno(porAnoI);
-
-        // Diagnóstico encontrista
-        console.log("Encontristas:", encontristas);
-        console.log("CPFs Encontristas:", cpfsEncontristas);
-
+        // --- Idades Encontristas ---
         const cpfToNascimentoEncontristas = await fetchDataNascimentoPorCpf(cpfsEncontristas);
         const idadesEncontristas = cpfsEncontristas.map(cpf => {
           const nascStr = cpfToNascimentoEncontristas[cpf];
@@ -104,10 +98,6 @@ function Dashboard() {
           return idade;
         }).filter(i => i !== null);
         setIdadeEncontristas(idadesEncontristas);
-
-        // Diagnóstico final
-        console.log("Idades Encontreiros:", idadesEncontreiros);
-        console.log("Idades Encontristas:", idadesEncontristas);
 
         setLoading(false);
       })
