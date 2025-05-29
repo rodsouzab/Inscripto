@@ -1,4 +1,4 @@
-# 🙏 Inscripto — Sistema de Gerenciamento de Encontros Religiosos
+u# 🙏 Inscripto — Sistema de Gerenciamento de Encontros Religiosos
 
 ✨ Bem-vindo ao **Inscripto**, um sistema desenvolvido para organizar e registrar de forma eficiente os **encontros religiosos**, participantes e suas funções. Criado com **Java Spring Boot** no backend e **React** no frontend!
 
@@ -66,13 +66,13 @@
 ### ⚙️ Procedures
 
 - **`contar_encontreiros_por_ano(ano)`**  
-  Conta o número de encontreiros registrados por ano.
+  Conta o número de encontreiros registrados em um dado ano.
 
 - **`listar_habilidades_encontreiro(cpf)`**  
-  Lista todas as habilidades vinculadas aos encontreiros no banco.
+  Lista todas as habilidades vinculadas aos um encontreiro.
 
 - **`listar_restricoes_alimentares(cpf)`**  
-  Exibe todas as restrições alimentares registradas para os encontreiros.
+  Exibe todas as restrições alimentares registradas para um encontreiro.
 
 ---
 
