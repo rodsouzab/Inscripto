@@ -20,24 +20,27 @@ function PerfilAdmin() {
   const [modoEdicao, setModoEdicao] = useState(false);
 
   const deletarPessoa = async () => {
-    const confirmacao = window.confirm("Tem certeza que deseja apagar este perfil? Essa ação não poderá ser desfeita.");
-    if (confirmacao) {
-      try {
-        const response = await fetch(`http://localhost:8080/pessoa/${cpf}`, {
-          method: 'DELETE',
-        });
-        if (response.ok) {
-          alert("Pessoa apagada com sucesso.");
-          window.location.href = '/'; // redireciona para a página de login
-        } else {
-          alert("Erro ao apagar a pessoa.");
-        }
-      } catch (err) {
-        console.error(err);
-        alert("Erro ao apagar a pessoa.");
-      }
+  const confirmacao = window.confirm("Tem certeza que deseja apagar este perfil? Essa ação não poderá ser desfeita.");
+  if (!confirmacao) return;
+
+  try {
+    // Apagar a pessoa direto (sem verificar familiares)
+    const response = await fetch(`http://localhost:8080/pessoa/${cpf}`, {
+      method: 'DELETE',
+    });
+
+    if (response.ok) {
+      alert("Pessoa apagada com sucesso.");
+      window.location.href = '/'; // redireciona para a página de login
+    } else {
+      alert("A pessoa não pode ser apagada pois ela está sendo relacionada com outra pessoa na tabela \"eh_familiar\".Verifique lá se você realmente deseja apagar o relacionamento, apara aí sím apagar a pessoa!");
     }
-  };
+  } catch (err) {
+    alert("A pessoa não pode ser apagada pois ela está sendo relacionada com outra pessoa na tabela \"eh_familiar\". Verifique lá se você realmente deseja apagar o relacionamento, apara aí sím apagar a pessoa!");
+  }
+};
+
+
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -65,6 +68,9 @@ function PerfilAdmin() {
           setCep(data.cep);
           setInstituicao_ensino(data.instituicao_ensino);
           setSenha(data.senha);
+        } else {
+          const errorText = await response.text();
+          console.error(`Erro ao buscar os dados da pessoa. Status: ${response.status}. Detalhes: ${errorText}`);
         }
       } catch (error) {
         console.error('Erro ao buscar os dados da pessoa:', error);
@@ -99,11 +105,13 @@ function PerfilAdmin() {
         alert('Dados atualizados com sucesso!');
         setModoEdicao(false);
       } else {
-        alert('Erro ao atualizar os dados.');
+        const errorText = await response.text();
+        console.error(`Erro ao atualizar os dados. Status: ${response.status}. Detalhes: ${errorText}`);
+        alert('Erro ao atualizar os dados. Verifique o console para mais detalhes.');
       }
     } catch (err) {
-      console.error(err);
-      alert('Erro ao atualizar os dados.');
+      console.error('Erro ao atualizar os dados:', err);
+      alert('Erro ao atualizar os dados. Verifique o console para mais detalhes.');
     }
   };
 
@@ -236,20 +244,19 @@ function PerfilAdmin() {
           )}
         </div>
 
-<div className="acoes-perfil">
-  {modoEdicao ? (
-    <>
-      <button className="botao-perfil" onClick={salvarEdicao}>Salvar</button>
-      <button className="botao-perfil cancelar" onClick={() => setModoEdicao(false)}>Cancelar</button>
-    </>
-  ) : (
-    <>
-      <button className="botao-perfil" onClick={() => setModoEdicao(true)}>Editar</button>
-      <button className="botao-perfil deletar" onClick={deletarPessoa}>Deletar Perfil</button>
-    </>
-  )}
-</div>
-
+        <div className="acoes-perfil">
+          {modoEdicao ? (
+            <>
+              <button className="botao-perfil" onClick={salvarEdicao}>Salvar</button>
+              <button className="botao-perfil cancelar" onClick={() => setModoEdicao(false)}>Cancelar</button>
+            </>
+          ) : (
+            <>
+              <button className="botao-perfil" onClick={() => setModoEdicao(true)}>Editar</button>
+              <button className="botao-perfil deletar" onClick={deletarPessoa}>Deletar Perfil</button>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

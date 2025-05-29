@@ -215,13 +215,9 @@ function PaginaInicialAdmin() {
               <div style={{ marginTop: "10px" }}>
                 <button className="botao-encontro" onClick={() => iniciarEdicao(encontro)}>Editar</button>
                 <button className="botao-encontro" onClick={() => apagarEncontro(encontro.ano)}>Apagar</button>
-                {encontro.ano === anoAtual ? (
+                {encontro.ano === anoAtual && (
                   <Link to={`/encontro-atual/${cpf}/${encontro.ano}`}>
                     <button className="botao-encontro">Visualizar Encontro Atual</button>
-                  </Link>
-                ) : (
-                  <Link to={`/encontro-antigo/${cpf}/${encontro.ano}`}>
-                    <button className="botao-encontro">Visualizar</button>
                   </Link>
                 )}
               </div>
