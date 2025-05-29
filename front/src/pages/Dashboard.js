@@ -145,8 +145,7 @@ function Dashboard() {
     <div className="dashboard-container">
       {/* Botão de voltar para o painel admin */}
       <button
-        className="botao-sair"
-        style={{ position: "absolute", top: 30, left: 30, zIndex: 10 }}
+        className="dashboard-back-btn"
         onClick={() => navigate(-1)}
       >
         Voltar ao Painel Admin
