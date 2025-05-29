@@ -1,4 +1,4 @@
-u# 🙏 Inscripto — Sistema de Gerenciamento de Encontros Religiosos
+# 🙏 Inscripto — Sistema de Gerenciamento de Encontros Religiosos
 
 ✨ Bem-vindo ao **Inscripto**, um sistema desenvolvido para organizar e registrar de forma eficiente os **encontros religiosos**, participantes e suas funções. Criado com **Java Spring Boot** no backend e **React** no frontend!
 
