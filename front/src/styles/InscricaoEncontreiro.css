@@ -1,8 +1,8 @@
 /* Reset e base */
 body {
   margin: 0;
-  font-family: sans-serif;
-  background-color: white;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #e3dacb;
 }
 
 .inscricao-container {
@@ -10,13 +10,15 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 40px 20px;
+  background-color: #e3dacb;
+  min-height: 100vh;
 }
 
 /* Logo centralizada */
 .logo-circular {
   width: 100px;
   height: 100px;
-  background-color: #b0a8a8;
+  background-color: #b7cde3;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -24,6 +26,9 @@ body {
   font-weight: bold;
   text-align: center;
   margin-bottom: 40px;
+  color: #4a4a4a;
+  font-size: 22px;
+  border: 2px solid #4a4a4a;
 }
 
 /* Bloco principal */
@@ -47,6 +52,8 @@ body {
 .habilidades-box h2 {
   text-align: center;
   margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
 }
 
 .habilidades-grid {
@@ -69,8 +76,9 @@ body {
 .formulario select {
   padding: 12px;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #b7cde3;
   font-size: 16px;
+  background: #f1f1f1;
   resize: none;
 }
 
@@ -105,6 +113,7 @@ body {
 /* Botão */
 .botao-inscricao {
   margin-top: 30px;
+  text-align: center;
 }
 
 .botao-inscricao button {
@@ -112,30 +121,34 @@ body {
   font-size: 18px;
   border: none;
   border-radius: 10px;
-  background-color: #dcdcdc;
+  background-color: #b7cde3;
+  color: #4a4a4a;
+  border: 1px solid #4a4a4a;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .botao-inscricao button:hover {
-  background-color: #c2c2c2;
+  background-color: #849fb9;
+  color: #fff;
 }
 
 .familiar-item {
   display: flex;
-  gap: 3px; /* Espaçamento entre os elementos */
-  align-items: center; /* Alinha verticalmente ao centro */
-  margin-bottom: 10px; /* Espaçamento entre linhas, se tiver mais de um familiar */
+  gap: 3px;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .familiar-item input[type="text"] {
-  flex: 1; /* Faz os inputs crescerem igualmente */
-  min-width: 0; /* Para evitar overflow */
+  flex: 1;
+  min-width: 0;
   font-size: 13px;
 }
 
 .familiar-item select {
-  width: 161px; /* Tamanho fixo para o select */
+  width: 161px;
   font-size: 13px;
 }
 
