@@ -70,3 +70,6 @@ h2 {
   margin-top: 80px; /* Opcional: para dar um espaço em cima */
 }
 
+.pagina-inicial {
+  padding-top: 20px; /* Evita que a parte de cima fique clicável indevidamente */
+}

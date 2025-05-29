@@ -1,6 +1,9 @@
 package com.inscripto.api.repository;
 
 import com.inscripto.api.model.Encontrista;
+import com.inscripto.api.model.Encontro;
+import com.inscripto.api.model.Nucleo;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -23,13 +26,28 @@ public class EncontristaRepository {
     }
 
     public List<Encontrista> findAll() {
-        String sql = "SELECT * FROM encontrista";
-        return jdbcTemplate.query(sql, (rs, rowNum) -> {
-            Encontrista e = new Encontrista();
-            // Preencher os dados a partir do ResultSet
-            return e;
-        });
-    }
+    String sql = "SELECT * FROM encontrista";
+    return jdbcTemplate.query(sql, (rs, rowNum) -> {
+        Encontrista e = new Encontrista();
+        e.setCpf(rs.getString("cpf_pessoa"));
+        e.setPaisSeparados(rs.getBoolean("pais_separados"));
+        
+        // Para os objetos relacionamento (Encontro, Nucleo) você precisaria montar os objetos ou fazer join com outras tabelas
+        Encontro encontro = new Encontro();
+        encontro.setAno(rs.getInt("ano_encontro"));
+        e.setEncontro(encontro);
+        
+        Nucleo nucleo = new Nucleo();
+        nucleo.setId(rs.getInt("id_nucleo"));
+        e.setNucleo(nucleo);
+
+        // Se Pessoa tem outros campos, se herdam, setar aqui também (ex: nome, telefone, etc)
+        // e.setNome(rs.getString("nome")); // se estiver no ResultSet
+
+        return e;
+    });
+}
+
 
     public Encontrista findByCpf(String cpf) {
         String sql = "SELECT * FROM encontrista WHERE cpf_pessoa = ?";
