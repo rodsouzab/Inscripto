@@ -49,6 +49,32 @@
 - **DBeaver** 🐿️ — Visualização e manipulação do banco de dados MySQL
 
 ---
+## 📜 Triggers e Procedures do Banco de Dados
+
+### 🔁 Triggers
+
+- **`base.trg_no_base_if_nucleo`**  
+  Garante integridade entre a tabela `base` e a tabela `nucleo`.  
+  Disparada quando uma operação na tabela `base` requer validação ou sincronização com a tabela `nucleo`.
+
+- **`nucleo.trg_no_nucleo_if_base`**  
+  Garante integridade entre a tabela `nucleo` e a tabela `base`.  
+  Disparada quando uma operação na tabela `nucleo` exige coerência com dados da tabela `base`.
+
+---
+
+### ⚙️ Procedures
+
+- **`contar_encontreiros_por_ano(ano)`**  
+  Conta o número de encontreiros registrados por ano.
+
+- **`listar_habilidades_encontreiro(cpf)`**  
+  Lista todas as habilidades vinculadas aos encontreiros no banco.
+
+- **`listar_restricoes_alimentares(cpf)`**  
+  Exibe todas as restrições alimentares registradas para os encontreiros.
+
+---
 
 ## 👨‍💻 Desenvolvedores
 
