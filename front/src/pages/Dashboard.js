@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Bar, Pie } from "react-chartjs-2";
 import { Chart, CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Legend } from "chart.js";
+import { useNavigate } from "react-router-dom";
 import "../styles/Dashboard.css";
 
 Chart.register(CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Legend);
@@ -14,6 +15,7 @@ function Dashboard() {
   const [totalEncontristas, setTotalEncontristas] = useState(0);
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState(null);
+  const navigate = useNavigate();
 
   // Função auxiliar para buscar data_nascimento por CPF
   async function fetchDataNascimentoPorCpf(cpfs) {
@@ -141,6 +143,14 @@ function Dashboard() {
 
   return (
     <div className="dashboard-container">
+      {/* Botão de voltar para o painel admin */}
+      <button
+        className="botao-sair"
+        style={{ position: "absolute", top: 30, left: 30, zIndex: 10 }}
+        onClick={() => navigate(-1)}
+      >
+        Voltar ao Painel Admin
+      </button>
       <h1>Dashboard do EAC</h1>
       <div className="dashboard-cards">
         <div className="dashboard-card">

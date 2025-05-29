@@ -138,6 +138,31 @@ function PaginaInicialAdmin() {
         <Link to="/admin-login">
           <button className="botao-sair">Voltar</button>
         </Link>
+        {/* Botão Dashboard aprimorado e centralizado */}
+        <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
+          <Link to="/dashboard" style={{ textDecoration: "none" }}>
+            <button
+              className="botao-eac"
+              style={{
+                margin: 0,
+                padding: "12px 32px",
+                fontSize: "18px",
+                borderRadius: "10px",
+                fontWeight: 600,
+                backgroundColor: "#b7cde3",
+                color: "#4a4a4a",
+                border: "1px solid #4a4a4a",
+                boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                transition: "background-color 0.3s",
+                cursor: "pointer"
+              }}
+              onMouseOver={e => (e.currentTarget.style.backgroundColor = "#849fb9")}
+              onMouseOut={e => (e.currentTarget.style.backgroundColor = "#b7cde3")}
+            >
+              Dashboard
+            </button>
+          </Link>
+        </div>
         <Link to={`/perfil-admin/${cpf}`} className="profile-link">
           {fotoUrl ? (
             <img src={fotoUrl} alt="Foto de perfil" className="profile-image" />
