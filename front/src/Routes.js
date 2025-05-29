@@ -11,11 +11,12 @@ import Encontro from './pages/Encontro';
 import VerificacaoDadosEncontreiro from './pages/VerificacaoDadosEncontreiro';
 import VerificacaoDadosEncontrista from './pages/VerificacaoDadosEncontrista';
 import InscricaoEncontreiro from './pages/InscricaoEncontreiro';
-import InscricaoEncontrista from './pages/InscricaoEnconstrista'; // Mantido conforme seu código original
+import InscricaoEncontrista from './pages/InscricaoEnconstrista'; 
 import EncontroAntigo from './pages/EncontroAntigo';
 import EncontroAtual from './pages/EncontroAtual'
 import Dashboard from './pages/Dashboard';
 import EncontristasInscritos from './pages/EncontristasInscritos';
+import GerarEquipes from "./pages/GerarEquipes"; 
 
 const AppRoutes = () => {
   return (
@@ -36,6 +37,7 @@ const AppRoutes = () => {
       <Route path="/encontro-atual/:cpf/:ano" element={<EncontroAtual />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/encontristas-inscritos/:cpf/:ano" element={<EncontristasInscritos />} />
+      <Route path="/gerar-equipes/:cpf/:ano" element={<GerarEquipes />} />
     </Routes>
   );
 };
