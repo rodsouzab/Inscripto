@@ -15,7 +15,6 @@ import InscricaoEncontrista from './pages/InscricaoEnconstrista'; // Mantido con
 import EncontroAntigo from './pages/EncontroAntigo';
 import EncontroAtual from './pages/EncontroAtual'
 import Dashboard from './pages/Dashboard';
-import EncontroAtual from './pages/EncontroAtual';
 import EncontristasInscritos from './pages/EncontristasInscritos';
 
 const AppRoutes = () => {
