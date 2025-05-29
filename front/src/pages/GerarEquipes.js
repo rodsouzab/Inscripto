@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import "../styles/GerarEquipes.css";
 
+const LOCAL_STORAGE_KEY = "gerarEquipesDistribuicao";
+
 const GerarEquipes = () => {
   const [equipes, setEquipes] = useState({});
   const [pessoasMap, setPessoasMap] = useState({});
@@ -68,6 +70,15 @@ const GerarEquipes = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Primeiro, tentar carregar equipes do localStorage
+        const equipesSalvas = localStorage.getItem(LOCAL_STORAGE_KEY);
+        if (equipesSalvas) {
+          const equipesParse = JSON.parse(equipesSalvas);
+          setEquipes(equipesParse);
+          return;
+        }
+
+        // Se não tiver no localStorage, buscar do backend normalmente
         const [encontreirosRes, pessoasRes, familiaresRes] = await Promise.all([
           fetch("http://localhost:8080/encontreiros"),
           fetch("http://localhost:8080/pessoas"),
@@ -138,12 +149,16 @@ const GerarEquipes = () => {
     fetchData();
   }, []);
 
+  // Salvar equipes no localStorage sempre que equipes mudarem
+  useEffect(() => {
+    if (Object.keys(equipes).length > 0) {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(equipes));
+    }
+  }, [equipes]);
+
   // Função para atualizar o banco a cada drag end
   const atualizarRegistroNoBanco = async (cpfPessoa, equipeNova) => {
     const encontroAno = parseInt(ano) || 2022;
-
-    // Primeiro, procurar se a pessoa já está em alguma equipe (exceto a nova)
-    // Se sim, fazer DELETE no registro antigo antes de inserir o novo
 
     for (const [nomeEquipe, membros] of Object.entries(equipes)) {
       if (membros.some((m) => m.cpf === cpfPessoa)) {
@@ -160,7 +175,6 @@ const GerarEquipes = () => {
       }
     }
 
-    // Agora inserir o registro novo (se não for "Não atribuídos")
     if (equipeNova !== "Não atribuídos") {
       const equipeIdNova = equipeNomeParaId[equipeNova];
       if (!equipeIdNova) {
@@ -213,7 +227,6 @@ const GerarEquipes = () => {
 
     setEquipes(newEquipes);
 
-    // Atualizar o banco logo após atualizar o estado
     await atualizarRegistroNoBanco(movedItem.cpf, destination.droppableId);
   };
 
@@ -223,14 +236,6 @@ const GerarEquipes = () => {
       <Link to={`/encontro-atual/${cpf}/${ano}`}>
         <button className="btn-sair">Voltar</button>
       </Link>
-
-      {/* Pode até manter o botão Salvar, mas ele fica opcional agora */}
-      <button
-        className="btn-salvar"
-        onClick={() => alert("Distribuição já salva automaticamente ao arrastar")}
-      >
-        Salvar Distribuição
-      </button>
 
       <DragDropContext onDragEnd={onDragEnd}>
         {Object.entries(equipes).map(([nomeEquipe, membros]) => (
@@ -268,9 +273,7 @@ const GerarEquipes = () => {
                               {pessoa.conexoesFamiliares.map((conexao, idx) => (
                                 <li key={idx}>
                                   <strong>{conexao.nome}</strong> - {conexao.parentesco} -{" "}
-                                  {conexao.queremTrabalharJuntos
-                                    ? "Querem trabalhar juntos"
-                                    : "Não querem trabalhar juntos"}
+                                  {conexao.queremTrabalharJuntos ? "Querem trabalhar juntos" : "Não querem"}
                                 </li>
                               ))}
                             </ul>
@@ -281,10 +284,6 @@ const GerarEquipes = () => {
                   </Draggable>
                 ))}
                 {provided.placeholder}
-                <div className="total-pessoas">
-                  Total: {membros.length} | Jovens: {membros.filter((p) => calcularIdade(p.data_nascimento) >= 18).length} | Adolescente:{" "}
-                  {membros.filter((p) => calcularIdade(p.data_nascimento) < 18).length}
-                </div>
               </div>
             )}
           </Droppable>

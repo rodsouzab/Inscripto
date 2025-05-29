@@ -6,6 +6,8 @@ const EncontroAtual = () => {
   const [encontreiros, setEncontreiros] = useState([]);
   const [pessoasMapeadas, setPessoasMapeadas] = useState({});
   const [expandedCpf, setExpandedCpf] = useState(null);
+  const [modoEdicao, setModoEdicao] = useState({});
+  const [formEdicao, setFormEdicao] = useState({});
   const { cpf, ano } = useParams();
 
   useEffect(() => {
@@ -29,9 +31,93 @@ const EncontroAtual = () => {
     setExpandedCpf(expandedCpf === cpf ? null : cpf);
   };
 
+  const toggleModoEdicao = (e) => {
+    const isEditando = !!modoEdicao[e.cpf];
+    if (!isEditando) {
+      setFormEdicao({
+        ...formEdicao,
+        [e.cpf]: {
+          responsavelNome: e.responsavelNome || "",
+          responsavelTelefone: e.responsavelTelefone || ""
+        }
+      });
+    }
+    setModoEdicao({ ...modoEdicao, [e.cpf]: !isEditando });
+  };
+
+  const handleChange = (cpf, campo, valor) => {
+    setFormEdicao({
+      ...formEdicao,
+      [cpf]: {
+        ...formEdicao[cpf],
+        [campo]: valor
+      }
+    });
+  };
+
+  const salvarEdicao = async (e) => {
+    const dadosEditados = {
+      cpf: e.cpf,
+      fezEjc: e.fezEjc,
+      responsavelNome: formEdicao[e.cpf].responsavelNome,
+      responsavelTelefone: formEdicao[e.cpf].responsavelTelefone
+    };
+
+    try {
+      const response = await fetch(`http://localhost:8080/encontreiros/${e.cpf}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(dadosEditados)
+      });
+
+      if (response.ok) {
+        const atualizados = encontreiros.map(en => en.cpf === e.cpf ? dadosEditados : en);
+        setEncontreiros(atualizados);
+        setModoEdicao({ ...modoEdicao, [e.cpf]: false });
+      } else {
+        console.error("Erro ao salvar edição.");
+      }
+    } catch (error) {
+      console.error("Erro ao salvar edição:", error);
+    }
+  };
+
+  const apagarEncontreiro = async (cpf) => {
+  if (!window.confirm("Tem certeza que deseja apagar este encontreiro?")) return;
+
+  try {
+    const response = await fetch(`http://localhost:8080/encontreiros/${cpf}`, {
+      method: "DELETE"
+    });
+
+    if (response.ok) {
+      const atualizados = encontreiros.filter(e => e.cpf !== cpf);
+      setEncontreiros(atualizados);
+    } else {
+      // Tentar extrair mensagem de erro do backend
+      const erroJson = await response.json().catch(() => null);
+
+      // Verificar se é erro relacionado a registros existentes
+      if (response.status === 409 || (erroJson && erroJson.message && erroJson.message.toLowerCase().includes("registro_encontreiro"))) {
+        alert("Este encontreiro está presente em registros associados. Por favor, remova o encontreiro dos registros antes de apagar.");
+      } else {
+        alert("Erro ao apagar encontreiro. Tente novamente.");
+        console.error("Erro ao apagar encontreiro:", erroJson || response.statusText);
+      }
+    }
+  } catch (error) {
+    alert("Erro ao apagar encontreiro. Verifique sua conexão e tente novamente.");
+    console.error("Erro ao apagar:", error);
+  }
+};
+
+
   const renderEncontreiro = (e, numero) => {
     const pessoa = pessoasMapeadas[e.cpf];
     const isExpanded = expandedCpf === e.cpf;
+    const isEditando = !!modoEdicao[e.cpf];
 
     return (
       <div key={e.cpf} className="item-encontro" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -60,8 +146,38 @@ const EncontroAtual = () => {
               <p><strong>Rua:</strong> {pessoa?.rua || "Não informado"}</p>
               <p><strong>CEP:</strong> {pessoa?.cep || "Não informado"}</p>
               <p><strong>Instituição de Ensino:</strong> {pessoa?.instituicao_ensino || "Não informado"}</p>
-              <p><strong>Nome do Responsável:</strong> {e.responsavelNome || "Não informado"}</p>
-              <p><strong>Telefone do Responsável:</strong> {e.responsavelTelefone || "Não informado"}</p>
+
+              {isEditando ? (
+                <>
+                  <p>
+                    <strong>Nome do Responsável:</strong>
+                    <input
+                      type="text"
+                      value={formEdicao[e.cpf]?.responsavelNome || ""}
+                      onChange={e2 => handleChange(e.cpf, "responsavelNome", e2.target.value)}
+                    />
+                  </p>
+                  <p>
+                    <strong>Telefone do Responsável:</strong>
+                    <input
+                      type="text"
+                      value={formEdicao[e.cpf]?.responsavelTelefone || ""}
+                      onChange={e2 => handleChange(e.cpf, "responsavelTelefone", e2.target.value)}
+                    />
+                  </p>
+                  <button onClick={() => salvarEdicao(e)} className="botao-ver-mais">Salvar</button>
+                </>
+              ) : (
+                <>
+                  <p><strong>Nome do Responsável:</strong> {e.responsavelNome || "Não informado"}</p>
+                  <p><strong>Telefone do Responsável:</strong> {e.responsavelTelefone || "Não informado"}</p>
+                </>
+              )}
+
+              <button onClick={() => toggleModoEdicao(e)} className="botao-ver-mais">
+                {isEditando ? "Cancelar" : "Editar"}
+              </button>
+              <button onClick={() => apagarEncontreiro(e.cpf)} className="botao-ver-mais">Apagar</button>
             </div>
           )}
         </div>

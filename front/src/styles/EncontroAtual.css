@@ -73,3 +73,36 @@ h2 {
 .pagina-inicial {
   padding-top: 20px; /* Evita que a parte de cima fique clicável indevidamente */
 }
+
+.conteudo-central {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-start; /* garante o topo alinhado */
+  gap: 40px;
+}
+
+.coluna-inscritos {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.caixa-inscritos {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.botao-editar, .botao-excluir, .botao-salvar, .botao-cancelar {
+  margin-top: 8px;
+  margin-right: 5px;
+  padding: 4px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.edicao-form input, .edicao-form select {
+  margin-top: 5px;
+  display: block;
+}
