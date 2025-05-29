@@ -1,6 +1,6 @@
 # 🙏 Inscripto — Sistema de Gerenciamento de Encontros Religiosos
 
-✨ Bem-vindo ao **Inscripto**, um sistema desenvolvido para organizar e registrar de forma eficiente os **encontros religiosos**, participantes e suas funções. Criado com **Java Spring Boot** no backend e **React** no frontend!
+✨ Bem-vindo ao **Inscripto**, um sistema desenvolvido para organizar e registrar de forma eficiente os **encontros religiosos**, participantes e suas funções. Criado com **Java Spring Boot** no backend e **React** no frontend.
 
 ---
 
@@ -73,6 +73,14 @@
 
 - **`listar_restricoes_alimentares(cpf)`**  
   Exibe todas as restrições alimentares registradas para um encontreiro.
+
+---
+
+## 📊 Relatório
+
+Para um relatório completo sobre a aplicação, incluindo contexto, justificativa, funcionalidades, arquitetura, decisões técnicas, resultados e aprendizados, acesse:
+
+[Relatório Inscripto — Google Docs](https://docs.google.com/document/d/1vX11Qc-RPRGBqyb9JOb8MtYEbMH8kmC5HdmEc5wySI4/edit?usp=sharing)
 
 ---
 
