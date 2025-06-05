@@ -149,17 +149,25 @@ function PaginaInicialAdmin() {
                 fontSize: "18px",
                 borderRadius: "10px",
                 fontWeight: 600,
-                backgroundColor: "#b7cde3",
-                color: "#4a4a4a",
-                border: "1px solid #4a4a4a",
-                boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-                transition: "background-color 0.3s",
+                background: "linear-gradient(135deg, #800020 0%, #A02C40 100%)",
+                color: "#ffffff",
+                border: "none",
+                boxShadow: "0 4px 15px rgba(128, 0, 32, 0.3)",
+                transition: "all 0.3s ease",
                 cursor: "pointer"
               }}
-              onMouseOver={e => (e.currentTarget.style.backgroundColor = "#849fb9")}
-              onMouseOut={e => (e.currentTarget.style.backgroundColor = "#b7cde3")}
+              onMouseOver={e => {
+                e.currentTarget.style.background = "linear-gradient(135deg, #A02C40 0%, #B73E56 100%)";
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.boxShadow = "0 6px 20px rgba(128, 0, 32, 0.4)";
+              }}
+              onMouseOut={e => {
+                e.currentTarget.style.background = "linear-gradient(135deg, #800020 0%, #A02C40 100%)";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "0 4px 15px rgba(128, 0, 32, 0.3)";
+              }}
             >
-              Dashboard
+              📊 Dashboard
             </button>
           </Link>
         </div>
