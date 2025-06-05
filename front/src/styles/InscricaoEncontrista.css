@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #e3dacb;
+  background-color: #ffffff;
 }
 
 .inscricao-container {
@@ -12,7 +12,7 @@ body {
   padding: 40px 20px;
   max-width: 500px;
   margin: 0 auto;
-  background-color: #e3dacb;
+  background-color: #ffffff;
   min-height: 100vh;
 }
 
@@ -25,7 +25,7 @@ body {
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #dcdcdc;
+  border: 3px solid #CCCCCC;
   box-shadow: 0 2px 6px rgba(0,0,0,0.12);
 }
 
@@ -39,15 +39,16 @@ body {
 .formulario-simples input[type="text"] {
   padding: 12px;
   border-radius: 10px;
-  border: 1px solid #b7cde3;
+  border: 1px solid #CCCCCC;
   font-size: 16px;
-  background: #f1f1f1;
+  background: #fff;
+  color: #1A1A1A;
   outline-offset: 2px;
   transition: border-color 0.3s;
 }
 
 .formulario-simples input[type="text"]:focus {
-  border-color: #4caf50;
+  border-color: #A02C40;
 }
 
 .checkbox-label {
@@ -57,6 +58,7 @@ body {
   font-size: 16px;
   user-select: none;
   cursor: pointer;
+  color: #1A1A1A;
 }
 
 .checkbox-label input[type="checkbox"] {
@@ -71,16 +73,16 @@ body {
   font-size: 18px;
   border: none;
   border-radius: 10px;
-  background-color: #b7cde3;
-  color: #4a4a4a;
-  border: 1px solid #4a4a4a;
+  background-color: #800020;
+  color: #fff;
+  border: 1px solid #CCCCCC;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .formulario-simples button:hover, .botao-inscricao:hover {
-  background-color: #849fb9;
+  background-color: #A02C40;
   color: #fff;
 }
 
@@ -89,9 +91,9 @@ body {
   top: 20px;
   left: 20px;
   padding: 12px 20px;
-  background-color: #b7cde3;
-  color: #4a4a4a;
-  border: 1px solid #4a4a4a;
+  background-color: #800020;
+  color: #fff;
+  border: 1px solid #CCCCCC;
   font-size: 16px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
@@ -102,6 +104,6 @@ body {
 }
 
 .botao-voltar:hover {
-  background-color: #849fb9;
+  background-color: #A02C40;
   color: #fff;
 }

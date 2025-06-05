@@ -1,8 +1,8 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #e3dacb;
-  color: #333333;
+  background-color: #ffffff; /* Fundo branco puro */
+  color: #1A1A1A; /* Texto principal preto suave */
 }
 
 .container {
@@ -18,9 +18,9 @@ body {
   top: 20px;
   left: 20px;
   padding: 10px 16px;
-  background-color: #b7cde3;
-  color: #4a4a4a;
-  border: 1px solid #4a4a4a;
+  background-color: #800020; /* Vinho principal */
+  color: #fff; /* Texto branco puro */
+  border: 1px solid #CCCCCC; /* Cinza médio */
   font-size: 16px;
   border-radius: 6px;
   font-weight: 500;
@@ -30,7 +30,7 @@ body {
 }
 
 .admin-button:hover {
-  background-color: #849fb9;
+  background-color: #A02C40; /* Vinho destaque */
   color: #fff;
 }
 
@@ -38,9 +38,9 @@ body {
   margin-top: 20px;
   width: 30%;
   padding: 10px 16px;
-  background-color: #b7cde3;
-  color: #4a4a4a;
-  border: 1px solid #4a4a4a;
+  background-color: #800020;
+  color: #fff;
+  border: 1px solid #CCCCCC;
   font-size: 16px;
   border-radius: 6px;
   font-weight: 500;
@@ -50,12 +50,12 @@ body {
 }
 
 .login-button:hover {
-  background-color: #849fb9;
+  background-color: #A02C40;
   color: #fff;
 }
 
 .login-box {
-  background-color: #ffffff;
+  background-color: #F5F5F5; /* Cinza claro */
   padding: 30px 40px;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
@@ -66,7 +66,7 @@ body {
 
 .login-box h2 {
   margin-bottom: 20px;
-  color: #444444;
+  color: #800020; /* Título vinho principal */
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
 }
@@ -77,31 +77,31 @@ body {
   margin-bottom: 6px;
   margin-top: 15px;
   font-weight: 600;
-  color: #666666;
+  color: #4D4D4D; /* Cinza escuro */
 }
 
 .login-box input {
   width: 100%;
   padding: 10px;
   margin-bottom: 5px;
-  background-color: #f1f1f1;
-  border: 1px solid #b7cde3;
+  background-color: #fff;
+  border: 1px solid #CCCCCC;
   border-radius: 6px;
-  color: #333333;
+  color: #1A1A1A;
 }
 
 .login-box input::placeholder {
-  color: #999999;
+  color: #CCCCCC;
 }
 
 .register-link {
   margin-top: 15px;
-  color: #777777;
+  color: #CCCCCC;
   font-size: 14px;
 }
 
 .register-link a {
-  color: #6d94b4;
+  color: #A02C40; /* Link vinho destaque */
   text-decoration: none;
   font-weight: 500;
 }
@@ -112,7 +112,7 @@ body {
 
 h2 {
   margin-bottom: 20px;
-  color: #444444;
+  color: #800020;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
 }

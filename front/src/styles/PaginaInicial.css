@@ -1,7 +1,7 @@
 .pagina-inicial {
-  background-color: #e3dacb;
+  background-color: #ffffff;
   font-family: 'Segoe UI', sans-serif;
-  color: #333333;
+  color: #1A1A1A;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -19,8 +19,8 @@
 }
 
 .info-encontro {
-  background-color: #b7cde3;
-  border: 1px solid #4a4a4a;
+  background-color: #800020;
+  border: 1px solid #CCCCCC;
   border-radius: 12px;
   padding: 24px 32px;
   margin-top: 12px;
@@ -28,10 +28,11 @@
   transition: background-color 0.3s, color 0.3s;
   text-align: center;
   max-width: 500px;
+  color: #fff;
 }
 
 .info-encontro:hover {
-  background-color: #849fb9;
+  background-color: #A02C40;
   color: #fff;
 }
 
@@ -42,7 +43,7 @@
 }
 
 .item-encontro {
-  background-color: #f9f9f9;
+  background-color: #F5F5F5;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 12px;
@@ -54,9 +55,9 @@
 
 .botao-sair, .botao-perfil {
   padding: 12px 24px;
-  background-color: #b7cde3;
-  color: #4a4a4a;
-  border: 1px solid #4a4a4a;
+  background-color: #800020;
+  color: #fff;
+  border: 1px solid #CCCCCC;
   font-size: 16px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
@@ -67,7 +68,7 @@
 }
 
 .botao-sair:hover, .botao-perfil:hover {
-  background-color: #849fb9;
+  background-color: #A02C40;
   color: #fff;
 }
 
@@ -83,7 +84,7 @@
 
 .mensagem-boas-vindas {
   font-size: 22px;
-  color: #444444;
+  color: #1A1A1A;
   margin-bottom: 15px;
   font-weight: 500;
 }
@@ -91,16 +92,16 @@
 .titulo-encontro {
   font-family: 'Poppins', sans-serif;
   font-size: 36px;
-  color: #444444;
+  color: #800020;
   margin-bottom: 32px;
   font-weight: 700;
 }
 
 .botao-eac {
   padding: 16px 48px;
-  background-color: #b7cde3;
-  color: #4a4a4a;
-  border: 1px solid #4a4a4a;
+  background-color: #800020;
+  color: #fff;
+  border: 1px solid #CCCCCC;
   font-size: 18px;
   border-radius: 10px;
   font-weight: 600;
@@ -110,7 +111,7 @@
 }
 
 .botao-eac:hover {
-  background-color: #849fb9;
+  background-color: #A02C40;
   color: #fff;
 }
 
@@ -121,15 +122,16 @@
   width: 80%;
   font-size: 1rem;
   border-radius: 8px;
-  border: 1px solid #b7cde3;
-  background: #f1f1f1;
+  border: 1px solid #CCCCCC;
+  background: #fff;
+  color: #1A1A1A;
 }
 
 .botao-encontro {
   display: inline-block;
   padding: 10px 24px;
   margin-top: 20px;
-  background-color: #849fb9;
+  background-color: #800020;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -140,7 +142,7 @@
 }
 
 .botao-encontro:hover {
-  background-color: #6b7f9d;
+  background-color: #A02C40;
 }
 
 .lista-encontros {
@@ -153,6 +155,7 @@
 
 .profile-link {
   text-decoration: none;
+  color: #A02C40;
 }
 
 .profile-image, .profile-placeholder {
@@ -161,14 +164,14 @@
   border-radius: 50%;
   object-fit: cover;
   cursor: pointer;
-  border: 2px solid #ccc;
+  border: 2px solid #CCCCCC;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  background: #d0d0d0;
-  color: #333;
+  background: #F5F5F5;
+  color: #1A1A1A;
   text-align: center;
   transition: transform 0.2s;
 }

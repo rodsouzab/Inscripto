@@ -4,12 +4,12 @@
   font-weight: bold;
   margin: 30px 0;
   font-family: 'Poppins', sans-serif;
-  color: #444444;
+  color: #800020;
 }
 
 .perfil-container {
   flex: 1;
-  background-color: #e3dacb;
+  background-color: #F5F5F5;
   padding: 40px 0;
   border-radius: 10px;
   position: relative;
@@ -19,16 +19,16 @@
 .foto-perfil, .profile-placeholder {
   width: 100px;
   height: 100px;
-  background-color: #d0d0d0;
+  background-color: #F5F5F5;
   border-radius: 50%;
   margin: 0 auto 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #ccc;
+  border: 2px solid #CCCCCC;
   box-shadow: 0 2px 6px rgba(0,0,0,0.12);
   font-size: 14px;
-  color: #4a4a4a;
+  color: #1A1A1A;
   text-align: center;
 }
 
@@ -40,21 +40,24 @@
 .nome {
   font-weight: bold;
   font-size: 18px;
+  color: #1A1A1A;
 }
 
 .sobrenome {
   font-size: 14px;
+  color: #4D4D4D;
 }
 
 .dados-pessoais {
   font-size: 14px;
   line-height: 1.6;
+  color: #1A1A1A;
 }
 
 .editar-btn {
-  background-color: #b7cde3;
-  color: #4a4a4a;
-  border: 1px solid #4a4a4a;
+  background-color: #800020;
+  color: #fff;
+  border: 1px solid #CCCCCC;
   padding: 8px 20px;
   font-size: 14px;
   border-radius: 8px;
@@ -63,7 +66,7 @@
 }
 
 .editar-btn:hover {
-  background-color: #849fb9;
+  background-color: #A02C40;
   color: #fff;
 }
 
@@ -75,6 +78,7 @@
 .continuar-titulo {
   font-size: 20px;
   margin-bottom: 20px;
+  color: #800020;
 }
 
 .botoes-inscricao {
@@ -94,9 +98,9 @@
   justify-content: center;
   white-space: nowrap;
   text-align: center;
-  background-color: #b7cde3;
-  color: #4a4a4a;
-  border: 1px solid #4a4a4a;
+  background-color: #800020;
+  color: #fff;
+  border: 1px solid #CCCCCC;
   font-size: 15px;
   font-weight: 500;
   transition: background-color 0.3s, color 0.3s;
@@ -104,12 +108,12 @@
 
 .botao-perfil:hover,
 .botao-perfil-cancelar:hover {
-  background-color: #849fb9;
+  background-color: #A02C40;
   color: #fff;
 }
 
 .botao-perfil-cancelar {
-  background-color: #849fb9;
+  background-color: #A02C40;
   color: #fff;
 }
 
@@ -118,9 +122,9 @@
   top: 20px;
   left: 20px;
   padding: 12px 20px;
-  background-color: #b7cde3;
-  color: #4a4a4a;
-  border: 1px solid #4a4a4a;
+  background-color: #800020;
+  color: #fff;
+  border: 1px solid #CCCCCC;
   font-size: 16px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
@@ -131,6 +135,6 @@
 }
 
 .botao-voltar:hover {
-  background-color: #849fb9;
+  background-color: #A02C40;
   color: #fff;
 }

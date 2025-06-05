@@ -4,17 +4,17 @@
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 10px;
-  background: #d0d0d0;
-  border: 2px solid #ccc;
+  background: #F5F5F5;
+  border: 2px solid #CCCCCC;
   box-shadow: 0 2px 6px rgba(0,0,0,0.12);
 }
 
 .botao-ver-mais {
-  background-color: #b7cde3;
-  color: #4a4a4a;
+  background-color: #800020;
+  color: #fff;
   padding: 8px 18px;
   margin-top: 10px;
-  border: 1px solid #4a4a4a;
+  border: 1px solid #CCCCCC;
   font-size: 16px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
@@ -24,15 +24,15 @@
 }
 
 .botao-ver-mais:hover {
-  background-color: #849fb9;
+  background-color: #A02C40;
   color: #fff;
 }
 
 .botao-eac {
   padding: 16px 48px;
-  background-color: #b7cde3;
-  color: #4a4a4a;
-  border: 1px solid #4a4a4a;
+  background-color: #800020;
+  color: #fff;
+  border: 1px solid #CCCCCC;
   font-size: 18px;
   border-radius: 10px;
   font-weight: 600;
@@ -42,12 +42,12 @@
 }
 
 .botao-eac:hover {
-  background-color: #849fb9;
+  background-color: #A02C40;
   color: #fff;
 }
 
 .botao-eac.ativo {
-  background-color: #829db9;
+  background-color: #A02C40;
   color: #fff;
   font-weight: 700;
 }
@@ -55,11 +55,12 @@
 .infos-adicionais {
   margin-top: 10px;
   padding: 10px;
-  background-color: #f4f4ff;
+  background-color: #F5F5F5;
   border-radius: 8px;
   box-shadow: 0 0 8px rgba(108, 99, 255, 0.12);
   font-size: 0.98rem;
-  color: #333;
+  color: #1A1A1A;
+  border: 1px solid #CCCCCC;
 }
 
 .infos-adicionais p {
@@ -71,18 +72,19 @@ h2 {
   margin-top: 60px;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
-  color: #444444;
+  color: #800020;
 }
 
 .pagina-inicial {
   padding-top: 20px;
+  background-color: #ffffff;
 }
 
 .conteudo-central {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  align-items: flex-start; /* garante o topo alinhado */
+  align-items: flex-start;
   gap: 40px;
 }
 
@@ -105,8 +107,21 @@ h2 {
   padding: 4px 10px;
   font-size: 14px;
   cursor: pointer;
+  background-color: #800020;
+  color: #fff;
+  border: 1px solid #CCCCCC;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+}
+.botao-editar:hover, .botao-excluir:hover, .botao-salvar:hover, .botao-cancelar:hover {
+  background-color: #A02C40;
+  color: #fff;
 }
 .edicao-form input, .edicao-form select {
   margin-top: 5px;
   display: block;
+  border: 1px solid #CCCCCC;
+  border-radius: 6px;
+  color: #1A1A1A;
+  background: #fff;
 }

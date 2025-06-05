@@ -4,16 +4,16 @@
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 10px;
-  border: 2px solid #829db9; /* Pequena borda para destacar a foto */
+  border: 2px solid #800020;
 }
 
 .botao-ver-mais,
 .botao-eac {
-  background-color: #b7cde3;
-  color: #4a4a4a;
-  padding: 10px 16px; /* um pouco mais confortável */
+  background-color: #800020;
+  color: #fff;
+  padding: 10px 16px;
   margin-top: 10px;
-  border: 1px solid #4a4a4a;
+  border: 1px solid #CCCCCC;
   font-size: 16px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -25,8 +25,8 @@
 
 .botao-ver-mais:hover,
 .botao-eac:hover {
-  background-color: #849fb9;
-  color: #ffffff;
+  background-color: #A02C40;
+  color: #fff;
 }
 
 .botao-eac {
@@ -36,20 +36,21 @@
 }
 
 .botao-eac.ativo {
-  background-color: #829db9;
-  color: white;
+  background-color: #A02C40;
+  color: #fff;
   font-weight: 700;
 }
 
 .infos-adicionais {
   margin-top: 10px;
   padding: 12px 15px;
-  background-color: #f4f4ff;
+  background-color: #F5F5F5;
   border-radius: 8px;
   box-shadow: 0 0 8px rgba(108, 99, 255, 0.2);
   font-size: 0.9rem;
-  color: #333;
+  color: #1A1A1A;
   line-height: 1.4;
+  border: 1px solid #CCCCCC;
 }
 
 .infos-adicionais p {
@@ -60,27 +61,28 @@ h2 {
   text-align: center;
   margin-top: 80px;
   font-weight: 600;
-  color: #2f3e62;
+  color: #800020;
 }
 
 .pagina-inicial {
   padding-top: 20px;
+  background-color: #ffffff;
 }
 
 .conteudo-central {
   display: flex;
   flex-direction: row;
-  justify-content: center; /* melhor para centralizar */
+  justify-content: center;
   align-items: flex-start;
   gap: 40px;
-  flex-wrap: wrap; /* para responsividade em telas pequenas */
+  flex-wrap: wrap;
 }
 
 .coluna-inscritos {
-  flex: 1 1 320px; /* permite encolher e crescer, min-width 320px */
+  flex: 1 1 320px;
   display: flex;
   flex-direction: column;
-  max-width: 700px; /* evita esticar demais em telas grandes */
+  max-width: 700px;
 }
 
 .caixa-inscritos {
@@ -89,20 +91,19 @@ h2 {
   gap: 16px;
 }
 
-/* Botões de ação (editar, excluir, salvar, cancelar) */
 .botao-editar,
 .botao-excluir,
 .botao-salvar,
 .botao-cancelar {
   margin-top: 8px;
   margin-right: 5px;
-  padding: 6px 12px; /* aumenta um pouco o clique */
+  padding: 6px 12px;
   font-size: 14px;
   cursor: pointer;
   border-radius: 6px;
-  border: 1px solid #4a4a4a;
-  background-color: #dbe6f2;
-  color: #4a4a4a;
+  border: 1px solid #CCCCCC;
+  background-color: #800020;
+  color: #fff;
   transition: background-color 0.2s, color 0.2s;
 }
 
@@ -110,11 +111,10 @@ h2 {
 .botao-excluir:hover,
 .botao-salvar:hover,
 .botao-cancelar:hover {
-  background-color: #849fb9;
+  background-color: #A02C40;
   color: #fff;
 }
 
-/* Formulário de edição */
 .edicao-form input,
 .edicao-form select,
 .edicao-form textarea {
@@ -123,18 +123,20 @@ h2 {
   width: 100%;
   padding: 8px 10px;
   font-size: 14px;
-  border: 1px solid #ccc;
+  border: 1px solid #CCCCCC;
   border-radius: 6px;
   box-sizing: border-box;
   transition: border-color 0.3s;
+  color: #1A1A1A;
+  background: #fff;
 }
 
 .edicao-form input:focus,
 .edicao-form select:focus,
 .edicao-form textarea:focus {
   outline: none;
-  border-color: #829db9;
-  box-shadow: 0 0 5px #829db9;
+  border-color: #800020;
+  box-shadow: 0 0 5px #800020;
 }
 
 .container-botoes {

@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #e3dacb;
+  background-color: #ffffff;
 }
 
 .inscricao-container {
@@ -10,7 +10,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 40px 20px;
-  background-color: #e3dacb;
+  background-color: #ffffff;
   min-height: 100vh;
 }
 
@@ -18,7 +18,7 @@ body {
 .logo-circular {
   width: 100px;
   height: 100px;
-  background-color: #b7cde3;
+  background-color: #800020;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -26,9 +26,9 @@ body {
   font-weight: bold;
   text-align: center;
   margin-bottom: 40px;
-  color: #4a4a4a;
+  color: #fff;
   font-size: 22px;
-  border: 2px solid #4a4a4a;
+  border: 2px solid #CCCCCC;
 }
 
 /* Bloco principal */
@@ -43,10 +43,11 @@ body {
 
 /* Habilidades */
 .habilidades-box {
-  background-color: #e6e6e6;
+  background-color: #F5F5F5;
   padding: 30px;
   border-radius: 15px;
   width: 250px;
+  border: 1px solid #CCCCCC;
 }
 
 .habilidades-box h2 {
@@ -54,6 +55,7 @@ body {
   margin-bottom: 20px;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
+  color: #800020;
 }
 
 .habilidades-grid {
@@ -76,9 +78,10 @@ body {
 .formulario select {
   padding: 12px;
   border-radius: 10px;
-  border: 1px solid #b7cde3;
+  border: 1px solid #CCCCCC;
   font-size: 16px;
-  background: #f1f1f1;
+  background: #fff;
+  color: #1A1A1A;
   resize: none;
 }
 
@@ -90,24 +93,26 @@ body {
 
 .nota {
   font-size: 12px;
-  color: #666;
+  color: #CCCCCC;
   margin-top: -5px;
   margin-left: 20px;
 }
 
 /* Sessão de pessoas conhecidas */
 .pessoa-conhecida {
-  background-color: #f5f5f5;
+  background-color: #F5F5F5;
   padding: 20px;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  border: 1px solid #CCCCCC;
 }
 
 .pessoa-conhecida h3 {
   margin: 0;
   text-align: center;
+  color: #800020;
 }
 
 /* Botão */
@@ -121,16 +126,16 @@ body {
   font-size: 18px;
   border: none;
   border-radius: 10px;
-  background-color: #b7cde3;
-  color: #4a4a4a;
-  border: 1px solid #4a4a4a;
+  background-color: #800020;
+  color: #fff;
+  border: 1px solid #CCCCCC;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .botao-inscricao button:hover {
-  background-color: #849fb9;
+  background-color: #A02C40;
   color: #fff;
 }
 
@@ -145,11 +150,17 @@ body {
   flex: 1;
   min-width: 0;
   font-size: 13px;
+  color: #1A1A1A;
+  background: #fff;
+  border: 1px solid #CCCCCC;
 }
 
 .familiar-item select {
   width: 161px;
   font-size: 13px;
+  color: #1A1A1A;
+  background: #fff;
+  border: 1px solid #CCCCCC;
 }
 
 .remover-btn {
@@ -157,17 +168,17 @@ body {
   border: none;
   cursor: pointer;
   font-size: 20px;
-  color: #900;
+  color: #A02C40;
   padding: 0 5px;
   transition: color 0.3s;
 }
 
 .remover-btn:hover {
-  color: #f00;
+  color: #800020;
 }
 
 .adicionar-btn {
-  background-color: #4caf50;
+  background-color: #800020;
   color: white;
   border: none;
   padding: 8px 15px;
@@ -180,5 +191,5 @@ body {
 }
 
 .adicionar-btn:hover {
-  background-color: #45a049;
+  background-color: #A02C40;
 }

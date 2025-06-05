@@ -1,7 +1,7 @@
 .perfil-container {
-  background-color: #e3dacb;
+  background-color: #F5F5F5;
   font-family: 'Segoe UI', sans-serif;
-  color: #333333;
+  color: #1A1A1A;
   min-height: 100vh;
   padding: 40px 0;
   box-sizing: border-box;
@@ -14,23 +14,24 @@
   text-align: center;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
-  color: #444444;
+  color: #800020;
 }
 
 .perfil-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #dcdcdc;
+  background-color: #fff;
   padding: 30px;
   border-radius: 16px;
   max-width: 400px;
   margin: 0 auto 40px auto;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #CCCCCC;
 }
 
 .foto-perfil, .profile-placeholder {
-  color: #4a4a4a;
+  color: #1A1A1A;
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -40,8 +41,8 @@
   align-items: center;
   text-align: center;
   margin-bottom: 20px;
-  background: #d0d0d0;
-  border: 2px solid #ccc;
+  background: #F5F5F5;
+  border: 2px solid #CCCCCC;
   box-shadow: 0 2px 6px rgba(0,0,0,0.12);
 }
 
@@ -57,15 +58,17 @@
 
 .dados-perfil label {
   font-weight: bold;
+  color: #4D4D4D;
 }
 
 .dados-perfil input {
   width: 100%;
   padding: 8px;
   margin: 5px 0 20px 0;
-  border: 1px solid #b7cde3;
+  border: 1px solid #CCCCCC;
   border-radius: 8px;
-  background: #f1f1f1;
+  background: #fff;
+  color: #1A1A1A;
 }
 
 .acoes-perfil {
@@ -77,8 +80,8 @@
 
 .botao-perfil {
   padding: 8px 20px;
-  background-color: #b7cde3;
-  border: 1px solid #4a4a4a;
+  background-color: #800020;
+  border: 1px solid #CCCCCC;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 500;
@@ -87,20 +90,20 @@
   height: 36px;
   line-height: 20px;
   text-align: center;
-  color: #4a4a4a;
+  color: #fff;
 }
 
 .botao-perfil:hover {
-  background-color: #849fb9;
+  background-color: #A02C40;
   color: #fff;
 }
 
 .botao-perfil.cancelar {
-  background-color: #849fb9;
+  background-color: #A02C40;
   color: #fff;
 }
 
 .botao-perfil.deletar {
-  background-color: #ff7b7b;
+  background-color: #A02C40;
   color: #fff;
 }
