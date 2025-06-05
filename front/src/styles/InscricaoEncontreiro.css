@@ -2,194 +2,347 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
 }
 
 .inscricao-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px;
-  background-color: #ffffff;
+  padding: 50px 20px;
+  background: #ffffff;
   min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  position: relative;
 }
 
 /* Logo centralizada */
 .logo-circular {
-  width: 100px;
-  height: 100px;
-  background-color: #800020;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #800020 0%, #A02C40 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   color: #fff;
-  font-size: 22px;
-  border: 2px solid #CCCCCC;
+  font-size: 20px;
+  border: 3px solid #ffffff;
+  box-shadow: 0 8px 25px rgba(128, 0, 32, 0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 /* Bloco principal */
 .conteudo-inscricao {
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 50px;
   flex-wrap: wrap;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1100px;
 }
 
 /* Habilidades */
 .habilidades-box {
-  background-color: #F5F5F5;
-  padding: 30px;
-  border-radius: 15px;
-  width: 250px;
-  border: 1px solid #CCCCCC;
+  background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
+  padding: 35px;
+  border-radius: 20px;
+  width: 300px;
+  border: 2px solid rgba(128, 0, 32, 0.1);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.habilidades-box:hover {
+  transform: translateY(-5px);
 }
 
 .habilidades-box h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   font-family: 'Poppins', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   color: #800020;
+  font-size: 24px;
 }
 
 .habilidades-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 10px;
+  gap: 15px;
+}
+
+.habilidades-grid label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 2px solid #E9ECEF;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.habilidades-grid label:hover {
+  border-color: #800020;
+  background: #F8F9FA;
+  transform: translateX(5px);
+}
+
+.habilidades-grid input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #800020;
 }
 
 /* Formulário */
 .formulario {
   flex: 1;
-  max-width: 400px;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
+  background: #F8F9FA;
+  padding: 35px;
+  border-radius: 20px;
+  border: 2px solid rgba(128, 0, 32, 0.1);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
 .formulario input,
 .formulario textarea,
 .formulario select {
-  padding: 12px;
+  padding: 15px;
   border-radius: 10px;
-  border: 1px solid #CCCCCC;
+  border: 2px solid #E9ECEF;
   font-size: 16px;
   background: #fff;
   color: #1A1A1A;
   resize: none;
+  transition: all 0.3s ease;
+}
+
+.formulario input:focus,
+.formulario textarea:focus,
+.formulario select:focus {
+  outline: none;
+  border-color: #800020;
+  box-shadow: 0 0 10px rgba(128, 0, 32, 0.2);
+  transform: translateY(-1px);
 }
 
 .idade-checkboxes {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  border: 2px solid #E9ECEF;
+}
+
+.idade-checkboxes label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+}
+
+.idade-checkboxes label:hover {
+  background: #F8F9FA;
+}
+
+.idade-checkboxes input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #800020;
 }
 
 .nota {
   font-size: 12px;
-  color: #CCCCCC;
-  margin-top: -5px;
-  margin-left: 20px;
+  color: #6C757D;
+  margin-top: 8px;
+  font-style: italic;
 }
 
 /* Sessão de pessoas conhecidas */
-.pessoa-conhecida {
-  background-color: #F5F5F5;
-  padding: 20px;
+.pessoa-conhecida,
+.familia-box {
+  background: #ffffff;
+  padding: 25px;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  border: 1px solid #CCCCCC;
+  gap: 15px;
+  border: 2px solid #E9ECEF;
+  margin: 15px 0;
 }
 
 .pessoa-conhecida h3 {
   margin: 0;
   text-align: center;
   color: #800020;
+  font-weight: 600;
+}
+
+.familiares-lista {
+  margin-top: 15px;
 }
 
 /* Botão */
 .botao-inscricao {
-  margin-top: 30px;
+  margin-top: 40px;
   text-align: center;
 }
 
 .botao-inscricao button {
-  padding: 12px 30px;
-  font-size: 18px;
+  padding: 18px 50px;
+  font-size: 20px;
   border: none;
-  border-radius: 10px;
-  background-color: #800020;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #800020 0%, #A02C40 100%);
   color: #fff;
-  border: 1px solid #CCCCCC;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(128, 0, 32, 0.3);
 }
 
 .botao-inscricao button:hover {
-  background-color: #A02C40;
-  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(128, 0, 32, 0.4);
 }
 
 .familiar-item {
   display: flex;
-  gap: 3px;
+  gap: 10px;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  padding: 15px;
+  background: #F8F9FA;
+  border-radius: 10px;
+  border: 1px solid #E9ECEF;
 }
 
 .familiar-item input[type="text"] {
   flex: 1;
   min-width: 0;
-  font-size: 13px;
+  font-size: 14px;
   color: #1A1A1A;
   background: #fff;
-  border: 1px solid #CCCCCC;
+  border: 2px solid #E9ECEF;
+  padding: 10px;
+  border-radius: 8px;
 }
 
 .familiar-item select {
-  width: 161px;
-  font-size: 13px;
+  min-width: 180px;
+  font-size: 14px;
   color: #1A1A1A;
   background: #fff;
-  border: 1px solid #CCCCCC;
+  border: 2px solid #E9ECEF;
+  padding: 10px;
+  border-radius: 8px;
 }
 
 .remover-btn {
-  background: none;
+  background: linear-gradient(135deg, #DC3545 0%, #C82333 100%);
   border: none;
   cursor: pointer;
-  font-size: 20px;
-  color: #A02C40;
-  padding: 0 5px;
-  transition: color 0.3s;
+  font-size: 16px;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
 }
 
 .remover-btn:hover {
-  color: #800020;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
 }
 
 .adicionar-btn {
-  background-color: #800020;
+  background: linear-gradient(135deg, #28A745 0%, #20C997 100%);
   color: white;
   border: none;
-  padding: 8px 15px;
-  border-radius: 8px;
-  font-size: 14px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
-  margin-top: 10px;
+  transition: all 0.3s ease;
+  margin-top: 15px;
   align-self: flex-start;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+  font-weight: 600;
 }
 
 .adicionar-btn:hover {
-  background-color: #A02C40;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+}
+
+.botao-voltar {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  padding: 15px 25px;
+  background: linear-gradient(135deg, #800020 0%, #A02C40 100%);
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(128, 0, 32, 0.3);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.botao-voltar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(128, 0, 32, 0.4);
+}
+
+@media (max-width: 768px) {
+  .conteudo-inscricao {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .habilidades-box,
+  .formulario {
+    width: 100%;
+    max-width: none;
+  }
+  
+  .inscricao-container {
+    margin: 10px;
+    padding: 30px 15px;
+  }
+  
+  .familiar-item {
+    flex-direction: column;
+    gap: 10px;
+  }
 }

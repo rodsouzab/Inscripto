@@ -1,140 +1,215 @@
 .titulo {
   text-align: center;
-  font-size: 28px;
+  font-size: 32px;
   font-weight: bold;
-  margin: 30px 0;
+  margin: 40px 0;
   font-family: 'Poppins', sans-serif;
   color: #800020;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .perfil-container {
   flex: 1;
-  background-color: #F5F5F5;
-  padding: 40px 0;
-  border-radius: 10px;
+  background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
+  padding: 50px 20px;
+  border-radius: 15px;
   position: relative;
   min-height: 100vh;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+}
+
+.perfil-card {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border: 1px solid rgba(128, 0, 32, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.perfil-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
 }
 
 .foto-perfil, .profile-placeholder {
-  width: 100px;
-  height: 100px;
-  background-color: #F5F5F5;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #F5F5F5 0%, #E0E0E0 100%);
   border-radius: 50%;
-  margin: 0 auto 20px;
+  margin: 0 auto 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #CCCCCC;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
-  font-size: 14px;
+  border: 3px solid #800020;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  font-size: 12px;
   color: #1A1A1A;
   text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.nome-container {
-  text-align: center;
-  margin-bottom: 20px;
+.foto-perfil:hover, .profile-placeholder:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
 }
 
-.nome {
-  font-weight: bold;
-  font-size: 18px;
+.dados-perfil {
+  background: #F8F9FA;
+  border-radius: 15px;
+  padding: 25px;
+  margin: 25px 0;
+  border: 1px solid #E9ECEF;
+}
+
+.dados-perfil input {
+  border-radius: 10px;
+  background: #fff;
   color: #1A1A1A;
+  border: 2px solid #E9ECEF;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-size: 16px;
 }
 
-.sobrenome {
-  font-size: 14px;
-  color: #4D4D4D;
+.dados-perfil input:focus {
+  outline: none;
+  border-color: #800020;
+  box-shadow: 0 0 10px rgba(128, 0, 32, 0.2);
 }
 
-.dados-pessoais {
-  font-size: 14px;
-  line-height: 1.6;
-  color: #1A1A1A;
+.dados-perfil label {
+  font-weight: 600;
+  color: #495057;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  display: block;
 }
 
-.editar-btn {
-  background-color: #800020;
-  color: #fff;
-  border: 1px solid #CCCCCC;
-  padding: 8px 20px;
-  font-size: 14px;
+.dados-perfil p {
+  background: #ffffff;
+  padding: 12px 15px;
   border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  border: 1px solid #E9ECEF;
+  margin: 8px 0;
+  color: #495057;
 }
 
-.editar-btn:hover {
-  background-color: #A02C40;
+.acoes-perfil {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.editar-btn,
+.botao-perfil,
+.botao-perfil-cancelar {
+  background: linear-gradient(135deg, #800020 0%, #A02C40 100%);
   color: #fff;
+  border: none;
+  padding: 12px 25px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(128, 0, 32, 0.3);
+}
+
+.editar-btn:hover,
+.botao-perfil:hover,
+.botao-perfil-cancelar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(128, 0, 32, 0.4);
+}
+
+.botao-perfil-cancelar {
+  background: linear-gradient(135deg, #DC3545 0%, #C82333 100%);
+  box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+
+.botao-perfil-cancelar:hover {
+  box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
 }
 
 .continuar-inscricao {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 50px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .continuar-titulo {
-  font-size: 20px;
-  margin-bottom: 20px;
+  font-size: 24px;
+  margin-bottom: 25px;
   color: #800020;
+  font-weight: 600;
 }
 
 .botoes-inscricao {
   display: flex;
   justify-content: center;
   gap: 20px;
-}
-
-.botao-perfil,
-.botao-perfil-cancelar {
-  padding: 8px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-  text-align: center;
-  background-color: #800020;
-  color: #fff;
-  border: 1px solid #CCCCCC;
-  font-size: 15px;
-  font-weight: 500;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.botao-perfil:hover,
-.botao-perfil-cancelar:hover {
-  background-color: #A02C40;
-  color: #fff;
-}
-
-.botao-perfil-cancelar {
-  background-color: #A02C40;
-  color: #fff;
+  flex-wrap: wrap;
 }
 
 .botao-voltar {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  padding: 12px 20px;
-  background-color: #800020;
+  top: 30px;
+  left: 30px;
+  padding: 15px 25px;
+  background: linear-gradient(135deg, #800020 0%, #A02C40 100%);
   color: #fff;
-  border: 1px solid #CCCCCC;
+  border: none;
   font-size: 16px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-  font-weight: 500;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(128, 0, 32, 0.3);
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  transition: all 0.3s ease;
   text-decoration: none;
 }
 
 .botao-voltar:hover {
-  background-color: #A02C40;
-  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(128, 0, 32, 0.4);
+}
+
+@media (max-width: 768px) {
+  .perfil-container {
+    padding: 30px 15px;
+  }
+  
+  .perfil-card {
+    padding: 25px;
+    margin: 0 10px;
+  }
+  
+  .botoes-inscricao {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .botao-voltar {
+    top: 15px;
+    left: 15px;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
 }

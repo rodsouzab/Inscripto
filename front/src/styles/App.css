@@ -1,8 +1,9 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #ffffff; /* Fundo branco puro */
-  color: #1A1A1A; /* Texto principal preto suave */
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  color: #1A1A1A;
+  line-height: 1.6;
 }
 
 .container {
@@ -11,108 +12,178 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
 .admin-button {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  padding: 10px 16px;
-  background-color: #800020; /* Vinho principal */
-  color: #fff; /* Texto branco puro */
-  border: 1px solid #CCCCCC; /* Cinza médio */
+  top: 30px;
+  left: 30px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #800020 0%, #A02C40 100%);
+  color: #fff;
+  border: none;
   font-size: 16px;
-  border-radius: 6px;
-  font-weight: 500;
+  border-radius: 10px;
+  font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(128, 0, 32, 0.3);
 }
 
 .admin-button:hover {
-  background-color: #A02C40; /* Vinho destaque */
-  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(128, 0, 32, 0.4);
 }
 
 .login-button {
-  margin-top: 20px;
-  width: 30%;
-  padding: 10px 16px;
-  background-color: #800020;
+  margin-top: 25px;
+  width: 100%;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #800020 0%, #A02C40 100%);
   color: #fff;
-  border: 1px solid #CCCCCC;
-  font-size: 16px;
-  border-radius: 6px;
-  font-weight: 500;
+  border: none;
+  font-size: 18px;
+  border-radius: 10px;
+  font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.login-button:hover {
-  background-color: #A02C40;
-  color: #fff;
-}
-
-.login-box {
-  background-color: #F5F5F5; /* Cinza claro */
-  padding: 30px 40px;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
-  width: 100%;
-  max-width: 400px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(128, 0, 32, 0.3);
+  display: block;
   text-align: center;
 }
 
+.login-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(128, 0, 32, 0.4);
+}
+
+.login-box {
+  background: #ffffff;
+  padding: 40px 50px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  border: 1px solid rgba(128, 0, 32, 0.1);
+  position: relative;
+}
+
+.login-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #800020, #A02C40, #800020);
+  border-radius: 20px 20px 0 0;
+}
+
 .login-box h2 {
-  margin-bottom: 20px;
-  color: #800020; /* Título vinho principal */
+  margin-bottom: 30px;
+  color: #800020;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
+  font-size: 32px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .login-box label {
   display: block;
   text-align: left;
-  margin-bottom: 6px;
-  margin-top: 15px;
+  margin-bottom: 8px;
+  margin-top: 20px;
   font-weight: 600;
-  color: #4D4D4D; /* Cinza escuro */
+  color: #495057;
+  font-size: 16px;
 }
 
 .login-box input {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 5px;
+  padding: 15px;
+  margin-bottom: 8px;
   background-color: #fff;
-  border: 1px solid #CCCCCC;
-  border-radius: 6px;
+  border: 2px solid #E9ECEF;
+  border-radius: 10px;
   color: #1A1A1A;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.login-box input:focus {
+  outline: none;
+  border-color: #800020;
+  box-shadow: 0 0 10px rgba(128, 0, 32, 0.2);
+  transform: translateY(-1px);
 }
 
 .login-box input::placeholder {
-  color: #CCCCCC;
+  color: #ADB5BD;
 }
 
 .register-link {
-  margin-top: 15px;
-  color: #CCCCCC;
-  font-size: 14px;
+  margin-top: 20px;
+  color: #6C757D;
+  font-size: 16px;
 }
 
 .register-link a {
-  color: #A02C40; /* Link vinho destaque */
+  color: #800020;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 .register-link a:hover {
+  color: #A02C40;
   text-decoration: underline;
 }
 
 h2 {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   color: #800020;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
+  font-size: 32px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Loading states */
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #800020;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .login-box {
+    padding: 30px 25px;
+    margin: 0 15px;
+  }
+  
+  .admin-button {
+    top: 20px;
+    left: 20px;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+  
+  .login-box h2,
+  h2 {
+    font-size: 28px;
+  }
 }

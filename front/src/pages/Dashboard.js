@@ -133,125 +133,272 @@ function Dashboard() {
     return Object.keys(obj).sort((a, b) => Number(a) - Number(b));
   }
 
+  // Enhanced chart configurations
+  const barChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { 
+        display: false 
+      },
+      tooltip: {
+        backgroundColor: 'rgba(128, 0, 32, 0.9)',
+        titleColor: '#fff',
+        bodyColor: '#fff',
+        borderColor: '#800020',
+        borderWidth: 1,
+        cornerRadius: 8,
+        displayColors: false
+      }
+    },
+    scales: {
+      x: {
+        title: { 
+          display: true, 
+          text: "Ano do Encontro",
+          color: '#495057',
+          font: { weight: 'bold', size: 14 }
+        },
+        grid: {
+          color: 'rgba(128, 0, 32, 0.1)'
+        },
+        ticks: {
+          color: '#495057',
+          font: { weight: '500' }
+        }
+      },
+      y: {
+        title: { 
+          display: true, 
+          text: "Quantidade",
+          color: '#495057',
+          font: { weight: 'bold', size: 14 }
+        },
+        beginAtZero: true,
+        grid: {
+          color: 'rgba(128, 0, 32, 0.1)'
+        },
+        ticks: {
+          color: '#495057',
+          font: { weight: '500' }
+        }
+      }
+    },
+    animation: {
+      duration: 1000,
+      easing: 'easeOutQuart'
+    }
+  };
+
+  const pieChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: {
+          padding: 20,
+          usePointStyle: true,
+          font: { weight: '500', size: 12 },
+          color: '#495057'
+        }
+      },
+      tooltip: {
+        backgroundColor: 'rgba(128, 0, 32, 0.9)',
+        titleColor: '#fff',
+        bodyColor: '#fff',
+        borderColor: '#800020',
+        borderWidth: 1,
+        cornerRadius: 8
+      }
+    },
+    animation: {
+      duration: 1000,
+      easing: 'easeOutQuart'
+    }
+  };
+
+  // Enhanced color schemes
+  const encontreirosColors = {
+    backgroundColor: 'rgba(128, 0, 32, 0.8)',
+    borderColor: '#800020',
+    borderWidth: 2,
+    borderRadius: 8,
+    hoverBackgroundColor: 'rgba(160, 44, 64, 0.9)',
+    hoverBorderColor: '#A02C40'
+  };
+
+  const encontristasColors = {
+    backgroundColor: 'rgba(160, 44, 64, 0.8)',
+    borderColor: '#A02C40',
+    borderWidth: 2,
+    borderRadius: 8,
+    hoverBackgroundColor: 'rgba(183, 62, 86, 0.9)',
+    hoverBorderColor: '#B73E56'
+  };
+
+  const pieColors = [
+    'rgba(128, 0, 32, 0.8)',
+    'rgba(160, 44, 64, 0.8)',
+    'rgba(183, 62, 86, 0.8)',
+    'rgba(74, 144, 226, 0.8)',
+    'rgba(108, 117, 125, 0.8)'
+  ];
+
   if (loading) {
-    return <div className="dashboard-container"><h2>Carregando dados do dashboard...</h2></div>;
+    return (
+      <div className="dashboard-container">
+        <div className="loading-container">
+          <div className="loading-spinner"></div>
+          <div className="loading-text">Carregando dados do dashboard...</div>
+        </div>
+      </div>
+    );
   }
 
   if (erro) {
-    return <div className="dashboard-container"><h2>{erro}</h2></div>;
+    return (
+      <div className="dashboard-container">
+        <div className="error-container">
+          <h2>⚠️ {erro}</h2>
+          <p>Tente recarregar a página ou entre em contato com o suporte.</p>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="dashboard-container">
-      {/* Botão de voltar para o painel admin */}
       <button
         className="dashboard-back-btn"
         onClick={() => navigate(-1)}
       >
-        Voltar ao Painel Admin
+        ← Voltar ao Painel Admin
       </button>
-      <h1>Dashboard do EAC</h1>
+      
+      <h1>📊 Dashboard do EAC</h1>
+      
       <div className="dashboard-cards">
         <div className="dashboard-card">
-          <h2>Total de Encontreiros</h2>
+          <h2>👥 Total de Encontreiros</h2>
           <p>{totalEncontreiros}</p>
-          <span>Média de idade: <b>{mediaIdade(idadeEncontreiros)}</b></span>
+          <span>Média de idade: <b>{mediaIdade(idadeEncontreiros)} anos</b></span>
         </div>
         <div className="dashboard-card">
-          <h2>Total de Encontristas</h2>
+          <h2>🌟 Total de Encontristas</h2>
           <p>{totalEncontristas}</p>
-          <span>Média de idade: <b>{mediaIdade(idadeEncontristas)}</b></span>
+          <span>Média de idade: <b>{mediaIdade(idadeEncontristas)} anos</b></span>
         </div>
       </div>
 
       <div className="dashboard-graphs">
         <div className="dashboard-graph">
-          <h3>Encontreiros por Ano</h3>
+          <h3>📈 Encontreiros por Ano</h3>
           {ordenarAnos(encontreirosPorAno).length === 0 ? (
-            <p>Nenhum dado disponível.</p>
+            <div className="no-data-message">
+              <div className="no-data-icon">📊</div>
+              <p>Nenhum dado de encontreiros disponível.</p>
+            </div>
           ) : (
-            <Bar
-              data={{
-                labels: ordenarAnos(encontreirosPorAno),
-                datasets: [
-                  {
-                    label: "Encontreiros",
-                    data: ordenarAnos(encontreirosPorAno).map(ano => encontreirosPorAno[ano]),
-                    backgroundColor: "#4a90e2",
-                  },
-                ],
-              }}
-              options={{
-                responsive: true,
-                plugins: { legend: { display: false } },
-                scales: { x: { title: { display: true, text: "Ano" } }, y: { title: { display: true, text: "Qtd" }, beginAtZero: true } }
-              }}
-            />
+            <div className="chart-container">
+              <Bar
+                data={{
+                  labels: ordenarAnos(encontreirosPorAno),
+                  datasets: [
+                    {
+                      label: "Encontreiros",
+                      data: ordenarAnos(encontreirosPorAno).map(ano => encontreirosPorAno[ano]),
+                      ...encontreirosColors
+                    },
+                  ],
+                }}
+                options={barChartOptions}
+              />
+            </div>
           )}
         </div>
+        
         <div className="dashboard-graph">
-          <h3>Encontristas por Ano</h3>
+          <h3>📈 Encontristas por Ano</h3>
           {ordenarAnos(encontristasPorAno).length === 0 ? (
-            <p>Nenhum dado disponível.</p>
+            <div className="no-data-message">
+              <div className="no-data-icon">📊</div>
+              <p>Nenhum dado de encontristas disponível.</p>
+            </div>
           ) : (
-            <Bar
-              data={{
-                labels: ordenarAnos(encontristasPorAno),
-                datasets: [
-                  {
-                    label: "Encontristas",
-                    data: ordenarAnos(encontristasPorAno).map(ano => encontristasPorAno[ano]),
-                    backgroundColor: "#e94e77",
-                  },
-                ],
-              }}
-              options={{
-                responsive: true,
-                plugins: { legend: { display: false } },
-                scales: { x: { title: { display: true, text: "Ano" } }, y: { title: { display: true, text: "Qtd" }, beginAtZero: true } }
-              }}
-            />
+            <div className="chart-container">
+              <Bar
+                data={{
+                  labels: ordenarAnos(encontristasPorAno),
+                  datasets: [
+                    {
+                      label: "Encontristas",
+                      data: ordenarAnos(encontristasPorAno).map(ano => encontristasPorAno[ano]),
+                      ...encontristasColors
+                    },
+                  ],
+                }}
+                options={barChartOptions}
+              />
+            </div>
           )}
         </div>
       </div>
 
       <div className="dashboard-graphs">
         <div className="dashboard-graph">
-          <h3>Faixa Etária dos Encontreiros</h3>
+          <h3>👥 Faixa Etária dos Encontreiros</h3>
           {idadeEncontreiros.length === 0 ? (
-            <p>Nenhum dado disponível.</p>
+            <div className="no-data-message">
+              <div className="no-data-icon">🎂</div>
+              <p>Nenhum dado de idade disponível.</p>
+            </div>
           ) : (
-            <Pie
-              data={{
-                labels: Object.keys(agruparFaixas(idadeEncontreiros)),
-                datasets: [
-                  {
-                    data: Object.values(agruparFaixas(idadeEncontreiros)),
-                    backgroundColor: ["#4a90e2", "#50e3c2", "#f5a623", "#e94e77", "#7b4173"],
-                  },
-                ],
-              }}
-              options={{ responsive: true }}
-            />
+            <div className="chart-container">
+              <Pie
+                data={{
+                  labels: Object.keys(agruparFaixas(idadeEncontreiros)),
+                  datasets: [
+                    {
+                      data: Object.values(agruparFaixas(idadeEncontreiros)),
+                      backgroundColor: pieColors,
+                      borderColor: '#ffffff',
+                      borderWidth: 2,
+                      hoverBorderWidth: 3
+                    },
+                  ],
+                }}
+                options={pieChartOptions}
+              />
+            </div>
           )}
         </div>
+        
         <div className="dashboard-graph">
-          <h3>Faixa Etária dos Encontristas</h3>
+          <h3>🌟 Faixa Etária dos Encontristas</h3>
           {idadeEncontristas.length === 0 ? (
-            <p>Nenhum dado disponível.</p>
+            <div className="no-data-message">
+              <div className="no-data-icon">🎂</div>
+              <p>Nenhum dado de idade disponível.</p>
+            </div>
           ) : (
-            <Pie
-              data={{
-                labels: Object.keys(agruparFaixas(idadeEncontristas)),
-                datasets: [
-                  {
-                    data: Object.values(agruparFaixas(idadeEncontristas)),
-                    backgroundColor: ["#e94e77", "#f5a623", "#50e3c2", "#4a90e2", "#7b4173"],
-                  },
-                ],
-              }}
-              options={{ responsive: true }}
-            />
+            <div className="chart-container">
+              <Pie
+                data={{
+                  labels: Object.keys(agruparFaixas(idadeEncontristas)),
+                  datasets: [
+                    {
+                      data: Object.values(agruparFaixas(idadeEncontristas)),
+                      backgroundColor: pieColors.reverse(),
+                      borderColor: '#ffffff',
+                      borderWidth: 2,
+                      hoverBorderWidth: 3
+                    },
+                  ],
+                }}
+                options={pieChartOptions}
+              />
+            </div>
           )}
         </div>
       </div>

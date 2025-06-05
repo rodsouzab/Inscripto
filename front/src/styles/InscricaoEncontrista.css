@@ -2,108 +2,188 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
 }
 
 .inscricao-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px;
-  max-width: 500px;
+  padding: 50px 20px;
+  max-width: 600px;
   margin: 0 auto;
-  background-color: #ffffff;
+  background: #ffffff;
   min-height: 100vh;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.logo-circular {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #800020 0%, #A02C40 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #fff;
+  font-size: 18px;
+  border: 3px solid #ffffff;
+  box-shadow: 0 8px 25px rgba(128, 0, 32, 0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 .foto-perfil {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .imagem-perfil {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #CCCCCC;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  border: 4px solid #800020;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.imagem-perfil:hover {
+  transform: scale(1.05);
 }
 
 .formulario-simples {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
   width: 100%;
+  background: #F8F9FA;
+  padding: 30px;
+  border-radius: 15px;
+  border: 1px solid #E9ECEF;
+}
+
+.formulario-simples label {
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 8px;
+  display: block;
 }
 
 .formulario-simples input[type="text"] {
-  padding: 12px;
+  padding: 15px;
   border-radius: 10px;
-  border: 1px solid #CCCCCC;
+  border: 2px solid #E9ECEF;
   font-size: 16px;
   background: #fff;
   color: #1A1A1A;
-  outline-offset: 2px;
-  transition: border-color 0.3s;
+  outline: none;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .formulario-simples input[type="text"]:focus {
-  border-color: #A02C40;
+  border-color: #800020;
+  box-shadow: 0 0 10px rgba(128, 0, 32, 0.2);
+  transform: translateY(-1px);
 }
 
 .checkbox-label {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   font-size: 16px;
   user-select: none;
   cursor: pointer;
-  color: #1A1A1A;
+  color: #495057;
+  padding: 15px;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 2px solid #E9ECEF;
+  transition: all 0.3s ease;
+}
+
+.checkbox-label:hover {
+  border-color: #800020;
+  background: #F8F9FA;
 }
 
 .checkbox-label input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
+  accent-color: #800020;
 }
 
 .formulario-simples button, .botao-inscricao {
-  margin-top: 20px;
-  padding: 12px 0;
+  margin-top: 25px;
+  padding: 15px 0;
   font-size: 18px;
   border: none;
-  border-radius: 10px;
-  background-color: #800020;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #800020 0%, #A02C40 100%);
   color: #fff;
-  border: 1px solid #CCCCCC;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(128, 0, 32, 0.3);
+  position: relative;
+  overflow: hidden;
 }
 
 .formulario-simples button:hover, .botao-inscricao:hover {
-  background-color: #A02C40;
-  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(128, 0, 32, 0.4);
 }
 
 .botao-voltar {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  padding: 12px 20px;
-  background-color: #800020;
+  top: 25px;
+  left: 25px;
+  padding: 15px 25px;
+  background: linear-gradient(135deg, #800020 0%, #A02C40 100%);
   color: #fff;
-  border: 1px solid #CCCCCC;
+  border: none;
   font-size: 16px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-  font-weight: 500;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(128, 0, 32, 0.3);
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  transition: all 0.3s ease;
   text-decoration: none;
 }
 
 .botao-voltar:hover {
-  background-color: #A02C40;
-  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(128, 0, 32, 0.4);
+}
+
+@media (max-width: 768px) {
+  .inscricao-container {
+    margin: 10px;
+    padding: 30px 15px;
+  }
+  
+  .formulario-simples {
+    padding: 20px;
+  }
+  
+  .botao-voltar {
+    top: 15px;
+    left: 15px;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
 }

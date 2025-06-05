@@ -1,60 +1,105 @@
+.pagina-inicial {
+  padding-top: 30px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  min-height: 100vh;
+}
+
 .foto-perfil {
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 10px;
-  border: 2px solid #800020;
+  margin-bottom: 15px;
+  border: 3px solid #800020;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.foto-perfil:hover {
+  transform: scale(1.05);
 }
 
 .botao-ver-mais,
 .botao-eac {
-  background-color: #800020;
+  background: linear-gradient(135deg, #800020 0%, #A02C40 100%);
   color: #fff;
-  padding: 10px 16px;
-  margin-top: 10px;
-  border: 1px solid #CCCCCC;
+  padding: 12px 20px;
+  margin-top: 15px;
+  border: none;
   font-size: 16px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(128, 0, 32, 0.3);
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  transition: all 0.3s ease;
   user-select: none;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .botao-ver-mais:hover,
 .botao-eac:hover {
-  background-color: #A02C40;
-  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(128, 0, 32, 0.4);
 }
 
 .botao-eac {
   margin-left: 50px;
   margin-top: 50px;
-  padding: 12px 20px;
+  padding: 18px 50px;
+  font-size: 18px;
+  border-radius: 12px;
 }
 
 .botao-eac.ativo {
-  background-color: #A02C40;
-  color: #fff;
+  background: linear-gradient(135deg, #A02C40 0%, #B73E56 100%);
   font-weight: 700;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(160, 44, 64, 0.4);
+}
+
+.botoes-navegacao {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 15px;
+  margin: 30px auto;
+  max-width: 800px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
 .infos-adicionais {
-  margin-top: 10px;
-  padding: 12px 15px;
-  background-color: #F5F5F5;
-  border-radius: 8px;
-  box-shadow: 0 0 8px rgba(108, 99, 255, 0.2);
+  margin-top: 15px;
+  padding: 20px;
+  background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   font-size: 0.9rem;
   color: #1A1A1A;
   line-height: 1.4;
-  border: 1px solid #CCCCCC;
+  border: 1px solid rgba(128, 0, 32, 0.1);
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .infos-adicionais p {
-  margin: 6px 0;
+  margin: 8px 0;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(128, 0, 32, 0.1);
+}
+
+.infos-adicionais p:last-child {
+  border-bottom: none;
 }
 
 h2 {
@@ -62,11 +107,8 @@ h2 {
   margin-top: 80px;
   font-weight: 600;
   color: #800020;
-}
-
-.pagina-inicial {
-  padding-top: 20px;
-  background-color: #ffffff;
+  font-size: 28px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .conteudo-central {
@@ -74,59 +116,98 @@ h2 {
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
-  gap: 40px;
+  gap: 50px;
   flex-wrap: wrap;
+  padding: 0 20px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .coluna-inscritos {
-  flex: 1 1 320px;
+  flex: 1 1 400px;
   display: flex;
   flex-direction: column;
-  max-width: 700px;
+  max-width: 800px;
 }
 
 .caixa-inscritos {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
+}
+
+.item-encontro {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(128, 0, 32, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.item-encontro:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .botao-editar,
 .botao-excluir,
 .botao-salvar,
 .botao-cancelar {
-  margin-top: 8px;
-  margin-right: 5px;
-  padding: 6px 12px;
+  margin-top: 10px;
+  margin-right: 8px;
+  padding: 8px 15px;
   font-size: 14px;
   cursor: pointer;
-  border-radius: 6px;
-  border: 1px solid #CCCCCC;
-  background-color: #800020;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg, #800020 0%, #A02C40 100%);
   color: #fff;
-  transition: background-color 0.2s, color 0.2s;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(128, 0, 32, 0.3);
 }
 
 .botao-editar:hover,
 .botao-excluir:hover,
 .botao-salvar:hover,
 .botao-cancelar:hover {
-  background-color: #A02C40;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(128, 0, 32, 0.4);
+}
+
+.botao-sair {
+  padding: 15px 25px;
+  background: linear-gradient(135deg, #800020 0%, #A02C40 100%);
   color: #fff;
+  border: none;
+  font-size: 16px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(128, 0, 32, 0.3);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.botao-sair:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(128, 0, 32, 0.4);
 }
 
 .edicao-form input,
 .edicao-form select,
 .edicao-form textarea {
-  margin-top: 5px;
+  margin-top: 8px;
   display: block;
   width: 100%;
-  padding: 8px 10px;
+  padding: 10px 12px;
   font-size: 14px;
-  border: 1px solid #CCCCCC;
-  border-radius: 6px;
+  border: 2px solid #E9ECEF;
+  border-radius: 8px;
   box-sizing: border-box;
-  transition: border-color 0.3s;
+  transition: all 0.3s ease;
   color: #1A1A1A;
   background: #fff;
 }
@@ -136,14 +217,37 @@ h2 {
 .edicao-form textarea:focus {
   outline: none;
   border-color: #800020;
-  box-shadow: 0 0 5px #800020;
+  box-shadow: 0 0 10px rgba(128, 0, 32, 0.2);
 }
 
 .container-botoes {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 12px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .conteudo-central {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .coluna-inscritos {
+    flex: none;
+    max-width: none;
+  }
+  
+  .botoes-navegacao {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .botao-eac {
+    margin: 5px 0;
+    margin-left: 0;
+  }
 }
 
