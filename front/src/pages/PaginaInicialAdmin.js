@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import '../styles/PaginaInicial.css';
+import '../styles/PaginaInicialAdmin.css';
 
 function PaginaInicialAdmin() {
   const { cpf } = useParams();
@@ -10,6 +10,7 @@ function PaginaInicialAdmin() {
   const [formEdicao, setFormEdicao] = useState({ colegio: "", tema: "", data: "" });
   const [encontros, setEncontros] = useState([]);
   const [editandoEncontroId, setEditandoEncontroId] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const buscarPessoa = async () => {
@@ -20,11 +21,11 @@ function PaginaInicialAdmin() {
           setApelido(data.apelido);
           setFotoUrl(data.foto_url);
         } else {
-          setApelido('usuário');
+          setApelido('Administrador');
         }
       } catch (error) {
         console.error('Erro ao buscar dados da pessoa:', error);
-        setApelido('usuário');
+        setApelido('Administrador');
       }
     };
 
@@ -33,6 +34,7 @@ function PaginaInicialAdmin() {
   }, [cpf]);
 
   const buscarEncontros = async () => {
+    setLoading(true);
     try {
       const response = await fetch("http://localhost:8080/encontros");
       const data = await response.json();
@@ -40,11 +42,19 @@ function PaginaInicialAdmin() {
       setEncontros(encontrosOrdenados);
     } catch (error) {
       console.error("Erro ao buscar encontros:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   const criarEncontro = async (e) => {
     e.preventDefault();
+    
+    if (!form.ano || !form.colegio || !form.tema || !form.data) {
+      alert("Por favor, preencha todos os campos!");
+      return;
+    }
+
     const encontro = {
       ano: parseInt(form.ano),
       colegio: form.colegio,
@@ -60,15 +70,15 @@ function PaginaInicialAdmin() {
       });
 
       if (response.ok || response.status === 201) {
-        alert("Encontro criado com sucesso!");
+        alert("✅ Encontro criado com sucesso!");
         setForm({ ano: "", colegio: "", tema: "", data: "" });
         buscarEncontros();
       } else {
-        alert("Erro ao criar encontro.");
+        alert("❌ Erro ao criar encontro.");
       }
     } catch (error) {
       console.error("Erro:", error);
-      alert("Erro ao conectar com o servidor.");
+      alert("❌ Erro ao conectar com o servidor.");
     }
   };
 
@@ -97,35 +107,35 @@ function PaginaInicialAdmin() {
       });
 
       if (response.ok) {
-        alert("Encontro atualizado com sucesso!");
+        alert("✅ Encontro atualizado com sucesso!");
         setEditandoEncontroId(null);
         setFormEdicao({ colegio: "", tema: "", data: "" });
         buscarEncontros();
       } else {
-        alert("Erro ao atualizar encontro.");
+        alert("❌ Erro ao atualizar encontro.");
       }
     } catch (error) {
       console.error("Erro ao atualizar encontro:", error);
-      alert("Erro de conexão ao atualizar encontro.");
+      alert("❌ Erro de conexão ao atualizar encontro.");
     }
   };
 
   const apagarEncontro = async (ano) => {
-    if (window.confirm("Tem certeza que deseja apagar este encontro?")) {
+    if (window.confirm("⚠️ Tem certeza que deseja apagar este encontro? Esta ação não pode ser desfeita.")) {
       try {
         const response = await fetch(`http://localhost:8080/encontros/${ano}`, {
           method: "DELETE",
         });
 
         if (response.ok || response.status === 204) {
-          alert("Encontro apagado com sucesso!");
+          alert("✅ Encontro apagado com sucesso!");
           buscarEncontros();
         } else {
-          alert("Erro ao apagar encontro.");
+          alert("❌ Erro ao apagar encontro.");
         }
       } catch (error) {
         console.error("Erro ao apagar encontro:", error);
-        alert("Erro de conexão ao apagar encontro.");
+        alert("❌ Erro de conexão ao apagar encontro.");
       }
     }
   };
@@ -133,128 +143,176 @@ function PaginaInicialAdmin() {
   const anoAtual = new Date().getFullYear();
 
   return (
-    <div className="pagina-inicial">
-      <div className="top-bar">
-        <Link to="/admin-login">
-          <button className="botao-sair">Voltar</button>
-        </Link>
-        {/* Botão Dashboard aprimorado e centralizado */}
-        <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
+    <div className="pagina-inicial-admin">
+      <div className="admin-top-bar">
+        <div className="admin-nav-section">
+          <Link to="/admin-login">
+            <button className="botao-voltar-admin">← Sair da Conta</button>
+          </Link>
+          
           <Link to="/dashboard" style={{ textDecoration: "none" }}>
-            <button
-              className="botao-eac"
-              style={{
-                margin: 0,
-                padding: "12px 32px",
-                fontSize: "18px",
-                borderRadius: "10px",
-                fontWeight: 600,
-                background: "linear-gradient(135deg, #800020 0%, #A02C40 100%)",
-                color: "#ffffff",
-                border: "none",
-                boxShadow: "0 4px 15px rgba(128, 0, 32, 0.3)",
-                transition: "all 0.3s ease",
-                cursor: "pointer"
-              }}
-              onMouseOver={e => {
-                e.currentTarget.style.background = "linear-gradient(135deg, #A02C40 0%, #B73E56 100%)";
-                e.currentTarget.style.transform = "translateY(-2px)";
-                e.currentTarget.style.boxShadow = "0 6px 20px rgba(128, 0, 32, 0.4)";
-              }}
-              onMouseOut={e => {
-                e.currentTarget.style.background = "linear-gradient(135deg, #800020 0%, #A02C40 100%)";
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 4px 15px rgba(128, 0, 32, 0.3)";
-              }}
-            >
+            <button className="dashboard-button-enhanced">
               📊 Dashboard
             </button>
           </Link>
         </div>
-        <Link to={`/perfil-admin/${cpf}`} className="profile-link">
-          {fotoUrl ? (
-            <img src={fotoUrl} alt="Foto de perfil" className="profile-image" />
-          ) : (
-            <div className="profile-placeholder">FOTO<br />DE<br />PERFIL</div>
-          )}
-        </Link>
+
+        <div className="admin-profile-section">
+          <span className="admin-welcome-text">Olá, {apelido}!</span>
+          <Link to={`/perfil-admin/${cpf}`} className="admin-profile-link">
+            {fotoUrl ? (
+              <img src={fotoUrl} alt="Foto de perfil" className="admin-profile-image" />
+            ) : (
+              <div className="admin-profile-placeholder">FOTO<br />PERFIL</div>
+            )}
+          </Link>
+        </div>
       </div>
 
-      <div className="conteudo-central">
-        <p className="mensagem-boas-vindas">Bem-vindo(a), {apelido}!</p>
-        <h2 className="titulo-encontro">Criar Novo Encontro</h2>
-        <form onSubmit={criarEncontro} className="formulario-encontro">
-          <input
-            type="number"
-            placeholder="Ano"
-            value={form.ano}
-            onChange={(e) => setForm({ ...form, ano: e.target.value })}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Colégio"
-            value={form.colegio}
-            onChange={(e) => setForm({ ...form, colegio: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="Tema"
-            value={form.tema}
-            onChange={(e) => setForm({ ...form, tema: e.target.value })}
-          />
-          <input
-            type="date"
-            value={form.data}
-            onChange={(e) => setForm({ ...form, data: e.target.value })}
-          />
-          <button type="submit" className="botao-encontro">Criar</button>
-        </form>
+      <div className="admin-content">
+        <h1 className="admin-welcome-message">Painel Administrativo</h1>
+        <p className="admin-subtitle">Gerencie encontros e visualize dados do sistema</p>
+        
+        <div className="admin-sections">
+          {/* Seção de Criar Encontro */}
+          <div className="admin-section-card">
+            <h2 className="admin-section-title">🎯 Criar Novo Encontro</h2>
+            <form onSubmit={criarEncontro} className="formulario-encontro-admin">
+              <input
+                type="number"
+                placeholder="Ano do Encontro"
+                value={form.ano}
+                onChange={(e) => setForm({ ...form, ano: e.target.value })}
+                min={new Date().getFullYear()}
+                max={new Date().getFullYear() + 10}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Nome do Colégio/Local"
+                value={form.colegio}
+                onChange={(e) => setForm({ ...form, colegio: e.target.value })}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Tema do Encontro"
+                value={form.tema}
+                onChange={(e) => setForm({ ...form, tema: e.target.value })}
+                required
+              />
+              <input
+                type="date"
+                value={form.data}
+                onChange={(e) => setForm({ ...form, data: e.target.value })}
+                required
+              />
+              <button type="submit" className="botao-criar-encontro">
+                Criar Encontro
+              </button>
+            </form>
+          </div>
 
-        <h2 className="titulo-encontro">Encontros Registrados</h2>
-        <div className="lista-encontros">
-          {encontros.map((encontro) => (
-            <div key={encontro.ano} className="item-encontro">
-              <strong>{encontro.ano}</strong>
-              <p><strong>Colégio:</strong> {encontro.colegio}</p>
-              <p><strong>Tema:</strong> {encontro.tema}</p>
-              <p><strong>Data:</strong> {encontro.data}</p>
+          {/* Seção de Encontros Registrados */}
+          <div className="admin-section-card">
+            <h2 className="admin-section-title">📋 Encontros Registrados</h2>
+            
+            {loading ? (
+              <div className="loading-state">
+                <div className="loading-spinner"></div>
+                <p>Carregando encontros...</p>
+              </div>
+            ) : (
+              <div className="lista-encontros-admin">
+                {encontros.length === 0 ? (
+                  <div className="empty-state">
+                    <div className="empty-state-icon">📝</div>
+                    <p>Nenhum encontro registrado ainda.</p>
+                    <p>Crie o primeiro encontro usando o formulário ao lado!</p>
+                  </div>
+                ) : (
+                  encontros.map((encontro) => (
+                    <div key={encontro.ano} className="item-encontro-admin">
+                      {encontro.ano === anoAtual && (
+                        <div className="badge-ano-atual">Atual</div>
+                      )}
+                      
+                      <div className="encontro-info">
+                        <div className="encontro-ano">EAC {encontro.ano}</div>
+                        
+                        <div className="encontro-detalhes">
+                          <p><strong>Colégio:</strong> {encontro.colegio || "Não informado"}</p>
+                          <p><strong>Tema:</strong> {encontro.tema || "Não informado"}</p>
+                          <p><strong>Data:</strong> {encontro.data ? new Date(encontro.data).toLocaleDateString('pt-BR') : "Não informada"}</p>
+                        </div>
+                      </div>
 
-              <div style={{ marginTop: "10px" }}>
-                <button className="botao-encontro" onClick={() => iniciarEdicao(encontro)}>Editar</button>
-                <button className="botao-encontro" onClick={() => apagarEncontro(encontro.ano)}>Apagar</button>
-                {encontro.ano === anoAtual && (
-                  <Link to={`/encontro-atual/${cpf}/${encontro.ano}`}>
-                    <button className="botao-encontro">Visualizar Encontro Atual</button>
-                  </Link>
+                      <div className="acoes-encontro">
+                        <button 
+                          className="botao-acao-encontro botao-editar-encontro" 
+                          onClick={() => iniciarEdicao(encontro)}
+                        >
+                          ✏️ Editar
+                        </button>
+                        
+                        <button 
+                          className="botao-acao-encontro botao-apagar-encontro" 
+                          onClick={() => apagarEncontro(encontro.ano)}
+                        >
+                          🗑️ Apagar
+                        </button>
+                        
+                        {encontro.ano === anoAtual && (
+                          <Link to={`/encontro-atual/${cpf}/${encontro.ano}`}>
+                            <button className="botao-acao-encontro botao-visualizar-encontro">
+                              👁️ Ver Inscritos
+                            </button>
+                          </Link>
+                        )}
+                      </div>
+
+                      {editandoEncontroId === encontro.ano && (
+                        <div className="formulario-edicao-encontro">
+                          <input
+                            type="text"
+                            placeholder="Colégio"
+                            value={formEdicao.colegio}
+                            onChange={(e) => setFormEdicao({ ...formEdicao, colegio: e.target.value })}
+                          />
+                          <input
+                            type="text"
+                            placeholder="Tema"
+                            value={formEdicao.tema}
+                            onChange={(e) => setFormEdicao({ ...formEdicao, tema: e.target.value })}
+                          />
+                          <input
+                            type="date"
+                            value={formEdicao.data}
+                            onChange={(e) => setFormEdicao({ ...formEdicao, data: e.target.value })}
+                          />
+                          
+                          <div className="acoes-edicao">
+                            <button 
+                              className="botao-salvar-edicao" 
+                              onClick={() => salvarEdicao(encontro.ano)}
+                            >
+                              💾 Salvar
+                            </button>
+                            <button 
+                              className="botao-cancelar-edicao" 
+                              onClick={() => setEditandoEncontroId(null)}
+                            >
+                              ❌ Cancelar
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))
                 )}
               </div>
-
-              {editandoEncontroId === encontro.ano && (
-                <div className="formulario-encontro">
-                  <input
-                    type="text"
-                    placeholder="Colégio"
-                    value={formEdicao.colegio}
-                    onChange={(e) => setFormEdicao({ ...formEdicao, colegio: e.target.value })}
-                  />
-                  <input
-                    type="text"
-                    placeholder="Tema"
-                    value={formEdicao.tema}
-                    onChange={(e) => setFormEdicao({ ...formEdicao, tema: e.target.value })}
-                  />
-                  <input
-                    type="date"
-                    value={formEdicao.data}
-                    onChange={(e) => setFormEdicao({ ...formEdicao, data: e.target.value })}
-                  />
-                  <button className="botao-encontro" onClick={() => salvarEdicao(encontro.ano)}>Salvar</button>
-                  <button className="botao-encontro" onClick={() => setEditandoEncontroId(null)}>Cancelar</button>
-                </div>
-              )}
-            </div>
-          ))}
+            )}
+          </div>
         </div>
       </div>
     </div>
